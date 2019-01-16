@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="map-container" class="">
+        <div id="map" class="map"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -34.397, lng: 150.644},
+                zoom: 8
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5ikxbQmwA09L9fzc4jCS6XnFW26lpAYQ&callback=initMap"
+            async defer></script>
+{% endblock %}

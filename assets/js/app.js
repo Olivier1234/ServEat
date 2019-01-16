@@ -8,6 +8,8 @@
 // any CSS you require will output into a single css file (_app.scss in this case)
 require('../css/_app.scss');
 
+require('./maps.js');
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // var $ = require('jquery');
 
