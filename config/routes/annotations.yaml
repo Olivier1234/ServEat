@@ -1,3 +1,6 @@
+controllers:
+    resource: ../../src/Controller/
+    type: annotation
 controllers_front:
     resource: ../../src/Controller/Front
     type: annotation
