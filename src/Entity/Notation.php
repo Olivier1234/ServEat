@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +52,16 @@ class Notation
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reveiverNotations")
      */
     private $receiver;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Report", mappedBy="notation")
+     */
+    private $reports;
+
+    public function __construct()
+    {
+        $this->reports = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -137,6 +149,37 @@ class Notation
     public function setReceiver(?User $receiver): self
     {
         $this->receiver = $receiver;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Report[]
+     */
+    public function getReports(): Collection
+    {
+        return $this->reports;
+    }
+
+    public function addReport(Report $report): self
+    {
+        if (!$this->reports->contains($report)) {
+            $this->reports[] = $report;
+            $report->setNotation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReport(Report $report): self
+    {
+        if ($this->reports->contains($report)) {
+            $this->reports->removeElement($report);
+            // set the owning side to null (unless already changed)
+            if ($report->getNotation() === $this) {
+                $report->setNotation(null);
+            }
+        }
 
         return $this;
     }
