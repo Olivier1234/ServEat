@@ -50,7 +50,10 @@
                     </div>
                     <div class="show-search-button"><i class="fa fa-search"></i> <span>Rechercher</span></div>
                     <a href="{{ path('add_listing') }}" class="add-list">Nouvelle annonce <span><i class="fa fa-plus"></i></span></a>
-                    <div class="show-reg-form modal-open"><i class="fa fa-sign-in"></i>Se connecter</div>
+                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <a href="{{ path('app_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
+                        <a href="{{ path('app_register') }}"><span style="color: white"><button type="button" class=" bounce btn btn-primary waves-effect waves-light" >S'inscrire</button></span></a>
+                    {% endif %}
                     <!-- nav-button-wrap--> 
                     <div class="nav-button-wrap color-bg">
                         <div class="nav-button">
@@ -62,19 +65,6 @@
                     <div class="nav-holder main-menu">
                         <nav>
                             <ul>
-                                <li>
-                                    <a href="{{ path('home') }}" class="act-link">Acceuil <i class="fa fa-caret-down"></i></a>
-                                    <!--second level -->   
-                                    <ul>
-                                        <li><a href="index.html">Parallax Image</a></li>
-                                        <li><a href="index2.html">Video</a></li>
-                                        <li><a href="index3.html">Map</a></li>
-                                        <li><a href="index4.html">Slideshow</a></li>
-                                        <li><a href="index5.html">Slider</a></li>
-										<li><a href="index6.html">Fullscreen Slider</a></li>
-                                    </ul>
-                                    <!--second level end-->
-                                </li>
                                 <li>
                                     <a href="#">Annonces <i class="fa fa-caret-down"></i></a>
                                     <!--second level -->
@@ -102,7 +92,7 @@
                                 <li>
                                     <a href="blog.html">Concept</a>
                                 </li><li>
-                                    <a href="blog.html">Devenir Hôte    </a>
+                                    <a href="#">Devenir Hôte    </a>
                                 </li>
                             </ul>
                         </nav>
@@ -185,7 +175,7 @@
                                         <ul>
                                             <li><a href="{{ path('home') }}">Acceuil </a></li>
                                             <li><a href="#">Annonces</a></li>
-                                            <li><a href="#">Contact</a></li>
+                                            <li><a href="{{ path('contact') }}">Contact</a></li>
                                         </ul>
                                     </div>
                                 </div>

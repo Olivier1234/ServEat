@@ -3,34 +3,80 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+<div id="wrapper">
+                <!--content -->  
+                <div class="content">
+                <div class="main-overlay"></div>
+                <div class="main-register-holder">
+                    <div class="main-register fl-wrap">
+                        <h3>Se connecter <span>City<strong>Book</strong></span></h3>
+                        <div class="soc-log fl-wrap">
+                            <p>For faster login or register use your social account.</p>
+                            <a href="#" class="facebook-log"><i class="fa fa-facebook-official"></i>Se connecter avec Facebook</a>
+                            <a href="#" class="twitter-log"><i class="fa fa-twitter"></i> Se connecter avec Twitter</a>
+                        </div>
+                        <div class="log-separator fl-wrap"><span>ou</span></div>
+                        <div id="tabs-container">
+                            <ul class="tabs-menu">
+                                <li class="current"><a href="#tab-1">Se connecter</a></li>
+                                <li><a href="#tab-2">S'inscrire</a></li>
+                            </ul>
+                            <div class="tab">
+                                <div id="tab-1" class="tab-content">
+                                    <div class="custom-form">
+                                        <form method="post" >
+                                                {% if error %}
+                                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                                {% endif %}
+                                            <label for="inputEmail" class="sr-only">Pseudo ou Adresse Email * </label>
+                                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus> 
+                                            <label for="inputPassword" class="sr-only">Mot de passe * </label>
+                                            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required> 
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+                                            {#
+                                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                                See https://symfony.com/doc/current/security/remember_me.html
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+                                                <div class="checkbox mb-3">
+                                                    <label>
+                                                        <input type="checkbox" name="_remember_me"> Remember me
+                                                    </label>
+                                                </div>
+                                            #}
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
+                                            <button class="btn btn-lg btn-primary" type="submit">
+                                                Se connecter
+                                            </button>
+                                        </form>
+                                        <div class="lost_password">
+                                            <a href="#">Mot de passe oublié?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <div id="tab-2" class="tab-content">
+                                        <div class="custom-form">
+                                            <form method="post"   name="registerform" class="main-register-form" id="main-register-form2">
+                                                <label >First Name * </label>
+                                                <input name="name" type="text"   onClick="this.select()" value=""> 
+                                                <label>Second Name *</label>
+                                                <input name="name2" type="text"  onClick="this.select()" value="">
+                                                <label>Email Address *</label>
+                                                <input name="email" type="text"  onClick="this.select()" value="">                                              
+                                                <label >Password *</label>
+                                                <input name="password" type="password"   onClick="this.select()" value="" > 
+                                                <button type="submit"     class="log-submit-btn"  ><span>Register</span></button> 
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    </div>
+    </div>
 {% endblock %}
