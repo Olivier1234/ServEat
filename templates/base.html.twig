@@ -35,19 +35,22 @@
                         </div>
                         <div class="header-search-select-item">
                             <select data-placeholder="All Categories" class="chosen-select" >
-                                <option>All Categories</option>
-                                <option>Shops</option>
-                                <option>Hotels</option>
-                                <option>Restaurants</option>
-                                <option>Fitness</option>
-                                <option>Events</option>
+                                <option> Tout les plats</option>
+                                <option>Mexicain</option>
+                                <option>Francais</option>
+                                <option>Chinois</option>
+                                <option>Japonais</option>
+                                <option>Indien</option>
+                                <option>Antillais</option>
+                                <option>Italien</option>
+                                <option>Marocain</option>
                             </select>
                         </div>
-                        <button class="header-search-button" onclick="window.location.href='{{ path('listing') }}'">Search</button>
+                        <button class="header-search-button" onclick="window.location.href='{{ path('listing') }}'"><i class="fa fa-search"></i></button>
                     </div>
-                    <div class="show-search-button"><i class="fa fa-search"></i> <span>Search</span></div>
-                    <a href="{{ path('add_listing') }}" class="add-list">Add Listing <span><i class="fa fa-plus"></i></span></a>
-                    <div class="show-reg-form modal-open"><i class="fa fa-sign-in"></i>Sign In</div>
+                    <div class="show-search-button"><i class="fa fa-search"></i> <span>Rechercher</span></div>
+                    <a href="{{ path('add_listing') }}" class="add-list">Nouvelle annonce <span><i class="fa fa-plus"></i></span></a>
+                    <div class="show-reg-form modal-open"><i class="fa fa-sign-in"></i>Se connecter</div>
                     <!-- nav-button-wrap--> 
                     <div class="nav-button-wrap color-bg">
                         <div class="nav-button">
@@ -60,7 +63,7 @@
                         <nav>
                             <ul>
                                 <li>
-                                    <a href="{{ path('home') }}" class="act-link">Home <i class="fa fa-caret-down"></i></a>
+                                    <a href="{{ path('home') }}" class="act-link">Acceuil <i class="fa fa-caret-down"></i></a>
                                     <!--second level -->   
                                     <ul>
                                         <li><a href="index.html">Parallax Image</a></li>
@@ -73,7 +76,7 @@
                                     <!--second level end-->
                                 </li>
                                 <li>
-                                    <a href="#">Listings <i class="fa fa-caret-down"></i></a>
+                                    <a href="#">Annonces <i class="fa fa-caret-down"></i></a>
                                     <!--second level -->
                                     <ul>
                                         <li><a href="listing.html">Column map</a></li>
@@ -97,22 +100,9 @@
                                     <!--second level end-->
                                 </li>
                                 <li>
-                                    <a href="blog.html">News</a>
-                                </li>
-                                <li>
-                                    <a href="#">Pages <i class="fa fa-caret-down"></i></a>
-                                    <!--second level -->   
-                                    <ul>
-                                        <li><a href="{{ path('about') }}">About</a></li>
-                                        <li><a href="{{ path('contact') }}">Contacts</a></li>
-                                        <li><a href="{{ path('member') }}">User single</a></li>
-                                        <li><a href="{{ path('concept') }}">How it Works</a></li>
-                                        <li><a href="pricing-tables.html">Pricing</a></li>
-                                        <li><a href="{{ path('user_profile') }}">User Profile</a></li>
-                                        <li><a href="{{ path('add_listing') }}">Add Listing</a></li>
-                                        <li><a href="coming-soon.html">Coming Soon</a></li>
-                                    </ul>
-                                    <!--second level end-->                                
+                                    <a href="blog.html">Concept</a>
+                                </li><li>
+                                    <a href="blog.html">Devenir Hôte    </a>
                                 </li>
                             </ul>
                         </nav>
@@ -130,7 +120,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="footer-widget fl-wrap">
-                                <h3>About Us</h3>
+                                <h3>À propos</h3>
                                 <div class="footer-contacts-widget fl-wrap">
                                     <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam. </p>
                                     <ul  class="footer-contacts fl-wrap">
@@ -143,7 +133,7 @@
                         </div>
                         <div class="col-md-3">
                             <div class="footer-widget fl-wrap">
-                                <h3>Our Last News</h3>
+                                <h3>Actualité</h3>
                                 <div class="widget-posts fl-wrap">
                                     <ul>
                                         <li class="clearfix">
@@ -173,19 +163,19 @@
                         </div>
                         <div class="col-md-3">
                             <div class="footer-widget fl-wrap">
-                                <h3>Our  Twitter</h3>
+                                <h3>Twitter</h3>
                                 <div id="footer-twiit"></div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="footer-widget fl-wrap">
-                                <h3>Subscribe</h3>
+                                <h3>Newsletter</h3>
                                 <div class="subscribe-widget fl-wrap">
                                     <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll send you a notification by email.</p>
                                     <div class="subcribe-form">
                                         <form id="subscribe">
                                             <input class="enteremail" name="email" id="subscribe-email" placeholder="Email" spellcheck="false" type="text">
-                                            <button type="submit" id="subscribe-button" class="subscribe-button"><i class="fa fa-rss"></i> Subscribe</button>
+                                            <button type="submit" id="subscribe-button" class="subscribe-button"><i class="fa fa-rss"></i> S'inscrire</button>
                                             <label for="subscribe-email" class="subscribe-message"></label>
                                         </form>
                                     </div>
@@ -193,10 +183,9 @@
                                 <div class="footer-widget fl-wrap">
                                     <div class="footer-menu fl-wrap">
                                         <ul>
-                                            <li><a href="{{ path('home') }}">Home </a></li>
-                                            <li><a href="#">Blog</a></li>
-                                            <li><a href="#">Listing</a></li>
-                                            <li><a href="#">Contacts</a></li>
+                                            <li><a href="{{ path('home') }}">Acceuil </a></li>
+                                            <li><a href="#">Annonces</a></li>
+                                            <li><a href="#">Contact</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -213,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="copyright"> &#169; Speech 2017 .  All rights reserved.</div>
+                                <div class="copyright"> &#169; Serveat 2019 .  All rights reserved.</div>
                             </div>
                             <div class="col-md-4">
                                 <div class="footer-social">

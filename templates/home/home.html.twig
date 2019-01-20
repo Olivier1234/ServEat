@@ -1,43 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
- 
-            	
-            <!-- wrapper -->	
+  <!-- wrapper -->	
             <div id="wrapper">
                 <!-- Content-->   
                 <div class="content">
                     <!--section -->
                     <section class="scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
-                        <div class="slideshow-container" data-scrollax="properties: { translateY: '200px' }" >
-                            <!-- slideshow-item -->	
-                            <div class="slideshow-item">
-                                <div class="bg"  data-bg="images/bg/1.jpg"></div>
+                        <div class="media-container video-parallax" data-scrollax="properties: { translateY: '200px' }">
+                            <div class="bg mob-bg" style="background-image: url(images/bg/1.jpg)"></div>
+                            <div class="video-container">
+                                <video autoplay  loop muted  class="bgid">
+                                    <source src="video/2.mp4" type="video/mp4">
+                                </video>
                             </div>
-                            <!--  slideshow-item end  -->	
-                            <!-- slideshow-item -->	
-                            <div class="slideshow-item">
-                                <div class="bg"  data-bg="images/bg/1.jpg"></div>
-                            </div>
-                            <!--  slideshow-item end  -->	
-                            <!-- slideshow-item -->	
-                            <div class="slideshow-item">
-                                <div class="bg"  data-bg="images/bg/1.jpg"></div>
-                            </div>
-                            <!--  slideshow-item end  -->	                        
+                                    <!--  
+                                        Vimeo code
+                                        
+                                         <div  class="background-vimeo" data-vim="97871257"> </div> --> 
+                                    <!--  
+                                        Youtube code 
+                                        
+                                         <div  class="background-youtube-wrapper" data-vid="Hg5iNVSp2z8" data-mv="1"> </div> -->
+                            
                         </div>
                         <div class="overlay"></div>
                         <div class="hero-section-wrap fl-wrap">
                             <div class="container">
                                 <div class="intro-item fl-wrap">
-                                    <h2>We will help you to find all</h2>
-                                    <h3>Find great places , hotels , restourants , shops.</h3>
+                                    <h2>Nous vous aiderons a trouver votre repas</h2>
+                                    <h3></h3>
                                 </div>
                                 <div class="main-search-input-wrap">
                                     <div class="main-search-input fl-wrap">
                                         <div class="main-search-input-item">
-                                            <input type="text" placeholder="What are you looking for?" value=""/>
+                                            <input type="text" placeholder="Que recherchez-vous?" value=""/>
                                         </div>
                                         <div class="main-search-input-item location" id="autocomplete-container">
                                             <input type="text" placeholder="Location" id="autocomplete-input" value=""/>
@@ -45,22 +42,25 @@
                                         </div>
                                         <div class="main-search-input-item">
                                             <select data-placeholder="All Categories" class="chosen-select" >
-                                                <option>All Categories</option>
-                                                <option>Shops</option>
-                                                <option>Hotels</option>
-                                                <option>Restaurants</option>
-                                                <option>Fitness</option>
-                                                <option>Events</option>
+                                                <option>Tout les plats</option>
+                                                <option>Mexicain</option>
+                                                <option>Francais</option>
+                                                <option>Chinois</option>
+                                                <option>Japonais</option>
+                                                <option>Indien</option>
+                                                <option>Antillais</option>
+                                                <option>Italien</option>
+                                                <option>Marocain</option>
                                             </select>
                                         </div>
-                                        <button class="main-search-button" onclick="window.location.href='listings-half-screen-map-list.html'">Search</button>
+                                        <button class="main-search-button" onclick="window.location.href='listings-half-screen-map-list.html'">Rechercher</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="bubble-bg"> </div>
                         <div class="header-sec-link">
-                            <div class="container"><a href="#sec2" class="custom-scroll-link">Let's Start</a></div>
+                            <div class="container"><a href="#sec2" class="custom-scroll-link">Commençons</a></div>
                         </div>
                     </section>
                     <!-- section end -->
@@ -68,10 +68,10 @@
                     <section id="sec2">
                         <div class="container">
                             <div class="section-title">
-                                <h2>Featured Categories</h2>
+                                <h2>Categories de Plats</h2>
                                 <div class="section-subtitle">Catalog of Categories</div>
                                 <span class="section-separator"></span>
-                                <p>Explore some of the best tips from around the city from our partners and friends.</p>
+                                <p>Votre zone est contient des personnes pouvant vous preparer toute sorte de plats locaux. Alors qu'attendez-vous pour vous faire plaisir!</p>
                             </div>
                             <!-- portfolio start -->
                             <div class="gallery-items fl-wrap mr-bot spad">
@@ -79,10 +79,10 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/1.jpg"   alt="">
-                                            <div class="listing-counter"><span>10 </span> Locations</div>
+                                            <img  src="images/all/vegan1.jpg"   alt="">
+                                            <div class="listing-counter"><span>10 </span> Emplacements</div>
                                             <div class="listing-item-cat">
-                                                <h3><a href="listing.html">Conference and Event</a></h3>
+                                                <h3><a href="listing.html">Végétarien</a></h3>
                                                 <p>Constant care and attention to the patients makes good record</p>
                                             </div>
                                         </div>
@@ -93,11 +93,11 @@
                                 <div class="gallery-item gallery-item-second">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/bg/1.jpg"   alt="">
-                                            <div class="listing-counter"><span>6 </span> Locations</div>
+                                            <img  src="images/all/dombre_crevettes_antillais.jpg"   alt="">
+                                            <div class="listing-counter"><span>6 </span> Emplacements</div>
                                             <div class="listing-item-cat">
-                                                <h3><a href="listing.html">Cafe - Pub</a></h3>
-                                                <p>Constant care and attention to the patients makes good record</p>
+                                                <h3><a href="listing.html">Antillais</a></h3>
+                                                <p>Ces boulettes de farine, c'est la vie! La vie. Rien que de s'imaginer en manger on a l'eau a la bouche!</p>
                                             </div>
                                         </div>
                                     </div>
@@ -107,11 +107,11 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/1.jpg"   alt="">
-                                            <div class="listing-counter"><span>21 </span> Locations</div>
+                                            <img  src="images/all/italian1.jpg"   alt="">
+                                            <div class="listing-counter"><span>21 </span> Emplacements</div>
                                             <div class="listing-item-cat">
-                                                <h3><a href="listing.html">Gym - Fitness</a></h3>
-                                                <p>Constant care and attention to the patients makes good record</p>
+                                                <h3><a href="listing.html">Italien</a></h3>
+                                                <p>Le risotto, les gnocchis et la soupe minestrone sont aussi des spécialités culinaires italiennes.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -121,11 +121,11 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/1.jpg"   alt="">
-                                            <div class="listing-counter"><span>7 </span> Locations</div>
+                                            <img  src="images/all/bacalhau-a-bras-receita-portuguese.jpg"   alt="">
+                                            <div class="listing-counter"><span>7 </span> Emplacements</div>
                                             <div class="listing-item-cat">
-                                                <h3><a href="listing.html">Hotels</a></h3>
-                                                <p>Constant care and attention to the patients makes good record</p>
+                                                <h3><a href="listing.html">Portuguais</a></h3>
+                                                <p>Ce repas portugais à base de morue, d’oignons, de pommes de terre et d’œufs est proposé à tous les coins de rue.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -135,11 +135,11 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/1.jpg"   alt="">
-                                            <div class="listing-counter"><span>15 </span> Locations</div>
+                                            <img  src="images/all/tortilla_patatas_spain.jpg"   alt="">
+                                            <div class="listing-counter"><span>15 </span> Emplacements</div>
                                             <div class="listing-item-cat">
-                                                <h3><a href="listing.html">Shop - Store</a></h3>
-                                                <p>Constant care and attention to the patients makes good record</p>
+                                                <h3><a href="listing.html">Espagnol</a></h3>
+                                                <p>la tortilla de patatas. C’est une omelette épaisse à base de pommes de terre. Un oignon, du sel et du poivre et vous n’avez plus qu’à déguster ! La paella, le chorizo et la sangria sont aussi au menu.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@
                                 <!-- gallery-item end-->
                             </div>
                             <!-- portfolio end -->
-                            <a href="listing.html" class="btn  big-btn circle-btn dec-btn  color-bg flat-btn">View All<i class="fa fa-eye"></i></a>
+                            <a href="listing.html" class="btn  big-btn circle-btn dec-btn  color-bg flat-btn">Tout Voir<i class="fa fa-eye"></i></a>
                         </div>
                     </section>
                     <!-- section end -->
@@ -431,95 +431,6 @@
                     </section>
                     <!-- section end -->
                     <!--section -->
-                    <section>
-                        <div class="container">
-                            <div class="section-title">
-                                <h2> Pricing Tables</h2>
-                                <div class="section-subtitle">cost of our services</div>
-                                <span class="section-separator"></span>
-                                <p>Explore some of the best tips from around the city from our partners and friends.</p>
-                            </div>
-                            <div class="pricing-wrap fl-wrap">
-                                <!-- price-item-->
-                                <div class="price-item">
-                                    <div class="price-head op1">
-                                        <h3>Basic</h3>
-                                    </div>
-                                    <div class="price-content fl-wrap">
-                                        <div class="price-num fl-wrap">
-                                            <span class="curen">$</span>
-                                            <span class="price-num-item">49</span> 
-                                            <div class="price-num-desc">Per month</div>
-                                        </div>
-                                        <div class="price-desc fl-wrap">
-                                            <ul>
-                                                <li>One Listing</li>
-                                                <li>90 Days Availability</li>
-                                                <li>Non-Featured</li>
-                                                <li>Limited Support</li>
-                                            </ul>
-                                            <a href="#" class="price-link">Choose Basic</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- price-item end-->
-                                <!-- price-item-->
-                                <div class="price-item best-price">
-                                    <div class="price-head op2">
-                                        <h3>Extended</h3>
-                                    </div>
-                                    <div class="price-content fl-wrap">
-                                        <div class="price-num fl-wrap">
-                                            <span class="curen">$</span>
-                                            <span class="price-num-item">99</span> 
-                                            <div class="price-num-desc">Per month</div>
-                                        </div>
-                                        <div class="price-desc fl-wrap">
-                                            <ul>
-                                                <li>Ten Listings</li>
-                                                <li>Lifetime Availability</li>
-                                                <li>Featured In Search Results</li>
-                                                <li>24/7 Support</li>
-                                            </ul>
-                                            <a href="#" class="price-link">Choose Extended</a>
-                                            <div class="recomm-price">
-                                                <i class="fa fa-check"></i> 
-                                                <span class="clearfix"></span>
-                                                Recommended
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- price-item end-->
-                                <!-- price-item-->
-                                <div class="price-item">
-                                    <div class="price-head">
-                                        <h3>Professional</h3>
-                                    </div>
-                                    <div class="price-content fl-wrap">
-                                        <div class="price-num fl-wrap">
-                                            <span class="curen">$</span>
-                                            <span class="price-num-item">149</span> 
-                                            <div class="price-num-desc">Per month</div>
-                                        </div>
-                                        <div class="price-desc fl-wrap">
-                                            <ul>
-                                                <li>Unlimited Listings</li>
-                                                <li>Lifetime Availability</li>
-                                                <li>Featured In Search Results</li>
-                                                <li>24/7 Support</li>
-                                            </ul>
-                                            <a href="#" class="price-link">Choose Professional</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- price-item end-->                                                    
-                            </div>
-                            <!-- about-wrap end  --> 
-                        </div>
-                    </section>
-                    <!-- section end -->
-                    <!--section -->
                     <section class="color-bg">
                         <div class="shapes-bg-big"></div>
                         <div class="container">
@@ -761,113 +672,6 @@
                 <!-- Content end -->      
             </div>
             <!-- wrapper end -->
-            <!--footer -->
-            <footer class="main-footer dark-footer  ">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>About Us</h3>
-                                <div class="footer-contacts-widget fl-wrap">
-                                    <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam. </p>
-                                    <ul  class="footer-contacts fl-wrap">
-                                        <li><span><i class="fa fa-envelope-o"></i> Mail :</span><a href="#" target="_blank">yourmail@domain.com</a></li>
-                                        <li> <span><i class="fa fa-map-marker"></i> Adress :</span><a href="#" target="_blank">USA 27TH Brooklyn NY</a></li>
-                                        <li><span><i class="fa fa-phone"></i> Phone :</span><a href="#">+7(111)123456789</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>Our Last News</h3>
-                                <div class="widget-posts fl-wrap">
-                                    <ul>
-                                        <li class="clearfix">
-                                            <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title="">Vivamus dapibus rutrum</a>
-                                                <span class="widget-posts-date"> 21 Mar 09.05 </span> 
-                                            </div>
-                                        </li>
-                                        <li class="clearfix">
-                                            <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title=""> In hac habitasse platea</a>
-                                                <span class="widget-posts-date"> 7 Mar 18.21 </span> 
-                                            </div>
-                                        </li>
-                                        <li class="clearfix">
-                                            <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title="">Tortor tempor in porta</a>
-                                                <span class="widget-posts-date"> 7 Mar 16.42 </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>Our  Twitter</h3>
-                                <div id="footer-twiit"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>Subscribe</h3>
-                                <div class="subscribe-widget fl-wrap">
-                                    <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll send you a notification by email.</p>
-                                    <div class="subcribe-form">
-                                        <form id="subscribe">
-                                            <input class="enteremail" name="email" id="subscribe-email" placeholder="Email" spellcheck="false" type="text">
-                                            <button type="submit" id="subscribe-button" class="subscribe-button"><i class="fa fa-rss"></i> Subscribe</button>
-                                            <label for="subscribe-email" class="subscribe-message"></label>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="footer-widget fl-wrap">
-                                    <div class="footer-menu fl-wrap">
-                                        <ul>
-                                            <li><a href="#">Home </a></li>
-                                            <li><a href="#">Blog</a></li>
-                                            <li><a href="#">Listing</a></li>
-                                            <li><a href="#">Contacts</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sub-footer fl-wrap">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="about-widget">
-                                    <img src="images/logo.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="copyright"> &#169; CityBook 2018 .  All rights reserved.</div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="footer-social">
-                                    <ul>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-facebook-official"></i></a></li>
-                                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-chrome"></i></a></li>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-vk"></i></a></li>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-whatsapp"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
-            <!--footer end  -->
             <!--register form -->
             <div class="main-register-wrap modal">
                 <div class="main-overlay"></div>
