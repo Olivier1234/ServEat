@@ -31,7 +31,9 @@ class PageController extends AbstractController
      * @Route("/add_listing", name="add_listing")
      */
     public function add_listing()
-    {
+        {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         return $this->render('page/add_listing.html.twig', [
             'controller_name' => 'PageController',
         ]);
@@ -42,6 +44,8 @@ class PageController extends AbstractController
      */
     public function bookings()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         return $this->render('page/bookings.html.twig', [
             'controller_name' => 'PageController',
         ]);
@@ -52,6 +56,8 @@ class PageController extends AbstractController
      */
     public function messages()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
         ]);
@@ -62,6 +68,8 @@ class PageController extends AbstractController
      */
     public function user_profile()
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         return $this->render('page/user_profile.html.twig', [
             'controller_name' => 'PageController',
         ]);
@@ -81,7 +89,9 @@ class PageController extends AbstractController
      * @Route("/reviews", name="reviews")
      */
     public function reviews()
-    {
+        {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         return $this->render('page/reviews.html.twig', [
             'controller_name' => 'PageController',
         ]);
@@ -91,7 +101,9 @@ class PageController extends AbstractController
      * @Route("/dashboard", name="dashboard")
      */
     public function dashboard()
-    {
+        {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        
         return $this->render('page/dashboard.html.twig', [
             'controller_name' => 'PageController',
         ]);

@@ -17,7 +17,22 @@
         <!--=============== favicons ===============-->
         <link rel="shortcut icon" href="images/favicon.ico">
         
-        
+        <style>
+.msg-notification {
+  position: relative;
+}
+
+.msg-notification .msg-badge {
+    font-size: 10px;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  padding: 0px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+</style>
     </head>
     <body>
         <!-- Main  -->
@@ -50,9 +65,18 @@
                     </div>
                     <div class="show-search-button"><i class="fa fa-search"></i> <span>Rechercher</span></div>
                     <a href="{{ path('add_listing') }}" class="add-list">Nouvelle annonce <span><i class="fa fa-plus"></i></span></a>
-                    {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                    <a href="{{ path('app_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
+                    
+                   
+                    
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                     
+                        <a href="{{ path('user_profile') }}"><img src="{{ app.user.imgpath }}" alt="image profile" class="image--cover" style="float: right; width:40px;height: 40px;border-radius: 50%;margin: 20px;object-fit: cover;object-position: center right;" /></a>
+                        <a href="{{ path('app_logout') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Deconnexion</div></a>
+                    {%else%}
+                        <a href="{{ path('app_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
                         <a href="{{ path('app_register') }}"><span style="color: white"><button type="button" class=" bounce btn btn-primary waves-effect waves-light" >S'inscrire</button></span></a>
+                                        
+
                     {% endif %}
                     <!-- nav-button-wrap--> 
                     <div class="nav-button-wrap color-bg">
@@ -65,35 +89,32 @@
                     <div class="nav-holder main-menu">
                         <nav>
                             <ul>
+                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                                 <li>
-                                    <a href="#">Annonces <i class="fa fa-caret-down"></i></a>
+                                    <a href="{{  path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
+                                </li>
+                                {%else%}
+                                <li>
+                                    <a href="#">Devenir Hôte <i class="fa fa-caret-down"></i></a>
                                     <!--second level -->
-                                    <ul>
-                                        <li><a href="listing.html">Column map</a></li>
-                                        <li><a href="listing2.html">Column map 2</a></li>
-                                        <li><a href="listing3.html">Fullwidth Map</a></li>
-                                        <li><a href="listing4.html">Fullwidth Map 2</a></li>
-                                        <li><a href="listing5.html">Without Map</a></li>
-                                        <li><a href="listing6.html">Without Map 2</a></li>
-                                        <li>
-                                            <a href="#">Single <i class="fa fa-caret-down"></i></a>
-                                            <!--third  level  -->
-                                            <ul>
-                                                <li><a href="listing-single.html">Style 1</a></li>
-                                                <li><a href="listing-single2.html">Style 2</a></li>
-                                                <li><a href="listing-single3.html">Style 3</a></li>
-												<li><a href="listing-single4.html">Style 4</a></li>
-                                            </ul>
-                                            <!--third  level end-->
+                                    <ul style="width: 500px">
+                                        <li style="margin-bottom: 20px;">
+                                            <a href="listing.html">LOGEMENT-RESTAURANT</a>
+                                            <a href="listing2.html">Publier votre annonce</a>
+                                            <div style=";text-align: :left;word-wrap: break-word;width: 200px;margin: 90px 0px 25px 0px;"><span style="color: #7d93b2">Gagnez jusqu'à 500 euros par mois en préparant vos repas pour des voyageurs à Paris.</span></div>
+                                            <a href="listing2.html">En savoir plus sur l'accueil de voyageurs dans votre logement</a>
+
                                         </li>
+                                        <!--<hr style="	background-color: #fff;border-top: 1px #dedede;">-->
                                     </ul>
                                     <!--second level end-->
                                 </li>
                                 <li>
                                     <a href="{{  path('concept') }}">Concept</a>
-                                </li><li>
-                                    <a href="#">Devenir Hôte    </a>
                                 </li>
+                                
+                                {% endif %}
+                                
                             </ul>
                         </nav>
                     </div>
