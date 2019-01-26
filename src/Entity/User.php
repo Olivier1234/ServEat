@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="AppUser")
+ * @ORM\Table(name="App_User")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface
 {
@@ -36,6 +38,35 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lastName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $paypal;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $gender;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $birthday;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pseudo;
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="sender")
      */
@@ -65,37 +96,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Meal", mappedBy="proposedBy")
      */
     private $mealProposed;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $paypal;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $gender;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $birthday;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $pseudo;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstName;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastName;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Booking", mappedBy="traveler")
      */
