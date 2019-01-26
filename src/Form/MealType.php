@@ -17,7 +17,7 @@ class MealType extends AbstractType
             ->add('price')
             ->add('types')
             ->add('address')
-            ->add('host')
+            ->add('proposedBy')
         ;
     }
 
