@@ -34,7 +34,7 @@ class User implements UserInterface
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $password;
 
@@ -85,12 +85,12 @@ class User implements UserInterface
     private $gender;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $birthday;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pseudo;
     /**
@@ -141,6 +141,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Report", mappedBy="reporter")
      */
     private $reports;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imgpath;
 
 
     public function __construct()
@@ -450,6 +455,7 @@ class User implements UserInterface
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
     public function getGender(): ?bool
@@ -471,6 +477,8 @@ class User implements UserInterface
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+        
+        return $this;
     }
 
     public function getBirthday(): ?\DateTimeInterface
@@ -492,6 +500,7 @@ class User implements UserInterface
     public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
+        return $this;
     }
 
     public function getPseudo(): ?string
@@ -513,6 +522,7 @@ class User implements UserInterface
     public function setWebsite(?string $website): self
     {
         $this->website = $website;
+        return $this;
     }
 
     public function getFirstName(): ?string
@@ -534,6 +544,8 @@ class User implements UserInterface
     public function setImgpath(?string $imgpath): self
     {
         $this->imgpath = $imgpath;
+        
+        return $this;
     }
 
     public function getLastName(): ?string
