@@ -10,10 +10,10 @@
         <meta name="description" content=""/>
         
         <!--=============== css  ===============-->
-        <link type="text/css" rel="stylesheet" href="css/reset.css">
-        <link type="text/css" rel="stylesheet" href="css/plugins.css">
-        <link type="text/css" rel="stylesheet" href="css/style.css">
-        <link type="text/css" rel="stylesheet" href="css/color.css">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/plugins.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/color.css') }}">
         <!--=============== favicons ===============-->
         <link rel="shortcut icon" href="images/favicon.ico">
         
@@ -124,9 +124,13 @@
             <!--  header end -->
             
             <!------------------------------------------------------------------------->
-       
+            <!-- wrapper -->	
+            <div id="wrapper">
+                <!-- Content-->   
+                <div class="content">
                      {% block body %}{% endblock %}
-            
+                </div>
+            </div>      
             <!------------------------------------------------------------------------->
 
         <!--footer -->
@@ -238,9 +242,9 @@
             </div>
         <!-- Main end -->
         <!--=============== scripts  ===============-->
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/plugins.js"></script>
-        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script>
       
     </body>
