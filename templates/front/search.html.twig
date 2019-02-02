@@ -7,15 +7,16 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
     <script>
-        var map;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 8
-            });
-        }
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        map.locate({setView: true, maxZoom: 15});
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5ikxbQmwA09L9fzc4jCS6XnFW26lpAYQ&callback=initMap"
-            async defer></script>
+
 {% endblock %}
