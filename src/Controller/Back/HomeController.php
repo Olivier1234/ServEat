@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Front;
+namespace App\Controller\Back;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,7 +12,7 @@ class HomeController extends AbstractController
      */
     public function home()
     {
-        return $this->render('front/home/home.html.twig', [
+        return $this->render('back/home/home.html.twig', [
             'controller_name' => 'HomeController',
         ]);
     }
