@@ -41,7 +41,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $verified;
+    private $isVerified;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -62,16 +62,6 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $phone;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $adress;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $website;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -242,14 +232,14 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getVerified(): ?bool
+    public function getIsVerified(): ?bool
     {
-        return $this->verified;
+        return $this->isVerified;
     }
 
-    public function setVerified(?bool $verified): self
+    public function setIsVerified(?bool $isVerified): self
     {
-        $this->verified = $verified;
+        $this->isVerified = $isVerified;
     }
 
     /**
@@ -477,7 +467,7 @@ class User implements UserInterface
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
-        
+
         return $this;
     }
 
@@ -492,17 +482,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getAdress(): ?string
-    {
-        return $this->adress;
-    }
-
-    public function setAdress(?string $adress): self
-    {
-        $this->adress = $adress;
-        return $this;
-    }
-
     public function getPseudo(): ?string
     {
         return $this->pseudo;
@@ -511,17 +490,6 @@ class User implements UserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
-        return $this;
-    }
-
-    public function getWebsite(): ?string
-    {
-        return $this->website;
-    }
-
-    public function setWebsite(?string $website): self
-    {
-        $this->website = $website;
         return $this;
     }
 
@@ -544,7 +512,7 @@ class User implements UserInterface
     public function setImgpath(?string $imgpath): self
     {
         $this->imgpath = $imgpath;
-        
+
         return $this;
     }
 
