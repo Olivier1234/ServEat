@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
@@ -18,8 +22,12 @@ class Picture
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Please, upload the file")
+     * @Assert\File(mimeTypes={ "application/jpg" })
      */
     private $path;
+
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Meal", inversedBy="pictures")
@@ -31,12 +39,12 @@ class Picture
         return $this->id;
     }
 
-    public function getPath(): ?string
+    public function getPath()
     {
         return $this->path;
     }
 
-    public function setPath(string $path): self
+    public function setPath( $path): self
     {
         $this->path = $path;
 

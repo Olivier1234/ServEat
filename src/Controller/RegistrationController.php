@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
@@ -21,6 +21,7 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -29,7 +30,13 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $file = $form->get('imgpath')->getData();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                'images/user/',
+                $fileName
+            );
+            $user->setImgPath( '/images/user/'. $fileName);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

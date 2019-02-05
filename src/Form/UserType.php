@@ -33,7 +33,8 @@ class UserType extends AbstractType
             ->add('phone')
             ->add('adress')
             ->add('website')
-            ->add('imgpath')
+            ->add('birthday')
+            ->add('pseudo')
         ;
     }
 

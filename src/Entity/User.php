@@ -142,6 +142,10 @@ class User implements UserInterface
      */
     private $reports;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imgpath;
 
     public function __construct()
     {
@@ -245,6 +249,7 @@ class User implements UserInterface
     public function setVerified(?bool $verified): self
     {
         $this->verified = $verified;
+        return $this;
     }
 
     /**
@@ -450,6 +455,7 @@ class User implements UserInterface
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+        return $this;
     }
 
     public function getGender(): ?bool
@@ -471,6 +477,7 @@ class User implements UserInterface
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+        return $this;
     }
 
     public function getBirthday(): ?\DateTimeInterface
@@ -492,6 +499,7 @@ class User implements UserInterface
     public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
+        return $this;
     }
 
     public function getPseudo(): ?string
@@ -513,6 +521,7 @@ class User implements UserInterface
     public function setWebsite(?string $website): self
     {
         $this->website = $website;
+        return $this;
     }
 
     public function getFirstName(): ?string
@@ -526,15 +535,17 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getImgpath(): ?string
+    public function getImgpath()
     {
         return $this->imgpath;
     }
-
-    public function setImgpath(?string $imgpath): self
+    public function setImgpath( $imgpath): self
     {
         $this->imgpath = $imgpath;
+
+        return $this;
     }
+
 
     public function getLastName(): ?string
     {

@@ -5,13 +5,16 @@ namespace App\Controller\Front;
 use App\Entity\Meal;
 use App\Form\MealType;
 use App\Repository\MealRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @Route("/meal")
+ * @Security("is_granted('ROLE_ADMIN') ")
  */
 class MealController extends AbstractController
 {
@@ -35,6 +38,18 @@ class MealController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $pictures = $form->get('pictures')->getData();
+            foreach ($pictures as $file){
+                $path = $file->getPath();
+                $fileName = md5(uniqid()).'.'.$path->guessExtension();
+                $path->move(
+                    'images/meal/',
+                    $fileName
+                );
+                $file->setPath( '/images/meal/'. $fileName);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($meal);
             $entityManager->flush();

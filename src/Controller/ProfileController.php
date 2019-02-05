@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Back;
+namespace App\Controller;
 
 use App\Entity\Profile;
 use App\Form\ProfileType;
