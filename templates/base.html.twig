@@ -1,248 +1,248 @@
 <!DOCTYPE HTML>
 <html lang="en">
-    <head>
-      <!--=============== basic  ===============-->
-      <meta charset="UTF-8">
-      <title>{% block title %}Citybook -Directory Listing Template{% endblock %}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <meta name="robots" content="index, follow"/>
-      <meta name="keywords" content=""/>
-      <meta name="description" content=""/>
+<head>
+    <!--=============== basic  ===============-->
+    <meta charset="UTF-8">
+    <title>{% block title %}Citybook -Directory Listing Template{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
 
-      <!--=============== css  ===============-->
-      <link type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}">
-      <link type="text/css" rel="stylesheet" href="{{ asset('css/plugins.css') }}">
-      <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
-      <link type="text/css" rel="stylesheet" href="{{ asset('css/color.css') }}">
-      <!--=============== favicons ===============-->
-      <link rel="shortcut icon" href="images/favicon.ico">
+    <!--=============== css  ===============-->
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/plugins.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/color.css') }}">
+    <!--=============== favicons ===============-->
+    <link rel="shortcut icon" href="images/favicon.ico">
 
-      <style>
+    <style>
         .msg-notification {
-          position: relative;
+            position: relative;
         }
 
         .msg-notification .msg-badge {
-          font-size: 10px;
-          position: absolute;
-          top: -5px;
-          right: -10px;
-          padding: 0px 10px;
-          border-radius: 50%;
-          background-color: red;
-          color: white;
+            font-size: 10px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            padding: 0px 10px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
         }
-      </style>
-    </head>
-    <body>
-        <!-- Main  -->
-        <div id="main">
+    </style>
+</head>
+<body>
+<!-- Main  -->
+<div id="main">
 
-          <!-- header-->
-          <header class="main-header dark-header fs-header sticky">
-              <div class="header-inner">
-                  <div class="logo-holder">
-                      <a href="{{ path('home') }}"><img src="images/logo.png" alt=""></a>
-                  </div>
-                  <div class="header-search vis-header-search">
-                      <div class="header-search-input-item">
-                          <input type="text" placeholder="Keywords" value=""/>
-                      </div>
-                      <div class="header-search-select-item">
-                          <select data-placeholder="All Categories" class="chosen-select" >
-                              <option> Tout les plats</option>
-                              <option>Mexicain</option>
-                              <option>Francais</option>
-                              <option>Chinois</option>
-                              <option>Japonais</option>
-                              <option>Indien</option>
-                              <option>Antillais</option>
-                              <option>Italien</option>
-                              <option>Marocain</option>
-                          </select>
-                      </div>
-                      <button class="header-search-button" onclick="window.location.href='{{ path('listing') }}'"><i class="fa fa-search"></i></button>
-                  </div>
-                  <div class="show-search-button"><i class="fa fa-search"></i> <span>Rechercher</span></div>
-                  <a href="{{ path('add_listing') }}" class="add-list">Nouvelle annonce <span><i class="fa fa-plus"></i></span></a>
+    <!-- header-->
+    <header class="main-header dark-header fs-header sticky">
+        <div class="header-inner">
+            <div class="logo-holder">
+                <a href="{{ path('home') }}"><img src="images/logo.png" alt=""></a>
+            </div>
+            <div class="header-search vis-header-search">
+                <div class="header-search-input-item">
+                    <input type="text" placeholder="Keywords" value=""/>
+                </div>
+                <div class="header-search-select-item">
+                    <select data-placeholder="All Categories" class="chosen-select" >
+                        <option> Tout les plats</option>
+                        <option>Mexicain</option>
+                        <option>Francais</option>
+                        <option>Chinois</option>
+                        <option>Japonais</option>
+                        <option>Indien</option>
+                        <option>Antillais</option>
+                        <option>Italien</option>
+                        <option>Marocain</option>
+                    </select>
+                </div>
+                <button class="header-search-button" onclick="window.location.href='{{ path('listing') }}'"><i class="fa fa-search"></i></button>
+            </div>
+            <div class="show-search-button"><i class="fa fa-search"></i> <span>Rechercher</span></div>
+            <a href="{{ path('add_listing') }}" class="add-list">Nouvelle annonce <span><i class="fa fa-plus"></i></span></a>
 
 
 
-                  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                      <a href="{{ path('user_profile') }}"><img src="{{ app.user.imgpath }}" alt="image profile" class="image--cover" style="float: right; width:40px;height: 40px;border-radius: 50%;margin: 20px;object-fit: cover;object-position: center right;" /></a>
-                      <a href="{{ path('app_logout') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Deconnexion</div></a>
-                  {%else%}
-                      <a href="{{ path('app_front_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
-                      <a href="{{ path('app_front_register') }}"><span style="color: white"><button type="button" class=" bounce btn btn-primary waves-effect waves-light" >S'inscrire</button></span></a>
-                  {% endif %}
-                  <!-- nav-button-wrap-->
-                  <div class="nav-button-wrap color-bg">
-                      <div class="nav-button">
-                          <span></span><span></span><span></span>
-                      </div>
-                  </div>
-                  <!-- nav-button-wrap end-->
-                  <!--  navigation -->
-                  <div class="nav-holder main-menu">
-                      <nav>
-                          <ul>
-                              {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                              <li>
-                                  <a href="{{  path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
-                              </li>
-                              {%else%}
-                              <li>
-                                  <a href="#">Devenir Hôte <i class="fa fa-caret-down"></i></a>
-                                  <!--second level -->
-                                  <ul style="width: 500px">
-                                      <li style="margin-bottom: 20px;">
-                                          <a href="listing.html">LOGEMENT-RESTAURANT</a>
-                                          <a href="listing2.html">Publier votre annonce</a>
-                                          <div style=";text-align: :left;word-wrap: break-word;width: 200px;margin: 90px 0px 25px 0px;"><span style="color: #7d93b2">Gagnez jusqu'à 500 euros par mois en préparant vos repas pour des voyageurs à Paris.</span></div>
-                                          <a href="listing2.html">En savoir plus sur l'accueil de voyageurs dans votre logement</a>
-
-                                      </li>
-                                      <!--<hr style="	background-color: #fff;border-top: 1px #dedede;">-->
-                                  </ul>
-                                  <!--second level end-->
-                              </li>
-                              <li>
-                                  <a href="{{  path('concept') }}">Concept</a>
-                              </li>
-
-                              {% endif %}
-
-                          </ul>
-                      </nav>
-                  </div>
-                  <!-- navigation  end -->
-              </div>
-            </header>
-            <!--  header end -->
-
-            <!------------------------------------------------------------------------->
-            <!-- wrapper -->
-            <div id="wrapper">
-                <!-- Content-->
-                <div class="content">
-                     {% block body %}{% endblock %}
+            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <a href="{{ path('user_profile') }}"><img src="{{ app.user.imgpath }}" alt="image profile" class="image--cover" style="float: right; width:40px;height: 40px;border-radius: 50%;margin: 20px;object-fit: cover;object-position: center right;" /></a>
+                <a href="{{ path('app_logout') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Deconnexion</div></a>
+            {%else%}
+                <a href="{{ path('app_front_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
+                <a href="{{ path('app_front_register') }}"><span style="color: white"><button type="button" class=" bounce btn btn-primary waves-effect waves-light" >S'inscrire</button></span></a>
+            {% endif %}
+            <!-- nav-button-wrap-->
+            <div class="nav-button-wrap color-bg">
+                <div class="nav-button">
+                    <span></span><span></span><span></span>
                 </div>
             </div>
-            <!------------------------------------------------------------------------->
+            <!-- nav-button-wrap end-->
+            <!--  navigation -->
+            <div class="nav-holder main-menu">
+                <nav>
+                    <ul>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                            <li>
+                                <a href="{{  path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
+                            </li>
+                        {%else%}
+                            <li>
+                                <a href="#">Devenir Hôte <i class="fa fa-caret-down"></i></a>
+                                <!--second level -->
+                                <ul style="width: 500px">
+                                    <li style="margin-bottom: 20px;">
+                                        <a href="listing.html">LOGEMENT-RESTAURANT</a>
+                                        <a href="listing2.html">Publier votre annonce</a>
+                                        <div style=";text-align: :left;word-wrap: break-word;width: 200px;margin: 90px 0px 25px 0px;"><span style="color: #7d93b2">Gagnez jusqu'à 500 euros par mois en préparant vos repas pour des voyageurs à Paris.</span></div>
+                                        <a href="listing2.html">En savoir plus sur l'accueil de voyageurs dans votre logement</a>
 
-            <!--footer -->
-            <footer class="main-footer dark-footer  ">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>À propos</h3>
-                                <div class="footer-contacts-widget fl-wrap">
-                                    <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam. </p>
-                                    <ul  class="footer-contacts fl-wrap">
-                                        <li><span><i class="fa fa-envelope-o"></i> Mail :</span><a href="#" target="_blank">yourmail@domain.com</a></li>
-                                        <li> <span><i class="fa fa-map-marker"></i> Adress :</span><a href="#" target="_blank">USA 27TH Brooklyn NY</a></li>
-                                        <li><span><i class="fa fa-phone"></i> Phone :</span><a href="#">+7(111)123456789</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                                    </li>
+                                    <!--<hr style="	background-color: #fff;border-top: 1px #dedede;">-->
+                                </ul>
+                                <!--second level end-->
+                            </li>
+                            <li>
+                                <a href="{{  path('concept') }}">Concept</a>
+                            </li>
+
+                        {% endif %}
+
+                    </ul>
+                </nav>
+            </div>
+            <!-- navigation  end -->
+        </div>
+    </header>
+    <!--  header end -->
+
+    <!------------------------------------------------------------------------->
+    <!-- wrapper -->
+    <div id="wrapper">
+        <!-- Content-->
+        <div class="content">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+    <!------------------------------------------------------------------------->
+
+    <!--footer -->
+    <footer class="main-footer dark-footer  ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="footer-widget fl-wrap">
+                        <h3>À propos</h3>
+                        <div class="footer-contacts-widget fl-wrap">
+                            <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam. </p>
+                            <ul  class="footer-contacts fl-wrap">
+                                <li><span><i class="fa fa-envelope-o"></i> Mail :</span><a href="#" target="_blank">yourmail@domain.com</a></li>
+                                <li> <span><i class="fa fa-map-marker"></i> Adress :</span><a href="#" target="_blank">USA 27TH Brooklyn NY</a></li>
+                                <li><span><i class="fa fa-phone"></i> Phone :</span><a href="#">+7(111)123456789</a></li>
+                            </ul>
                         </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>Actualité</h3>
-                                <div class="widget-posts fl-wrap">
-                                    <ul>
-                                        <li class="clearfix">
-                                            <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title="">Vivamus dapibus rutrum</a>
-                                                <span class="widget-posts-date"> 21 Mar 09.05 </span>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix">
-                                            <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title=""> In hac habitasse platea</a>
-                                                <span class="widget-posts-date"> 7 Mar 18.21 </span>
-                                            </div>
-                                        </li>
-                                        <li class="clearfix">
-                                            <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
-                                            <div class="widget-posts-descr">
-                                                <a href="#" title="">Tortor tempor in porta</a>
-                                                <span class="widget-posts-date"> 7 Mar 16.42 </span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>Twitter</h3>
-                                <div id="footer-twiit"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="footer-widget fl-wrap">
-                                <h3>Newsletter</h3>
-                                <div class="subscribe-widget fl-wrap">
-                                    <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll send you a notification by email.</p>
-                                    <div class="subcribe-form">
-                                        <form id="subscribe">
-                                            <input class="enteremail" name="email" id="subscribe-email" placeholder="Email" spellcheck="false" type="text">
-                                            <button type="submit" id="subscribe-button" class="subscribe-button"><i class="fa fa-rss"></i> S'inscrire</button>
-                                            <label for="subscribe-email" class="subscribe-message"></label>
-                                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget fl-wrap">
+                        <h3>Actualité</h3>
+                        <div class="widget-posts fl-wrap">
+                            <ul>
+                                <li class="clearfix">
+                                    <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
+                                    <div class="widget-posts-descr">
+                                        <a href="#" title="">Vivamus dapibus rutrum</a>
+                                        <span class="widget-posts-date"> 21 Mar 09.05 </span>
                                     </div>
-                                </div>
-                                <div class="footer-widget fl-wrap">
-                                    <div class="footer-menu fl-wrap">
-                                        <ul>
-                                            <li><a href="{{ path('home') }}">Acceuil </a></li>
-                                            <li><a href="#">Annonces</a></li>
-                                            <li><a href="{{ path('contact') }}">Contact</a></li>
-                                        </ul>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
+                                    <div class="widget-posts-descr">
+                                        <a href="#" title=""> In hac habitasse platea</a>
+                                        <span class="widget-posts-date"> 7 Mar 18.21 </span>
                                     </div>
-                                </div>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="#"  class="widget-posts-img"><img src="images/all/1.jpg" class="respimg" alt=""></a>
+                                    <div class="widget-posts-descr">
+                                        <a href="#" title="">Tortor tempor in porta</a>
+                                        <span class="widget-posts-date"> 7 Mar 16.42 </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget fl-wrap">
+                        <h3>Twitter</h3>
+                        <div id="footer-twiit"></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget fl-wrap">
+                        <h3>Newsletter</h3>
+                        <div class="subscribe-widget fl-wrap">
+                            <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll send you a notification by email.</p>
+                            <div class="subcribe-form">
+                                <form id="subscribe">
+                                    <input class="enteremail" name="email" id="subscribe-email" placeholder="Email" spellcheck="false" type="text">
+                                    <button type="submit" id="subscribe-button" class="subscribe-button"><i class="fa fa-rss"></i> S'inscrire</button>
+                                    <label for="subscribe-email" class="subscribe-message"></label>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="footer-widget fl-wrap">
+                            <div class="footer-menu fl-wrap">
+                                <ul>
+                                    <li><a href="{{ path('home') }}">Acceuil </a></li>
+                                    <li><a href="#">Annonces</a></li>
+                                    <li><a href="{{ path('contact') }}">Contact</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="sub-footer fl-wrap">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="about-widget">
-                                    <img src="images/logo.png" alt="">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="copyright"> &#169; Serveat 2019 .  All rights reserved.</div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="footer-social">
-                                    <ul>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-facebook-official"></i></a></li>
-                                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-chrome"></i></a></li>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-vk"></i></a></li>
-                                        <li><a href="#" target="_blank" ><i class="fa fa-whatsapp"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+            </div>
+        </div>
+        <div class="sub-footer fl-wrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="about-widget">
+                            <img src="images/logo.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="copyright"> &#169; Serveat 2019 .  All rights reserved.</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer-social">
+                            <ul>
+                                <li><a href="#" target="_blank" ><i class="fa fa-facebook-official"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#" target="_blank" ><i class="fa fa-chrome"></i></a></li>
+                                <li><a href="#" target="_blank" ><i class="fa fa-vk"></i></a></li>
+                                <li><a href="#" target="_blank" ><i class="fa fa-whatsapp"></i></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </footer>
-            <!--footer end  -->
             </div>
-        <!-- Main end -->
-        <!--=============== scripts  ===============-->
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script>
+        </div>
+    </footer>
+    <!--footer end  -->
+</div>
+<!-- Main end -->
+<!--=============== scripts  ===============-->
+<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script>
 
-    </body>
+</body>
 </html>

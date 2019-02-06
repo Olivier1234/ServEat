@@ -20,7 +20,7 @@ class MealController extends AbstractController
      */
     public function index(MealRepository $mealRepository): Response
     {
-        return $this->render('meal/index.html.twig', [
+        return $this->render('/front/meal/index.html.twig', [
             'meals' => $mealRepository->findAll(),
         ]);
     }
@@ -35,6 +35,18 @@ class MealController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $pictures = $form->get('pictures')->getData();
+            foreach ($pictures as $file){
+                $path = $file->getPath();
+                $fileName = md5(uniqid()).'.'.$path->guessExtension();
+                $path->move(
+                    'images/meal/',
+                    $fileName
+                );
+                $file->setPath( '/images/meal/'. $fileName);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($meal);
             $entityManager->flush();
@@ -42,7 +54,8 @@ class MealController extends AbstractController
             return $this->redirectToRoute('meal_index');
         }
 
-        return $this->render('meal/new.html.twig', [
+
+        return $this->render('front/meal/new.html.twig', [
             'meal' => $meal,
             'form' => $form->createView(),
         ]);
@@ -53,7 +66,7 @@ class MealController extends AbstractController
      */
     public function show(Meal $meal): Response
     {
-        return $this->render('meal/show.html.twig', [
+        return $this->render('front/meal/show.html.twig', [
             'meal' => $meal,
         ]);
     }
@@ -74,7 +87,7 @@ class MealController extends AbstractController
             ]);
         }
 
-        return $this->render('meal/edit.html.twig', [
+        return $this->render('front/meal/edit.html.twig', [
             'meal' => $meal,
             'form' => $form->createView(),
         ]);
@@ -91,6 +104,6 @@ class MealController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('meal_index');
+        return $this->redirectToRoute('front/meal_index');
     }
 }

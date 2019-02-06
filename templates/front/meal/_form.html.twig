@@ -1,4 +1,8 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<ul class="pictures" data-prototype='<div><div id="meal_pictures___name__"><div><label for="meal_pictures___name___path" class="required">Picture</label><input type="file" id="meal_pictures___name___path" name="meal[pictures][__name__][path]" required="required" /></div></div></div>'>
+</ul>
+<button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+
+

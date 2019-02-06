@@ -6,6 +6,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
+
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MealRepository")
  */
@@ -40,9 +43,10 @@ class Meal
     private $types;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="meal")
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="meal",cascade={"persist"})
      */
     private $pictures;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Address")
@@ -63,6 +67,18 @@ class Meal
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="mealProposed")
      */
     private $host;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $dateMeal;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $maxTraveller;
+
+
 
     public function __construct()
     {
@@ -113,14 +129,14 @@ class Meal
         return $this;
     }
 
-    public function getPictures(): ?Picture
+    public function getPictures(): ?Collection
     {
-        return $this->Pictures;
+        return $this->pictures;
     }
 
-    public function setPictures(?Picture $Pictures): self
+    public function setPictures(?Picture $pictures): self
     {
-        $this->Pictures = $Pictures;
+        $this->pictures = $pictures;
 
         return $this;
     }
@@ -256,6 +272,30 @@ class Meal
     public function setHost(?User $host): self
     {
         $this->host = $host;
+
+        return $this;
+    }
+
+    public function getDateMeal(): ?\DateTimeInterface
+    {
+        return $this->dateMeal;
+    }
+
+    public function setDateMeal(\DateTimeInterface $dateMeal): self
+    {
+        $this->dateMeal = $dateMeal;
+
+        return $this;
+    }
+
+    public function getMaxTraveller(): ?int
+    {
+        return $this->maxTraveller;
+    }
+
+    public function setMaxTraveller(int $maxTraveller): self
+    {
+        $this->maxTraveller = $maxTraveller;
 
         return $this;
     }

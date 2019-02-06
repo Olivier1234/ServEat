@@ -137,7 +137,6 @@ class User implements UserInterface
      */
     private $imgpath;
 
-
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -240,6 +239,7 @@ class User implements UserInterface
     public function setIsVerified(?bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+        return $this;
     }
 
     /**
@@ -467,7 +467,6 @@ class User implements UserInterface
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
-
         return $this;
     }
 
@@ -504,15 +503,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getImgpath(): ?string
+    public function getImgpath()
     {
         return $this->imgpath;
     }
 
-    public function setImgpath(?string $imgpath): self
+    public function setImgpath( $imgpath): self
     {
         $this->imgpath = $imgpath;
-
         return $this;
     }
 
