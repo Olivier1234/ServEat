@@ -31,16 +31,17 @@
                                     <h2>Ces foyers qui cuisinent pour vous</h2>
                                     <h3></h3>
                                 </div>
-                                <div class="main-search-input-wrap">
+
+                                <form class="main-search-input-wrap" method="post" action="/search">
                                     <div class="main-search-input fl-wrap">
                                         <div class="main-search-input-item">
-                                            <input type="text" placeholder="Que recherchez-vous?" value=""/>
+                                            <input required type="text" placeholder="Que recherchez-vous?" value=""/>
                                         </div>
-                                        <div class="main-search-input-item location" id="autocomplete-container">
+                                        {# <div class="main-search-input-item location" id="autocomplete-container">
                                             <input type="text" placeholder="Location" id="autocomplete-input" value=""/>
                                             <a href="#"><i class="fa fa-dot-circle-o"></i></a>
-                                        </div>
-                                        <div class="main-search-input-item">
+                                        </div> #}
+                                        {# <div class="main-search-input-item">
                                             <select data-placeholder="All Categories" class="chosen-select" >
                                                 <option>Tout les plats</option>
                                                 <option>Mexicain</option>
@@ -52,10 +53,11 @@
                                                 <option>Italien</option>
                                                 <option>Marocain</option>
                                             </select>
-                                        </div>
-                                        <button class="main-search-button" onclick="window.location.href='listings-half-screen-map-list.html'">Rechercher</button>
+                                        </div> #}
+                                        <button class="main-search-button" >Rechercher</button>
                                     </div>
-                                </div>
+                                </form>
+
                             </div>
                         </div>
                         <div class="bubble-bg"> </div>
