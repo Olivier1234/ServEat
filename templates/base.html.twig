@@ -1,13 +1,29 @@
 <!DOCTYPE HTML>
 <html lang="en">
     <head>
-      <!--=============== basic  ===============-->
-      <meta charset="UTF-8">
-      <title>{% block title %}Citybook -Directory Listing Template{% endblock %}</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-      <meta name="robots" content="index, follow"/>
-      <meta name="keywords" content=""/>
-      <meta name="description" content=""/>
+        <!--=============== basic  ===============-->
+        <meta charset="UTF-8">
+        <title>{% block title %}Citybook -Directory Listing Template{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="robots" content="index, follow"/>
+        <meta name="keywords" content=""/>
+        <meta name="description" content=""/>
+        
+        <!--=============== css  ===============-->
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/plugins.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/color.css') }}">
+        <link crossorigin="" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" 
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" rel="stylesheet"/>
+
+        <!--=============== favicons ===============-->
+        <link rel="shortcut icon" href="images/favicon.ico">
+        
+        <style>
+.msg-notification {
+  position: relative;
+}
 
       <!--=============== css  ===============-->
       <link type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}">
@@ -242,7 +258,6 @@
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script>
-
+      
     </body>
 </html>
