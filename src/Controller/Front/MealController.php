@@ -11,22 +11,22 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/meal")
+ * @Route("/meal", name="front_meal_")
  */
 class MealController extends AbstractController
 {
     /**
-     * @Route("/", name="meal_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(MealRepository $mealRepository): Response
     {
-        return $this->render('/front/meal/index.html.twig', [
+        return $this->render('front/meal/index.html.twig', [
             'meals' => $mealRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="meal_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -51,7 +51,7 @@ class MealController extends AbstractController
             $entityManager->persist($meal);
             $entityManager->flush();
 
-            return $this->redirectToRoute('meal_index');
+            return $this->redirectToRoute('front_meal_index');
         }
 
 
@@ -62,7 +62,7 @@ class MealController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="meal_show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(Meal $meal): Response
     {
@@ -72,7 +72,7 @@ class MealController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="meal_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Meal $meal): Response
     {
@@ -82,7 +82,7 @@ class MealController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('meal_index', [
+            return $this->redirectToRoute('front_meal_index', [
                 'id' => $meal->getId(),
             ]);
         }
@@ -94,7 +94,7 @@ class MealController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="meal_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      */
     public function delete(Request $request, Meal $meal): Response
     {
@@ -104,6 +104,6 @@ class MealController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('front/meal_index');
+        return $this->redirectToRoute('front_meal_index');
     }
 }
