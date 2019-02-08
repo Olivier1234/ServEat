@@ -87,7 +87,7 @@ class AppFixtures extends Fixture
             $user->setRoles(['ROLE_ADMIN']);
             $user->setImgpath("images/avatar/" . $firstname . "." . $lastName . ".jpg");
             $manager->persist($user);
-        }*/
+        }
 
         //////////////////////////////////////MEALS/////////////////////////////////////
         $meal = new Meal();
