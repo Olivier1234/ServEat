@@ -3,7 +3,7 @@
 {% block body %}
 
                     <!--section -->
-                    <section class="scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
+                    <section class="scroll-con-sec hero-section home-container" data-scrollax-parent="true" id="sec1">
                         <div class="media-container video-parallax" data-scrollax="properties: { translateY: '200px' }">
                             <div class="bg mob-bg" style="background-image: url({{ asset('images/bg/logo.jpg') }})"></div>
                             <div class="video-container">
@@ -28,32 +28,41 @@
                                     <h2>Ces foyers qui cuisinent pour vous</h2>
                                     <h3></h3>
                                 </div>
-
-                                <form class="main-search-input-wrap" method="get" action="/search/new">
-                                    <div class="main-search-input fl-wrap">
-                                        <div class="main-search-input-item">
-                                            <input required type="text" placeholder="Que recherchez-vous?" value=""/>
+                                {{ form_start(searchForm, { 'attr': {'class': 'main-search-input-wrap'} }) }}
+                                        <div class="main-search-input fl-wrap">
+                                        
+                                            <div class="main-search-input-item">
+                                                {{ form_widget(searchForm.adressInput,  {'attr' : {'placeholder': 'Adresse', 'class' : 'main-search-adress'}}) }}
+                                            </div>
+                                            {#{{ form_label(searchForm.submit) }}#}
+                                            {{ form_widget(searchForm.submit, {'attr' : {'class': 'main-search-button'}}) }}
                                         </div>
-                                        {# <div class="main-search-input-item location" id="autocomplete-container">
-                                            <input type="text" placeholder="Location" id="autocomplete-input" value=""/>
-                                            <a href="#"><i class="fa fa-dot-circle-o"></i></a>
-                                        </div> #}
-                                        {# <div class="main-search-input-item">
-                                            <select data-placeholder="All Categories" class="chosen-select" >
-                                                <option>Tout les plats</option>
-                                                <option>Mexicain</option>
-                                                <option>Francais</option>
-                                                <option>Chinois</option>
-                                                <option>Japonais</option>
-                                                <option>Indien</option>
-                                                <option>Antillais</option>
-                                                <option>Italien</option>
-                                                <option>Marocain</option>
-                                            </select>
-                                        </div> #}
-                                        <button class="main-search-button" >Rechercher</button>
-                                    </div>
-                                </form>
+                                {{ form_end(searchForm) }}
+                                {#<form class="main-search-input-wrap" method="get" action="/search/new">#}
+                                    {#<div class="main-search-input fl-wrap">#}
+                                        {#<div class="main-search-input-item">#}
+                                            {#<input required type="text" placeholder="Que recherchez-vous?" value=""/>#}
+                                        {#</div>#}
+                                        {# <div class="main-search-input-item location" id="autocomplete-container">#}
+                                            {#<input type="text" placeholder="Location" id="autocomplete-input" value=""/>#}
+                                            {#<a href="#"><i class="fa fa-dot-circle-o"></i></a>#}
+                                        {#</div> #}
+                                        {# <div class="main-search-input-item">#}
+                                            {#<select data-placeholder="All Categories" class="chosen-select" >#}
+                                                {#<option>Tout les plats</option>#}
+                                                {#<option>Mexicain</option>#}
+                                                {#<option>Francais</option>#}
+                                                {#<option>Chinois</option>#}
+                                                {#<option>Japonais</option>#}
+                                                {#<option>Indien</option>#}
+                                                {#<option>Antillais</option>#}
+                                                {#<option>Italien</option>#}
+                                                {#<option>Marocain</option>#}
+                                            {#</select>#}
+                                        {#</div> #}
+                                        {#<button class="main-search-button" >Rechercher</button>#}
+                                    {#</div>#}
+                                {#</form>#}
 
                             </div>
                         </div>
