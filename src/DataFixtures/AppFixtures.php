@@ -111,26 +111,6 @@ class AppFixtures extends Fixture
 
         //////////////////////////////////////NOTATIONS/////////////////////////////////////
         for ($i = 0; $i < 7; $i++) {
-
-        //////////////////////////////////////MEALS/////////////////////////////////////
-        $meal = new Meal();
-        $meal->setTitle($faker->text);
-        $meal->setDescription($faker->text);
-        $meal->setPrice(4);
-        $date = date_create_from_format('j-M-Y', '15-Feb-2009');
-        $meal->setDateMeal($date);
-        $meal->setMaxTraveller(4);
-        $manager->persist($meal);
-
-        //$meal->setType($faker->text);
-        //$meal->setPicture($faker->text);
-        //$meal->setAdress($faker->text);
-        //$meal->setBooking($faker->text);
-        //$meal->setNotation($faker->text);
-        //$meal->setHost($faker->text);
-
-        //////////////////////////////////////NOTATIONS/////////////////////////////////////
-        for ($i = 0; $i < 7; $i++) {
             $notation = new Notation();
             $notation->setRating(4);
             $notation->setComment($faker->text);
@@ -145,7 +125,6 @@ class AppFixtures extends Fixture
         }
 
         //////////////////////////////////////BOOKINGS/////////////////////////////////////
-
         $booking = new Booking();
         $booking->setIsPayed(0);
         $booking->setMeal($meal);
