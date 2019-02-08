@@ -32,7 +32,6 @@ class SearchController extends AbstractController
      */
     public function search(Request $request) : Response
     {
-        var_dump($request);
         // $user = new User();
         // $form = $this->createForm(UserType::class, $user);
         // $form->handleRequest($request);
@@ -45,9 +44,6 @@ class SearchController extends AbstractController
         //     return $this->redirectToRoute('front_user_index');
         // }
 
-        // return $this->render('front_user/new.html.twig', [
-        //     'user' => $user,
-        //     'form' => $form->createView(),
-        // ]);
+         return $this->render('front/search.html.twig', []);
     }
 }
