@@ -17,7 +17,7 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/contact", name="contact")
      */
@@ -27,43 +27,43 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/add_listing", name="add_listing")
      */
     public function add_listing()
         {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+
         return $this->render('page/add_listing.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/bookings", name="bookings")
      */
     public function bookings()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+
         return $this->render('page/bookings.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/messages", name="messages")
      */
     public function messages()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/user_profile", name="user_profile")
      */
@@ -75,7 +75,7 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/change_password", name="change_password")
      */
@@ -85,31 +85,31 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/reviews", name="reviews")
      */
     public function reviews()
         {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+
         return $this->render('page/reviews.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/dashboard", name="dashboard")
      */
     public function dashboard()
         {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        
+
         return $this->render('page/dashboard.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/concept", name="concept")
      */
@@ -119,7 +119,7 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/member", name="member")
      */
@@ -129,7 +129,7 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
-    
+
     /**
      * @Route("/listing", name="listing")
      */
@@ -140,5 +140,3 @@ class PageController extends AbstractController
         ]);
     }
 }
-
-

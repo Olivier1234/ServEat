@@ -12,7 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
-<<<<<<< HEAD
  * @Route("/meal", name="front_meal_")
  * @Security("is_granted('ROLE_USER')")
  */
