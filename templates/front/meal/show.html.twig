@@ -26,9 +26,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('meal_index') }}">back to list</a>
+    <a href="{{ path('front_meal_index') }}">back to list</a>
 
-    <a href="{{ path('meal_edit', {'id': meal.id}) }}">edit</a>
+    <a href="{{ path('front_meal_edit', {'id': meal.id}) }}">edit</a>
 
     {{ include('front/meal/_delete_form.html.twig') }}
 {% endblock %}
