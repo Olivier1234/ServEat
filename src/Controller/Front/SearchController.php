@@ -15,12 +15,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/search")
+ * @Route("/search", name="front_search_")
  */
 class SearchController extends AbstractController
 {
     /**
-     * @Route("/", name="searchPage", methods="GET")
+     * @Route("/", name="index", methods="GET")
      */
     public function index()
     {
@@ -42,10 +42,10 @@ class SearchController extends AbstractController
         //     $entityManager->persist($user);
         //     $entityManager->flush();
 
-        //     return $this->redirectToRoute('user_index');
+        //     return $this->redirectToRoute('front_user_index');
         // }
 
-        // return $this->render('user/new.html.twig', [
+        // return $this->render('front_user/new.html.twig', [
         //     'user' => $user,
         //     'form' => $form->createView(),
         // ]);

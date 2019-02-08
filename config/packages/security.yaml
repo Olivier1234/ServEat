@@ -29,7 +29,7 @@ security:
                     - App\Security\AppUserAuthenticator
             logout:
                 path: /logout
-                target: home
+                target: front_home
             
             # activate different ways to authenticate
 

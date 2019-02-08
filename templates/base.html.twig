@@ -8,13 +8,13 @@
         <meta name="robots" content="index, follow"/>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/>
-        
+
         <!--=============== css  ===============-->
         <link type="text/css" rel="stylesheet" href="{{ asset('css/reset.css') }}">
         <link type="text/css" rel="stylesheet" href="{{ asset('css/plugins.css') }}">
         <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link type="text/css" rel="stylesheet" href="{{ asset('css/color.css') }}">
-        <link crossorigin="" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" 
+        <link crossorigin="" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" rel="stylesheet"/>
 
         <!--=============== favicons ===============-->
@@ -46,7 +46,7 @@
     <header class="main-header dark-header fs-header sticky">
         <div class="header-inner">
             <div class="logo-holder">
-                <a href="{{ path('home') }}"><img src="images/logo.png" alt=""></a>
+                <a href="{{ path('front_home') }}"><img src="images/logo.png" alt=""></a>
             </div>
             <div class="header-search vis-header-search">
                 <div class="header-search-input-item">
@@ -68,7 +68,7 @@
                 <button class="header-search-button" onclick="window.location.href='{{ path('listing') }}'"><i class="fa fa-search"></i></button>
             </div>
             <div class="show-search-button"><i class="fa fa-search"></i> <span>Rechercher</span></div>
-            <a href="{{ path('meal_new') }}" class="add-list">Nouveau repas <span><i class="fa fa-plus"></i></span></a>
+            <a href="{{ path('front_meal_new') }}" class="add-list">Nouveau repas <span><i class="fa fa-plus"></i></span></a>
 
 
 
@@ -76,8 +76,8 @@
                 <a href="{{ path('user_profile') }}"><img src="{{ app.user.imgpath }}" alt="image profile" class="image--cover" style="float: right; width:40px;height: 40px;border-radius: 50%;margin: 20px;object-fit: cover;object-position: center right;" /></a>
                 <a href="{{ path('app_logout') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Deconnexion</div></a>
             {%else%}
-                <a href="{{ path('app_front_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
-                <a href="{{ path('app_front_register') }}"><span style="color: white"><button type="button" class=" bounce btn btn-primary waves-effect waves-light" >S'inscrire</button></span></a>
+                <a href="{{ path('front_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
+                <a href="{{ path('front_register') }}"><span style="color: white"><button type="button" class=" bounce btn btn-primary waves-effect waves-light" >S'inscrire</button></span></a>
             {% endif %}
             <!-- nav-button-wrap-->
             <div class="nav-button-wrap color-bg">
@@ -92,7 +92,7 @@
                     <ul>
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <li>
-                                <a href="{{  path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
+                                <a href="" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
                             </li>
                         {%else%}
                             <li>
@@ -209,7 +209,7 @@
                         <div class="footer-widget fl-wrap">
                             <div class="footer-menu fl-wrap">
                                 <ul>
-                                    <li><a href="{{ path('home') }}">Acceuil </a></li>
+                                    <li><a href="{{ path('front_home') }}">Acceuil </a></li>
                                     <li><a href="#">Annonces</a></li>
                                     <li><a href="{{ path('contact') }}">Contact</a></li>
                                 </ul>
