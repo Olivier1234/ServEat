@@ -2,7 +2,11 @@
 
 
 {% block body %}
+<<<<<<< HEAD
                     <!--section --> 
+=======
+                    <!--section -->
+>>>>>>> feature/archi
                     <section id="sec1">
                         <!-- container -->
                         <div class="container">
@@ -14,7 +18,11 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
+<<<<<<< HEAD
                                         {% include 'Front/partials/leftPanel.html.twig' %}
+=======
+                                        {% include 'front/partials/leftPanel.html.twig' %}
+>>>>>>> feature/archi
                                     </div>
                                     <div class="col-md-9">
                                         <div class="dashboard-list-box fl-wrap">
@@ -23,12 +31,21 @@
                                             </div>
                                             <div class="reviews-comments-wrap">
                                                 {% for notation in notations %}
+<<<<<<< HEAD
                                                 <!-- reviews-comments-item -->  
                                                 <div class="reviews-comments-item">
                                                     <div class="review-comments-avatar">
                                                         <img src="{{ asset(notation.giver.imgpath) }}" alt=""> 
                                                     </div>
                                                     
+=======
+                                                <!-- reviews-comments-item -->
+                                                <div class="reviews-comments-item">
+                                                    <div class="review-comments-avatar">
+                                                        <img src="{{ asset(notation.giver.imgpath) }}" alt="">
+                                                    </div>
+
+>>>>>>> feature/archi
                                                        <div class="reviews-comments-item-text">
                                                         <h4><a href=#>{{ notation.giver.firstname }}</a></h4>
                                                         <div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
@@ -36,10 +53,17 @@
                                                         <p>" {{ notation.comment }} "</p>
                                                         <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>27 May 2018</span>
                                                     </div>
+<<<<<<< HEAD
                                                     
                                                     
                                                 </div>
                                                 <!--reviews-comments-item end--> 
+=======
+
+
+                                                </div>
+                                                <!--reviews-comments-item end-->
+>>>>>>> feature/archi
                                                 {% else %}
                                                         <tr>
                                                             <td colspan="6">no records found</td>
@@ -63,7 +87,11 @@
                         </div>
                         <!--container end -->
                     </section>
+<<<<<<< HEAD
                     <!-- section end -->	
+=======
+                    <!-- section end -->
+>>>>>>> feature/archi
                     <div class="limit-box fl-wrap"></div>
                     <!--section -->
                     <section class="gradient-bg">

@@ -25,8 +25,13 @@
                 <td>{{ notation.isAnonymous ? 'Yes' : 'No' }}</td>
                 <td>{{ notation.isVisible ? 'Yes' : 'No' }}</td>
                 <td>
+<<<<<<< HEAD
                     <a href="{{ path('notation_show', {'id': notation.id}) }}">show</a>
                     <a href="{{ path('notation_edit', {'id': notation.id}) }}">edit</a>
+=======
+                    <a href="{{ path('front_notation_show', {'id': notation.id}) }}">show</a>
+                    <a href="{{ path('front_notation_edit', {'id': notation.id}) }}">edit</a>
+>>>>>>> feature/archi
                 </td>
             </tr>
         {% else %}
@@ -37,5 +42,9 @@
         </tbody>
     </table>
 
+<<<<<<< HEAD
     <a href="{{ path('notation_new') }}">Create new</a>
+=======
+    <a href="{{ path('front_notation_new') }}">Create new</a>
+>>>>>>> feature/archi
 {% endblock %}

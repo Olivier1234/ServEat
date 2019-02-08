@@ -19,17 +19,13 @@ class AppFixtures extends Fixture
     {
         $this->passwordEncoder = $passwordEncoder;
     }
-    
+
     public function load(ObjectManager $manager)
     {
          // On configure dans quelles langues nous voulons nos données
         $faker = Faker\Factory::create('fr_FR');
-        
-        //get the user id
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $loggedin_user = $this->getUser();
-                //////////////////////////////////////USERS/////////////////////////////////////
 
+            //////////////////////////////////////USERS/////////////////////////////////////
             $user = new User();
             $user->setEmail("ludovic.lecurieux@gmail.com");
             $user->setFirstName($faker->firstName);
@@ -43,7 +39,7 @@ class AppFixtures extends Fixture
             $user->setRoles(['ROLE_ADMIN']);
             $user->setImgpath("images/avatar/ludovic.lecurieux.jpg");
             $manager->persist($user);
-        
+
             $user2 = new User();
             $user2->setEmail("user2@gmail.com");
             $firstname = $faker->firstName;
@@ -59,7 +55,7 @@ class AppFixtures extends Fixture
             $user2->setRoles(['ROLE_ADMIN']);
             $user2->setImgpath("images/avatar/user2.jpg");
             $manager->persist($user2);
-        
+
             $user3 = new User();
             $user3->setEmail("user3@gmail.com");
             $firstname = $faker->firstName;
@@ -75,7 +71,7 @@ class AppFixtures extends Fixture
             $user3->setRoles(['ROLE_ADMIN']);
             $user3->setImgpath("images/avatar/user3.jpg");
             $manager->persist($user3);
-        
+
         // create 20 products! Bam!
         /*for ($i = 0; $i < 5; $i++) {
             $user = new User();
@@ -95,7 +91,7 @@ class AppFixtures extends Fixture
             $user->setImgpath("images/avatar/" . $firstname . "." . $lastName . ".jpg");
             $manager->persist($user);
         }*/
-        
+
         //////////////////////////////////////MEALS/////////////////////////////////////
         $meal = new Meal();
         $meal->setTitle($faker->text);
@@ -112,22 +108,42 @@ class AppFixtures extends Fixture
         //$meal->setBooking($faker->text);
         //$meal->setNotation($faker->text);
         //$meal->setHost($faker->text);
-                             
+
         //////////////////////////////////////NOTATIONS/////////////////////////////////////
         for ($i = 0; $i < 7; $i++) {
 
+        //////////////////////////////////////MEALS/////////////////////////////////////
+        $meal = new Meal();
+        $meal->setTitle($faker->text);
+        $meal->setDescription($faker->text);
+        $meal->setPrice(4);
+        $date = date_create_from_format('j-M-Y', '15-Feb-2009');
+        $meal->setDateMeal($date);
+        $meal->setMaxTraveller(4);
+        $manager->persist($meal);
+
+        //$meal->setType($faker->text);
+        //$meal->setPicture($faker->text);
+        //$meal->setAdress($faker->text);
+        //$meal->setBooking($faker->text);
+        //$meal->setNotation($faker->text);
+        //$meal->setHost($faker->text);
+
+        //////////////////////////////////////NOTATIONS/////////////////////////////////////
+        for ($i = 0; $i < 7; $i++) {
             $notation = new Notation();
             $notation->setRating(4);
             $notation->setComment($faker->text);
             $notation->setMeal($meal);
-            if($i % 3 == 0 ){$notation->setGiver($user2);}else{$notation->setGiver($user3);}
-            
-            $notation->setReceiver($loggedin_user);
+            if($i % 3 == 0 ){
+              $notation->setGiver($user2);}else{$notation->setGiver($user3);
+            }
+            $notation->setReceiver($user);
             $notation->setIsAnonymous(0);
             $notation->setIsVisible(0);
             $manager->persist($notation);
-        }                     
-        
+        }
+
         //////////////////////////////////////BOOKINGS/////////////////////////////////////
 
         $booking = new Booking();
@@ -136,8 +152,6 @@ class AppFixtures extends Fixture
         $booking->setTraveler($user);
         $booking->setIsAccepted(0);
         $manager->persist($booking);
-
-        
         $manager->flush();
     }
 }

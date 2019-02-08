@@ -30,9 +30,17 @@
         </tbody>
     </table>
 
+<<<<<<< HEAD
     <a href="{{ path('notation_index') }}">back to list</a>
 
     <a href="{{ path('notation_edit', {'id': notation.id}) }}">edit</a>
 
     {{ include('notation/_delete_form.html.twig') }}
+=======
+    <a href="{{ path('front_notation_index') }}">back to list</a>
+
+    <a href="{{ path('front_notation_edit', {'id': notation.id}) }}">edit</a>
+
+    {{ include('front/notation/_delete_form.html.twig') }}
+>>>>>>> feature/archi
 {% endblock %}
