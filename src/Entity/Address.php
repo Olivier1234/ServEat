@@ -122,4 +122,13 @@ class Address
 
         return $this;
     }
+
+    public function setIsDefaultBylist($key)
+    {
+        if ($key === 1) {
+            $this->setIsDefault("principale");
+        } else {
+            $this->setIsDefault("secondaire");
+        }
+    }
 }

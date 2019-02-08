@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\Meal;
 use App\Form\MealType;
 use App\Repository\MealRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/meal")
+ * @Security("is_granted('ROLE_USER')")
  */
 class MealController extends AbstractController
 {
@@ -46,7 +48,11 @@ class MealController extends AbstractController
                 );
                 $file->setPath( '/images/meal/'. $fileName);
             }
+            $meal->setHost($this->getUser());
 
+            foreach ($form->getData()->getPictures() as $key => $picture){
+                $picture->setMeal($meal);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($meal);
             $entityManager->flush();

@@ -68,7 +68,7 @@
                 <button class="header-search-button" onclick="window.location.href='{{ path('listing') }}'"><i class="fa fa-search"></i></button>
             </div>
             <div class="show-search-button"><i class="fa fa-search"></i> <span>Rechercher</span></div>
-            <a href="{{ path('add_listing') }}" class="add-list">Nouvelle annonce <span><i class="fa fa-plus"></i></span></a>
+            <a href="{{ path('meal_new') }}" class="add-list">Nouveau repas <span><i class="fa fa-plus"></i></span></a>
 
 
 
@@ -129,6 +129,12 @@
     <div id="wrapper">
         <!-- Content-->
         <div class="content">
+            {% block sidebar %}
+                {% if app.user %}
+
+                {% endif %}
+            {% endblock %}
+
             {% block body %}{% endblock %}
         </div>
     </div>

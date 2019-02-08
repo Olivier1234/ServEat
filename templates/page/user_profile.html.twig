@@ -58,10 +58,10 @@
                                                 <label>Téléphone<i class="fa fa-phone"></i>  </label>
                                                 <input type="text" placeholder="Téléphone" value="{{ app.user.phone }}"/>
                                                 <label> Adresse <i class="fa fa-map-marker"></i>  </label>
-                                                <input type="text" placeholder="Adresse" value="{{ app.user.adress }}"/>
-                                                <label> Site Web <i class="fa fa-globe"></i>  </label>
-                                                <input type="text" placeholder="Site Web" value="{{ app.user.website }}"/>  
-                                                <label> Description</label>                                              
+                                                {% for adress in app.user.addresses %}
+                                                    <input type="text" placeholder="Adresse" value="{{ adress.street }}"/>
+                                                {% endfor %}
+                                                <label> Description</label>
                                                 <textarea cols="40" rows="3" placeholder="Dites quelque chose d'intéressant!">{{ app.user.description }}</textarea>
                                             </div>
                                         </div>

@@ -32,6 +32,11 @@ class RegistrationController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
+            foreach ($form->getData()->getAddresses() as $key => $address){
+                $address->setIsDefaultBylist($key);
+                $address->setHost($user);
+            }
+
             $entityManager->flush();
 
             // do anything else you need here, like send an email

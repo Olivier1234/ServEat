@@ -32,6 +32,15 @@ class MealType extends AbstractType
             ->add('price')
             ->add('maxTraveller')
             ->add('dateMeal')
+            ->add('address', EntityType::class, [
+                'class' => Address::class,
+                'query_builder' => function (EntityRepository $er) use ( $user ) {
+                    return $er->createQueryBuilder('a')
+                        ->where('a.host = :user')
+                        ->setParameter('user', $user);
+                },
+                'choice_label' => 'street',
+            ])
             ->add('pictures', CollectionType::class, array(
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],

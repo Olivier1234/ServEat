@@ -26,13 +26,11 @@ class UserType extends AbstractType
                         ],
               ])                   
             ->add('password')
-            ->add('verified')
+            ->add('isVerified')
             ->add('firstname')
             ->add('lastname')
             ->add('description')
             ->add('phone')
-            ->add('adress')
-            ->add('website')
             ->add('birthday')
             ->add('pseudo')
         ;

@@ -37,7 +37,7 @@ class ReferenceDocument
     private $owner;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="tertet")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      */
     private $validator;
 

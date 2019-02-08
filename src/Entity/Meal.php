@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\IdsTraits;
 
 
 
@@ -14,12 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Meal
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+
+    use IdsTraits;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -88,10 +85,6 @@ class Meal
         $this->notations = new ArrayCollection();
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getTitle(): ?string
     {

@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -94,7 +96,7 @@ class User implements UserInterface
     private $recievedMessage;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Address", mappedBy="owner")
+     * @ORM\OneToMany(targetEntity="App\Entity\Address", mappedBy="host", cascade={"persist"})
      */
     private $addresses;
 
@@ -109,7 +111,7 @@ class User implements UserInterface
     private $reveiverNotations;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Meal", mappedBy="proposedBy")
+     * @ORM\OneToMany(targetEntity="App\Entity\Meal", mappedBy="host", cascade={"persist"})
      */
     private $mealProposed;
     /**
@@ -134,6 +136,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Please, upload the file")
+     * @Assert\File(mimeTypes={ "image/jpeg" } )
      */
     private $imgpath;
 
@@ -313,9 +317,10 @@ class User implements UserInterface
 
     public function addAddress(Address $address): self
     {
+        dump($address);die();
         if (!$this->addresses->contains($address)) {
             $this->addresses[] = $address;
-            $address->setOwner($this);
+            $address->setHost($this);
         }
 
         return $this;
@@ -326,8 +331,8 @@ class User implements UserInterface
         if ($this->addresses->contains($address)) {
             $this->addresses->removeElement($address);
             // set the owning side to null (unless already changed)
-            if ($address->getOwner() === $this) {
-                $address->setOwner(null);
+            if ($address->getHost() === $this) {
+                $address->setHost(null);
             }
         }
 
@@ -408,7 +413,7 @@ class User implements UserInterface
     {
         if (!$this->mealProposed->contains($mealProposed)) {
             $this->mealProposed[] = $mealProposed;
-            $mealProposed->setProposedBy($this);
+            $mealProposed->setHost($this);
         }
         return $this;
     }
@@ -418,8 +423,8 @@ class User implements UserInterface
         if ($this->mealProposed->contains($mealProposed)) {
             $this->mealProposed->removeElement($mealProposed);
             // set the owning side to null (unless already changed)
-            if ($mealProposed->getProposedBy() === $this) {
-                $mealProposed->setProposedBy(null);
+            if ($mealProposed->getHost() === $this) {
+                $mealProposed->setHost(null);
             }
         }
 

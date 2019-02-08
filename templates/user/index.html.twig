@@ -17,8 +17,6 @@
                 <th>Lastname</th>
                 <th>Description</th>
                 <th>Phone</th>
-                <th>Adress</th>
-                <th>Website</th>
                 <th>Imgpath</th>
                 <th>actions</th>
             </tr>
@@ -30,13 +28,12 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.password }}</td>
-                <td>{{ user.verified ? 'Yes' : 'No' }}</td>
+                <td>{{ user.isverified ? 'Yes' : 'No' }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.description }}</td>
                 <td>{{ user.phone }}</td>
-                <td>{{ user.adress }}</td>
-                <td>{{ user.website }}</td>
+                <td>{{ user.imgpath }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
