@@ -28,7 +28,7 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/", name="search", methods="POST")
+     * @Route("/new", name="search", methods="GET")
      */
     public function search(Request $request) : Response
     {
