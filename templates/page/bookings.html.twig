@@ -2,7 +2,7 @@
 
 
 {% block body %}
-                    <!--section -->  
+                    <!--section -->
                     <section id="sec1">
                         <!-- container -->
                         <div class="container">
@@ -14,40 +14,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <div class="fixed-bar fl-wrap">
-                                            <div class="user-profile-menu-wrap fl-wrap">
-                                                <!-- user-profile-menu-->
-                                                <div class="user-profile-menu">
-                                                    <h3>Main</h3>
-                                                    <ul>
-                                                    	<li><a href="dashboard.html"><i class="fa fa-gears"></i>Dashboard</a></li>															
-                                                        <li><a href="dashboard-myprofile.html"><i class="fa fa-user-o"></i> Edit profile</a></li>
-                                                        <li><a href="dashboard-messages.html"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
-                                                        <li><a href="dashboard-password.html"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
-                                                    </ul>
-                                                </div>
-                                                <!-- user-profile-menu end-->
-                                                <!-- user-profile-menu-->
-                                                <div class="user-profile-menu">
-                                                    <h3>Listings</h3>
-                                                    <ul>
-                                                        <li><a href="dashboard-listing-table.html"><i class="fa fa-th-list"></i> My listigs  </a></li>
-                                                        <li><a href="dashboard-bookings.html" class="user-profile-act"> <i class="fa fa-calendar-check-o"></i> Bookings <span>2</span></a></li>
-                                                        <li><a href="dashboard-review.html"><i class="fa fa-comments-o"></i> Reviews </a></li>
-                                                        <li><a href="dashboard-add-listing.html"><i class="fa fa-plus-square-o"></i> Add New</a></li>
-                                                    </ul>
-                                                </div>
-                                                <!-- user-profile-menu end-->                                        
-                                                <a href="#" class="log-out-btn">Log Out</a>
-                                            </div>
-                                        </div>
+                                        {% include 'partials/leftPanel.html.twig' %}
                                     </div>
                                     <div class="col-md-9">
                                         <div class="dashboard-list-box fl-wrap">
                                             <div class="dashboard-header fl-wrap">
                                                 <h3>Bookings</h3>
                                             </div>
-                                            <!-- dashboard-list end-->    
+                                            <!-- dashboard-list end-->
                                             <div class="dashboard-list">
                                                 <div class="dashboard-message">
                                                     <span class="new-dashboard-item">New</span>
@@ -61,19 +35,19 @@
                                                             <span class="booking-text"><a href="listing-sinle.html">Luxury Restourant</a></span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Persons </span> : 
+                                                            <span class="booking-title">Persons </span> :
                                                             <span class="booking-text">4 Peoples</span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Booking Date </span> : 
+                                                            <span class="booking-title">Booking Date </span> :
                                                             <span class="booking-text">02.03.2018 at 17:30 P.M</span>
                                                         </div>
-                                                        <div class="booking-details fl-wrap">                                                               
-                                                            <span class="booking-title">Mail</span> : 
+                                                        <div class="booking-details fl-wrap">
+                                                            <span class="booking-title">Mail</span> :
                                                             <span class="booking-text"><a href="#" target="_top">yormail@domain.com</a></span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Phone</span> : 
+                                                            <span class="booking-title">Phone</span> :
                                                             <span class="booking-text"><a href="tel:+496170961709" target="_top">+496170961709</a></span>
                                                         </div>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere convallis purus non cursus. Cras metus neque, gravida sodales massa ut. </p>
@@ -81,8 +55,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- dashboard-list end-->    
-                                            <!-- dashboard-list end-->    
+                                            <!-- dashboard-list end-->
+                                            <!-- dashboard-list end-->
                                             <div class="dashboard-list">
                                                 <div class="dashboard-message">
                                                     <div class="dashboard-message-avatar">
@@ -95,27 +69,27 @@
                                                             <span class="booking-text"><a href="listing-sinle.html">Luxury Restourant</a></span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Persons </span> : 
+                                                            <span class="booking-title">Persons </span> :
                                                             <span class="booking-text">4 Peoples</span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Booking Date </span> : 
+                                                            <span class="booking-title">Booking Date </span> :
                                                             <span class="booking-text">02.03.2018 at 17:30 P.M</span>
                                                         </div>
-                                                        <div class="booking-details fl-wrap">                                                               
-                                                            <span class="booking-title">Mail</span> : 
+                                                        <div class="booking-details fl-wrap">
+                                                            <span class="booking-title">Mail</span> :
                                                             <span class="booking-text"><a href="#" target="_top">yormail@domain.com</a></span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Phone</span> : 
+                                                            <span class="booking-title">Phone</span> :
                                                             <span class="booking-text"><a  href="tel:+496170961709" target="_top">+496170961709</a></span>
                                                         </div>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere convallis purus non cursus. Cras metus neque, gravida sodales massa ut. </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- dashboard-list end-->                                             
-                                            <!-- dashboard-list end-->    
+                                            <!-- dashboard-list end-->
+                                            <!-- dashboard-list end-->
                                             <div class="dashboard-list">
                                                 <div class="dashboard-message">
                                                     <div class="dashboard-message-avatar">
@@ -128,26 +102,26 @@
                                                             <span class="booking-text"><a href="listing-sinle.html">Luxury Restourant</a></span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Persons </span> : 
+                                                            <span class="booking-title">Persons </span> :
                                                             <span class="booking-text">4 Peoples</span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Booking Date </span> : 
+                                                            <span class="booking-title">Booking Date </span> :
                                                             <span class="booking-text">02.03.2018 at 17:30 P.M</span>
                                                         </div>
-                                                        <div class="booking-details fl-wrap">                                                               
-                                                            <span class="booking-title">Mail</span> : 
+                                                        <div class="booking-details fl-wrap">
+                                                            <span class="booking-title">Mail</span> :
                                                             <span class="booking-text"><a href="#" target="_top">yormail@domain.com</a></span>
                                                         </div>
                                                         <div class="booking-details fl-wrap">
-                                                            <span class="booking-title">Phone</span> : 
+                                                            <span class="booking-title">Phone</span> :
                                                             <span class="booking-text"><a  href="tel:+496170961709" target="_top">+496170961709</a></span>
                                                         </div>
                                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc posuere convallis purus non cursus. Cras metus neque, gravida sodales massa ut. </p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- dashboard-list end-->                                            
+                                            <!-- dashboard-list end-->
                                         </div>
                                         <!-- pagination-->
                                         <div class="pagination">
