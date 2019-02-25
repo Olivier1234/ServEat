@@ -122,7 +122,8 @@ class AppFixtures extends Fixture
             $notation->setIsAnonymous(0);
             $notation->setIsVisible(0);
             $manager->persist($notation);
-        }
+         }
+
 
         //////////////////////////////////////BOOKINGS/////////////////////////////////////
         $booking = new Booking();
@@ -132,5 +133,7 @@ class AppFixtures extends Fixture
         $booking->setIsAccepted(0);
         $manager->persist($booking);
         $manager->flush();
+
     }
+
 }
