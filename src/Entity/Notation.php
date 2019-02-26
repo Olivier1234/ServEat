@@ -17,7 +17,6 @@ class Notation
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="integer")
      */
@@ -29,12 +28,12 @@ class Notation
     private $comment;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isAnonymous;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isVisible;
 
@@ -54,6 +53,7 @@ class Notation
     private $receiver;
 
     /**
+    * @ORM\Column(nullable=true)
      * @ORM\OneToMany(targetEntity="App\Entity\Report", mappedBy="notation")
      */
     private $reports;

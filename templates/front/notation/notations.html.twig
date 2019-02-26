@@ -9,17 +9,14 @@
 			<div class="profile-edit-wrap">
 				<div class="profile-edit-page-header">
 					<h2>Commentaires</h2>
-					<div class="breadcrumbs"><a href="#">Home</a><a href="#">Dasboard</a><span>Reviews</span></div>
+					<div class="breadcrumbs"><a href="#">Acceuil</a><a href="#">Tableau de bord</a><span>Commentaires</span></div>
 				</div>
 				<div class="row">
 					<div class="col-md-3">
-						{% include 'front/partials/leftPanel.html.twig' %}
+						{% include 'partials/leftPanel.html.twig' %}
 					</div>
 					<div class="col-md-9">
 						<div class="dashboard-list-box fl-wrap">
-							<div class="dashboard-header fl-wrap">
-								<h3>Inbox</h3>
-							</div>
 							<div class="reviews-comments-wrap">
 								{% for notation in notations %}
 									<!-- reviews-comments-item -->
@@ -29,7 +26,7 @@
 										</div>
 										<div class="reviews-comments-item-text">
 											<h4><a href=#>{{ notation.giver.firstname }}</a></h4>
-											<div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
+											<div class="listing-rating card-popup-rainingvis" data-starrating2="{{ notation.rating }}"></div>
 											<div class="clearfix"></div>
 											<p>" {{ notation.comment }} "</p>
 											<span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>27 May 2018</span>
