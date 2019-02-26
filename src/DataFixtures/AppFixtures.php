@@ -27,34 +27,32 @@ class AppFixtures extends Fixture
         $faker = Faker\Factory::create('fr_FR');
 
             //////////////////////////////////////USERS/////////////////////////////////////
-            $user = new User();
-            $user->setEmail("ludovic.lecurieux@gmail.com");
-            $user->setFirstName($faker->firstName);
-            $user->setLastName($faker->lastName);
-            $user->setPhone($faker->phoneNumber);
-            $user->setGender("M");
-            $user->setPseudo($faker->userName);
-            $user->setDescription($faker->text);
+            $user1 = new User();
+            $user1->setEmail("ludovic.lecurieux@gmail.com");
+            $user1->setFirstName("Ludovic");
+            $user1->setLastName("Le Curieux");
+            $user1->setPhone($faker->phoneNumber);
+            $user1->setGender("M");
+            $user1->setPseudo($faker->userName);
+            $user1->setDescription($faker->text);
             $password = "654321qwerty";
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
-            $user->setRoles(['ROLE_ADMIN']);
-            $user->setImgpath("images/avatar/ludovic.lecurieux.jpg");
+            $user1->setPassword($this->passwordEncoder->encodePassword($user, $password));
+            $user1->setRoles(['ROLE_ADMIN']);
+            $user1->setImgpath("images/avatar/ludovic.lecurieux.jpg");
             $manager->persist($user);
 
             $user2 = new User();
-            $user2->setEmail("user2@gmail.com");
-            $firstname = $faker->firstName;
-            $user2->setFirstName($firstname);
-            $lastName = $faker->lastName;
-            $user2->setLastName($lastName);
+            $user2->setEmail("leyla.lenoan@outlook.fr");
+            $user2->setFirstName("Leyla");
+            $user2->setLastName("LE NOAN");
             $user2->setPhone($faker->phoneNumber);
-            $user2->setGender("M");
-            $user2->setPseudo($faker->userName);
+            $user2->setGender("F");
+            $user2->setPseudo("LeylaLN");
             $user2->setDescription($faker->text);
-            $password = "654321qwerty";
-            $user2->setPassword($this->passwordEncoder->encodePassword($user, $password));
+            $password = "azerty";
+            $user2->setPassword($this->passwordEncoder->encodePassword($user2, $password));
             $user2->setRoles(['ROLE_ADMIN']);
-            $user2->setImgpath("images/avatar/user2.jpg");
+            $user2->setImgpath("images/avatar/leyla-lenoan.jpg");
             $manager->persist($user2);
 
             $user3 = new User();
@@ -120,7 +118,43 @@ class AppFixtures extends Fixture
         //$meal->setAdress($faker->text);
         //$meal->setBooking($faker->text);
         //$meal->setNotation($faker->text);
-        //$meal->setHost($faker->text);
+        $meal->setHost($user1);
+
+        //////////////////////////////////////BOOKINGS/////////////////////////////////////
+        //user2 reserve un repas chez $user1
+        $booking = new Booking();
+        $booking->setIsPayed(0);
+        $booking->setMeal($meal);
+        $booking->setTraveler($user2);
+        $booking->setIsAccepted(0);
+        $manager->persist($booking);
+
+        //user3 reserve un repas chez $user1
+        $booking = new Booking();
+        $booking->setIsPayed(0);
+        $booking->setMeal($meal);
+        $booking->setTraveler($user3);
+        $booking->setIsAccepted(0);
+        $manager->persist($booking);
+
+        //////////////////////////////////////MESSAGES/////////////////////////////////////
+        $message = new Message();
+        $message->setContent($faker->text);
+        $message->setStatus("fsgdfsd");
+        $date = date_create_from_format('j-M-Y', '15-Feb-2009');
+        $message->setCreatedAt($date);
+        $message->setSender($user2);
+        $message->setReceiver($user);
+        $manager->persist($message);
+
+        $message2 = new Message();
+        $message2->setContent($faker->text);
+        $message2->setStatus("qwerty");
+        $date = date_create_from_format('j-M-Y', '15-Feb-2009');
+        $message2->setCreatedAt($date);
+        $message2->setSender($user);
+        $message2->getReceiver($user2);
+        $manager->persist($message2);
 
         //////////////////////////////////////NOTATIONS/////////////////////////////////////
         for ($i = 0; $i < 7; $i++) {
@@ -142,13 +176,12 @@ class AppFixtures extends Fixture
         $booking = new Booking();
         $booking->setIsPayed(0);
         $booking->setMeal($meal);
-        $booking->setTraveler($user);
+        $booking->setTraveler($user1);
         $booking->setIsAccepted(0);
         $manager->persist($booking);
         $manager->flush();
 
-         //////////////////////////////////////BOOKINGS/////////////////////////////////////
-
+         //////////////////////////////////////MESSAGES/////////////////////////////////////
          $message = new Message();
          $message->setContent($faker->text);
          $message->setStatus("envoyé");
