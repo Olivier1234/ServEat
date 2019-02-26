@@ -147,10 +147,13 @@ class AppFixtures extends Fixture
             $notation->setIsAnonymous(0);
             $notation->setIsVisible(0);
             $manager->persist($notation);
-        }
+         }
+
 
 
 
         $manager->flush();
+
     }
+
 }
