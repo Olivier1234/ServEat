@@ -36,10 +36,10 @@ class AppFixtures extends Fixture
             $user1->setPseudo($faker->userName);
             $user1->setDescription($faker->text);
             $password = "654321qwerty";
-            $user1->setPassword($this->passwordEncoder->encodePassword($user, $password));
+            $user1->setPassword($this->passwordEncoder->encodePassword($user1, $password));
             $user1->setRoles(['ROLE_ADMIN']);
             $user1->setImgpath("images/avatar/ludovic.lecurieux.jpg");
-            $manager->persist($user);
+            $manager->persist($user1);
 
             $user2 = new User();
             $user2->setEmail("leyla.lenoan@outlook.fr");
@@ -129,7 +129,7 @@ class AppFixtures extends Fixture
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
         $message->setCreatedAt($date);
         $message->setSender($user2);
-        $message->setReceiver($user);
+        $message->setReceiver($user1);
         $manager->persist($message);
 
         $message2 = new Message();
@@ -137,7 +137,7 @@ class AppFixtures extends Fixture
         $message2->setStatus("qwerty");
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
         $message2->setCreatedAt($date);
-        $message2->setSender($user);
+        $message2->setSender($user1);
         $message2->getReceiver($user2);
         $manager->persist($message2);
 
@@ -151,7 +151,7 @@ class AppFixtures extends Fixture
             if($i % 3 == 0 ){
               $notation->setGiver($user2);}else{$notation->setGiver($user3);
             }
-            $notation->setReceiver($user);
+            $notation->setReceiver($user1);
             $notation->setIsAnonymous(0);
             $notation->setIsVisible(0);
             $manager->persist($notation);
