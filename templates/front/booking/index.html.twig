@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Dates de la réservation </span> :
-                                                <span class="booking-text">{{ booking.meal.getDateMeal() }}</span>
+                                                <span class="booking-text">{{ booking.meal.getDateMeal() | date("m/d/Y", "Europe/Paris") }}</span>
                                             </div>
                                             <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Adresse </span> :
