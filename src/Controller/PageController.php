@@ -63,11 +63,20 @@ class PageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-        //var_dump($messageRepository->findAll());
-       // var_dump($messageRepository->findAllMessages($user));
+        $messages = $messageRepository->findAllMessages($user);
+        $distinct_messages = array();
+        $receiver_array = array();
+
+        foreach ($messages as $message) {
+            if (!in_array($message->getReceiver(),$receiver_array)) {
+                array_push($distinct_messages, $message);
+                array_push($receiver_array, $message->getReceiver());
+            }
+        }
+
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
-            'messages' => $messageRepository->findAllMessages($user),
+            'messages' => $distinct_messages,
             'user' => $user,
             'title' => "Toutes les conversations"
 
