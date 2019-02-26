@@ -32,7 +32,8 @@
                                         <div class="main-search-input fl-wrap">
                                         
                                             <div class="main-search-input-item">
-                                                {{ form_widget(searchForm.adressInput,  {'attr' : {'placeholder': 'Adresse', 'class' : 'main-search-adress'}}) }}
+                                                {{ form_widget(searchForm.adressInput,  
+                                                {'attr' : {'placeholder': 'Adresse', 'class' : 'SearchBox main-search-adress', 'autocomplete':'off'}}) }}
                                             </div>
                                             {#{{ form_label(searchForm.submit) }}#}
                                             {{ form_widget(searchForm.submit, {'attr' : {'class': 'main-search-button'}}) }}
