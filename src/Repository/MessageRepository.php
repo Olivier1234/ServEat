@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Message;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -18,6 +19,55 @@ class MessageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Message::class);
     }
+
+    public function findAllMessages($user): array
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            ->where('m.receiver = :user')
+            ->orWhere('m.sender = :user')
+            ->setParameter('user', $user)
+            //->groupBy(':user')
+            ->orderBy('m.created_at', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        return $qb;
+
+
+    }
+
+    /**
+     * Retourne tous les messages entre 2 utilisateurs
+     */
+    public function findAllMessagesUser($user, $other): array
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->select('m')
+            // Deux configurations possibles :
+            // Soit l'utilisateur est receiver, soit il est sender
+
+            ->where($this->createQueryBuilder('m')->expr()->andX(
+                $this->createQueryBuilder('m')->expr()->eq('m.receiver', ':user'),
+                $this->createQueryBuilder('m')->expr()->eq('m.sender', ':other')
+
+            ))
+            ->orWhere($this->createQueryBuilder('m')->expr()->andX(
+                $this->createQueryBuilder('m')->expr()->eq('m.receiver', ':other'),
+                $this->createQueryBuilder('m')->expr()->eq('m.sender', ':user')
+            ))
+            ->setParameter('user', $user)
+            ->setParameter('other', $other)
+            ->orderBy('m.created_at', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+
+
+
+        return $qb;
+    }
+
 
     // /**
     //  * @return Message[] Returns an array of Message objects
