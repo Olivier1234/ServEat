@@ -39,7 +39,7 @@ class Address
     private $country;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="boolean")
      */
     private $isDefault;
 
@@ -106,12 +106,12 @@ class Address
         return $this;
     }
 
-    public function getIsDefault(): ?string
+    public function getIsDefault(): ?bool
     {
         return $this->isDefault;
     }
 
-    public function setIsDefault(string $isDefault): self
+    public function setIsDefault(bool $isDefault): self
     {
         $this->isDefault = $isDefault;
 
