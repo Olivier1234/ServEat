@@ -6,8 +6,6 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UserType extends AbstractType
 {
@@ -15,24 +13,18 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('roles', CollectionType::class, [
-                        'entry_type'   => ChoiceType::class,
-                        'entry_options'  => [
-                            'label' => false,
-                            'choices' => [
-                                'Admin' => 'ROLE_ADMIN',
-                                'Super' => 'ROLE_SUPER_ADMIN',
-                            ],
-                        ],
-              ])                   
+            ->add('roles')
             ->add('password')
             ->add('isVerified')
-            ->add('firstname')
-            ->add('lastname')
+            ->add('firstName')
+            ->add('lastName')
             ->add('description')
             ->add('phone')
+            ->add('paypal')
+            ->add('gender')
             ->add('birthday')
             ->add('pseudo')
+            ->add('imgpath')
         ;
     }
 

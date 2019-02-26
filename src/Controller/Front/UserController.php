@@ -67,7 +67,17 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+
+          $file = $form->get('imgpath')->getData();
+          $fileName = md5(uniqid()).'.'.$file->guessExtension();
+          $file->move(
+              'images/user/',
+              $fileName
+          );
+          $user->setImgPath( '/images/user/'. $fileName);
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->persist($user);
+          $entityManager->flush();
 
             return $this->redirectToRoute('front_user_index', [
                 'id' => $user->getId(),
