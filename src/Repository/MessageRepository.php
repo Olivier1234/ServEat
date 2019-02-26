@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Message;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,19 @@ class MessageRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Message::class);
+    }
+
+    public function findAllMessages($user): array
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->where('m.receiver = :user')
+            ->orWhere('m.sender = :user')
+            ->setParameter('user', $user)
+            ->orderBy('m.created_at', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+        return $qb->execute();
     }
 
     // /**

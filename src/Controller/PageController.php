@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\MessageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Message;
 
 class PageController extends AbstractController
 {
@@ -53,16 +55,57 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/messages", name="messages")
+     * @Route("/messages", name="messages", methods={"GET"})
      */
-    public function messages()
+    public function messages(MessageRepository $messageRepository)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
+        $user = $this->getUser();
+        //var_dump($messageRepository->findAll());
+        var_dump($messageRepository->findAllMessages($user));
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
+            'messages' => $messageRepository->findAll(),
+
         ]);
     }
+
+    /**
+     * @Route("/messages/create", name="message_create", methods={"POST"})
+     */
+    public function new_message(MessageRepository $messageRepository, Request $request)
+    {
+        $message = new Message();
+        $message->setContent("prout");
+        $message->setStatus("envoyé");
+        $message->setSender();
+        $message->setReceiver();
+
+        $user->setFirstName($faker->firstName);
+        $user->setLastName($faker->lastName);
+        $user->setPhone($faker->phoneNumber);
+        $user->setGender("M");
+        $user->setPseudo($faker->userName);
+        $user->setDescription($faker->text);
+        $password = "654321qwerty";
+        $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setImgpath("images/avatar/ludovic.lecurieux.jpg");
+        $manager->persist($user);
+
+        $form = $this->createForm(Message::class, $message);
+
+        $form->handleRequest($request);
+        var_dump("lol", $request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var $userManager UserManagerInterface */
+
+
+        }
+
+    }
+
 
     /**
      * @Route("/user_profile", name="user_profile")

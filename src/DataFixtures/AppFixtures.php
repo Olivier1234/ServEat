@@ -5,6 +5,7 @@ use App\Entity\User;
 use App\Entity\Notation;
 use App\Entity\Meal;
 use App\Entity\Booking;
+use App\Entity\Message;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -133,6 +134,16 @@ class AppFixtures extends Fixture
         $booking->setIsAccepted(0);
         $manager->persist($booking);
         $manager->flush();
+
+         //////////////////////////////////////BOOKINGS/////////////////////////////////////
+         $message = new Message();
+         $message->setContent($faker->text);
+         $message->setStatus("envoyé");
+         $message->setCreatedAt(date_create_from_format('j-M-Y', '15-Feb-2009'));
+         $message->setSender($user);
+         $message->setReceiver($user2);
+         $manager->persist($message);
+         $manager->flush();
 
     }
 
