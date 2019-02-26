@@ -180,9 +180,9 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUserName(): string
     {
-        return (string) $this->email;
+        return (string) $this->firstName." ".$this->lastName;
     }
 
     /**
