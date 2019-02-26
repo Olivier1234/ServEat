@@ -9,7 +9,7 @@
                             <div class="section-title center-align">
                                 <div class="breadcrumbs fl-wrap"><a href="#">Acceuil</a><a href="#">Annonce</a><span>Profil</span></div>
                                 <h2><span>{{ user.firstname }} {{ user.lastname }}</span></h2>
-                                <div class="user-profile-avatar"><img src="{{ asset(user.imgpath) }}" alt=""></div>
+                                <div class="user-profile-avatar"><img src="{{ asset(user.avatar) }}" alt=""></div>
                                 <div class="user-profile-rating clearfix">
                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
                                         <span>(37 reviews)</span>
@@ -276,8 +276,8 @@
                 <td>{{ user.phone }}</td>
             </tr>
             <tr>
-                <th>Imgpath</th>
-                <td>{{ user.imgpath }}</td>
+                <th>Avatar</th>
+                <td>{{ user.avatar }}</td>
             </tr>
         </tbody>
     </table>

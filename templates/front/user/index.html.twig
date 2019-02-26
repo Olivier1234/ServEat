@@ -17,7 +17,7 @@
                 <th>Lastname</th>
                 <th>Description</th>
                 <th>Phone</th>
-                <th>Imgpath</th>
+                <th>Avatar</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -33,7 +33,7 @@
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.description }}</td>
                 <td>{{ user.phone }}</td>
-                <td>{{ user.imgpath }}</td>
+                <td>{{ user.avatar }}</td>
                 <td>
                     <a href="{{ path('front_user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('front_user_edit', {'id': user.id}) }}">edit</a>

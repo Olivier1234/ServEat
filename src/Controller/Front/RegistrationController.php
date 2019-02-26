@@ -30,7 +30,7 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-            $file = $form->get('imgpath')->getData();
+            $file = $form->get('avatar')->getData();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
             $file->move(
                 'images/user/',
