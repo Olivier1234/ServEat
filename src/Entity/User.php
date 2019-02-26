@@ -85,6 +85,14 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Please, upload the file")
+     * @Assert\File(mimeTypes={ "image/jpeg" } )
+     */
+    private $avatar;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="sender")
      */
@@ -133,13 +141,6 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Report", mappedBy="reporter")
      */
     private $reports;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="Please, upload the file")
-     * @Assert\File(mimeTypes={ "image/jpeg" } )
-     */
-    private $imgpath;
 
     public function __construct()
     {
@@ -519,14 +520,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getImgpath()
+    public function getAvatar()
     {
-        return $this->imgpath;
+        return $this->avatar;
     }
 
-    public function setImgpath( $imgpath): self
+    public function setAvatar($avatar): self
     {
-        $this->imgpath = $imgpath;
+        $this->avatar = $avatar;
         return $this;
     }
 
@@ -538,7 +539,6 @@ class User implements UserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
-
         return $this;
     }
 
