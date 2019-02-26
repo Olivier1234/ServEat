@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Message;
+use App\Entity\User;
 
 class PageController extends AbstractController
 {
@@ -56,16 +57,41 @@ class PageController extends AbstractController
 
     /**
      * @Route("/messages", name="messages", methods={"GET"})
+     * Affiche toues les messages reçus et envoyés de l'utilisateur
      */
     public function messages(MessageRepository $messageRepository)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
         //var_dump($messageRepository->findAll());
-        var_dump($messageRepository->findAllMessages($user));
+       // var_dump($messageRepository->findAllMessages($user));
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
-            'messages' => $messageRepository->findAll(),
+            'messages' => $messageRepository->findAllMessages($user),
+            'user' => $user,
+            'title' => "Toutes les conversations"
+
+        ]);
+    }
+
+    /**
+     * @Route("/messages/{id}", name="messages_user", methods={"GET"})
+     * Affiche tous les messages avec un utilisateur en particulier
+     */
+    public function messages_user(MessageRepository $messageRepository, User $other)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
+        var_dump($user->getUsername());
+        var_dump($other->getUsername());
+
+
+        return $this->render('page/messages.html.twig', [
+            'controller_name' => 'PageController',
+            'messages' => $messageRepository->findAllMessagesUser($user, $other),
+            'user' => $user,
+            'title' => "Votre conversation avec " . $other->getFullName()
 
         ]);
     }

@@ -136,12 +136,32 @@ class AppFixtures extends Fixture
         $manager->flush();
 
          //////////////////////////////////////BOOKINGS/////////////////////////////////////
+
+
          $message = new Message();
          $message->setContent($faker->text);
          $message->setStatus("envoyé");
          $message->setCreatedAt(date_create_from_format('j-M-Y', '15-Feb-2009'));
          $message->setSender($user);
          $message->setReceiver($user2);
+         $manager->persist($message);
+         $manager->flush();
+
+         $message = new Message();
+         $message->setContent($faker->text);
+         $message->setStatus("envoyé");
+         $message->setCreatedAt(date_create_from_format('j-M-Y', '16-Feb-2009'));
+         $message->setSender($user);
+         $message->setReceiver($user2);
+         $manager->persist($message);
+         $manager->flush();
+
+         $message = new Message();
+         $message->setContent($faker->text);
+         $message->setStatus("envoyé");
+         $message->setCreatedAt(date_create_from_format('j-M-Y', '19-Feb-2009'));
+         $message->setSender($user3);
+         $message->setReceiver($user);
          $manager->persist($message);
          $manager->flush();
 
