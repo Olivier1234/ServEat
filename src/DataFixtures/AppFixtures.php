@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
             $password = "654321qwerty";
             $user1->setPassword($this->passwordEncoder->encodePassword($user1, $password));
             $user1->setRoles(['ROLE_ADMIN']);
-            $user1->setImgpath("images/avatar/ludovic.lecurieux.jpg");
+            $user1->setAvatar("images/avatar/ludovic.lecurieux.jpg");
             $manager->persist($user1);
 
             $user2 = new User();
@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
             $password = "azerty";
             $user2->setPassword($this->passwordEncoder->encodePassword($user2, $password));
             $user2->setRoles(['ROLE_ADMIN']);
-            $user2->setImgpath("images/avatar/leyla-lenoan.jpg");
+            $user2->setAvatar("images/avatar/leyla-lenoan.jpg");
             $manager->persist($user2);
 
             $user3 = new User();
@@ -69,28 +69,26 @@ class AppFixtures extends Fixture
             $password = "654321qwerty";
             $user3->setPassword($this->passwordEncoder->encodePassword($user, $password));
             $user3->setRoles(['ROLE_ADMIN']);
-            $user3->setImgpath("images/avatar/user3.jpg");
+            $user3->setAvatar("images/avatar/user3.jpg");
             $manager->persist($user3);
 
         // create 20 products! Bam!
-        /*for ($i = 0; $i < 5; $i++) {
-            $user = new User();
-            $user->setEmail($faker->freeEmail);
-            $firstname = $faker->firstName;
-            $user->setFirstName($firstname);
-            $lastName = $faker->lastName;
-            $user->setLastName($lastName);
-            $user->setPhone($faker->phoneNumber);
-            $user->setGender("M");
-            $user->setPseudo($faker->userName);
-            $user->setWebsite("www.google.com");
-            $user->setDescription($faker->text);
-            $password = "654321qwerty";
-            $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
-            $user->setRoles(['ROLE_ADMIN']);
-            $user->setImgpath("images/avatar/" . $firstname . "." . $lastName . ".jpg");
-            $manager->persist($user);
-        }*/
+        for ($i = 4; $i < 8; $i++) {
+          $otherUser = new User();
+          $otherUser->setEmail("user".$i."@gmail.com");
+          $otherUser->setFirstName($faker->firstname);
+          $otherUser->setLastName($faker->lastname);
+          $otherUser->setPhone($faker->phoneNumber);
+          $otherUser->setGender("F");
+          $otherUser->setPseudo($faker->userName);
+          $otherUser->setDescription($faker->text);
+          $password = "654321qwerty";
+          $otherUser->setPassword($this->passwordEncoder->encodePassword($otherUser, $password));
+          $otherUser->setRoles(['ROLE_USER']);
+          $otherUser->setAvatar("images/avatar/"."user".$i.".jpg");
+          $manager->persist($otherUser);
+
+        }
 
         //////////////////////////////////////ADDRESSES/////////////////////////////////////
         // user1 possede une addresse
