@@ -13,7 +13,12 @@ class BookingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $builder
+            ->add('isPayed')
+            ->add('isAccepted')
+            ->add('meal')
+            ->add('traveler')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
