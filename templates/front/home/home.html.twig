@@ -33,38 +33,12 @@
                                         
                                             <div class="main-search-input-item">
                                                 {{ form_widget(searchForm.adressInput,  
-                                                {'attr' : {'placeholder': 'Adresse', 'class' : 'SearchBox main-search-adress', 'autocomplete':'off'}}) }}
+                                                {'attr' : {'placeholder': 'Adresse', 'id': 'autocomplete' , 'class' : 'main-search-adress', 'autocomplete':'off'}}) }}
                                             </div>
                                             {#{{ form_label(searchForm.submit) }}#}
                                             {{ form_widget(searchForm.submit, {'attr' : {'class': 'main-search-button'}}) }}
                                         </div>
                                 {{ form_end(searchForm) }}
-                                {#<form class="main-search-input-wrap" method="get" action="/search/new">#}
-                                    {#<div class="main-search-input fl-wrap">#}
-                                        {#<div class="main-search-input-item">#}
-                                            {#<input required type="text" placeholder="Que recherchez-vous?" value=""/>#}
-                                        {#</div>#}
-                                        {# <div class="main-search-input-item location" id="autocomplete-container">#}
-                                            {#<input type="text" placeholder="Location" id="autocomplete-input" value=""/>#}
-                                            {#<a href="#"><i class="fa fa-dot-circle-o"></i></a>#}
-                                        {#</div> #}
-                                        {# <div class="main-search-input-item">#}
-                                            {#<select data-placeholder="All Categories" class="chosen-select" >#}
-                                                {#<option>Tout les plats</option>#}
-                                                {#<option>Mexicain</option>#}
-                                                {#<option>Francais</option>#}
-                                                {#<option>Chinois</option>#}
-                                                {#<option>Japonais</option>#}
-                                                {#<option>Indien</option>#}
-                                                {#<option>Antillais</option>#}
-                                                {#<option>Italien</option>#}
-                                                {#<option>Marocain</option>#}
-                                            {#</select>#}
-                                        {#</div> #}
-                                        {#<button class="main-search-button" >Rechercher</button>#}
-                                    {#</div>#}
-                                {#</form>#}
-
                             </div>
                         </div>
                         <div class="bubble-bg"> </div>
@@ -668,5 +642,9 @@
             </div>
             <!--register form end -->
             <a class="to-top"><i class="fa fa-angle-up"></i></a>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5ikxbQmwA09L9fzc4jCS6XnFW26lpAYQ&libraries=places" type="text/javascript"></script>
 
+    {{ encore_entry_script_tags('adress') }}
 {% endblock %}
