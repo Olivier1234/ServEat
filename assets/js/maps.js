@@ -42,18 +42,4 @@ function findMeals(result) {
     }).addTo(map);
 }
 
-
-// window.initGeocoding = function() {
-//     var geocoder = new google.maps.Geocoder;
-//     console.log(geocoder)
-//     geocoder.geocode({
-//         address: '5 rue robert lavergne asnières sur seine',
-//     })
-// }
-//
-//
-
-
-
-
 initmap();
