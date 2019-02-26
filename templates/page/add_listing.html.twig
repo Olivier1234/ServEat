@@ -4,7 +4,7 @@
 {% block body %}
 
                 <div class="content">
-                    <!--section --> 
+                    <!--section -->
                     <section id="sec1">
                         <!-- container -->
                         <div class="container">
@@ -16,36 +16,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <div class="fixed-bar fl-wrap">
-                                            <div class="user-profile-menu-wrap fl-wrap">
-                                                <!-- user-profile-menu-->
-                                                <div class="user-profile-menu">
-                                                    <h3>Main</h3>
-                                                    <ul>
-                                                    	<li><a href="dashboard.html"><i class="fa fa-gears"></i>Dashboard</a></li>															
-                                                        <li><a href="dashboard-myprofile.html"><i class="fa fa-user-o"></i> Edit profile</a></li>
-                                                        <li><a href="dashboard-messages.html"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
-                                                        <li><a href="dashboard-password.html"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
-                                                    </ul>
-                                                </div>
-                                                <!-- user-profile-menu end-->
-                                                <!-- user-profile-menu-->
-                                                <div class="user-profile-menu">
-                                                    <h3>Listings</h3>
-                                                    <ul>
-                                                        <li><a href="dashboard-listing-table.html"><i class="fa fa-th-list"></i> My listigs  </a></li>
-                                                        <li><a href="dashboard-bookings.html"> <i class="fa fa-calendar-check-o"></i> Bookings <span>2</span></a></li>
-                                                        <li><a href="dashboard-review.html"><i class="fa fa-comments-o"></i> Reviews </a></li>
-                                                        <li><a href="dashboard-add-listing.html" class="user-profile-act"><i class="fa fa-plus-square-o"></i> Add New</a></li>
-                                                    </ul>
-                                                </div>
-                                                <!-- user-profile-menu end-->                                        
-                                                <a href="#" class="log-out-btn">Log Out</a>
-                                            </div>
-                                        </div>
+                                        {% include 'partials/leftPanel.html.twig' %}
                                     </div>
                                     <div class="col-md-9">
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container add-list-container">
                                             <div class="profile-edit-header fl-wrap">
                                                 <h4>Basic Informations</h4>
@@ -72,8 +46,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end--> 
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container end-->
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container add-list-container">
                                             <div class="profile-edit-header fl-wrap">
                                                 <h4>Location /  Contacts</h4>
@@ -84,11 +58,11 @@
                                                 <div class="row">
                                                 	<div class="col-md-6">
                                                         <label>Latitude:<i class="fa fa-map-marker"></i></label>
-                                                        <input type="text" id="lat" placeholder="" value=""/>                                                    
+                                                        <input type="text" id="lat" placeholder="" value=""/>
                                                     </div>
                                                 	<div class="col-md-6">
                                                         <label>Longitude:<i class="fa fa-map-marker"></i></label>
-                                                        <input type="text" id="long" placeholder="" value=""/>                                                    
+                                                        <input type="text" id="long" placeholder="" value=""/>
                                                     </div>
                                                 </div>
                                                 <div class="map-container">
@@ -111,20 +85,20 @@
                                                 <input type="text" placeholder="Your Website" value=""/>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end-->                                         
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container end-->
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container add-list-container">
                                             <div class="profile-edit-header fl-wrap">
                                                 <h4>Header Media</h4>
                                             </div>
                                             <div class="custom-form">
                                                 <div class="row">
-                                                    <!--col --> 
+                                                    <!--col -->
                                                     <div class="col-md-4">
                                                         <div class="add-list-media-header">
-                                                            <label class="radio inline"> 
+                                                            <label class="radio inline">
                                                             <input type="radio" name="gender"  checked>
-                                                            <span>Background image</span> 
+                                                            <span>Background image</span>
                                                             </label>
                                                         </div>
                                                         <div class="add-list-media-wrap">
@@ -136,13 +110,13 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <!--col end--> 
-                                                    <!--col --> 
+                                                    <!--col end-->
+                                                    <!--col -->
                                                     <div class="col-md-4">
                                                         <div class="add-list-media-header">
-                                                            <label class="radio inline"> 
+                                                            <label class="radio inline">
                                                             <input type="radio" name="gender">
-                                                            <span>Carousel</span> 
+                                                            <span>Carousel</span>
                                                             </label>
                                                         </div>
                                                         <div class="add-list-media-wrap">
@@ -154,20 +128,20 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <!--col end--> 
-                                                    <!--col --> 
+                                                    <!--col end-->
+                                                    <!--col -->
                                                     <div class="col-md-4">
                                                         <div class="add-list-media-header">
-                                                            <label class="radio inline"> 
+                                                            <label class="radio inline">
                                                             <input type="radio" name="gender">
-                                                            <span>Video</span> 
+                                                            <span>Video</span>
                                                             </label>
                                                         </div>
                                                         <div class="add-list-media-wrap">
                                                             <label>Youtube  <i class="fa fa-youtube"></i></label>
-                                                            <input type="text" placeholder="https://www.youtube.com/" value=""/>   
+                                                            <input type="text" placeholder="https://www.youtube.com/" value=""/>
                                                             <label>Vimeo <i class="fa fa-vimeo"></i></label>
-                                                            <input type="text" placeholder="https://vimeo.com/" value=""/> 
+                                                            <input type="text" placeholder="https://vimeo.com/" value=""/>
                                                             <div class="change-photo-btn">
                                                                 <div class="photoUpload">
                                                                     <span><i class="fa fa-upload"></i> Upload Video</span>
@@ -176,12 +150,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!--col end-->                                                   
+                                                    <!--col end-->
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end-->                                         
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container end-->
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container add-list-container">
                                             <div class="profile-edit-header fl-wrap">
                                                 <h4>Detailed Information</h4>
@@ -203,8 +177,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end-->                                          
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container end-->
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container add-list-container">
                                             <div class="profile-edit-header fl-wrap">
                                                 <h4>Content Widgets</h4>
@@ -212,7 +186,7 @@
                                             <div class="custom-form">
                                                 <div class="row">
                                                     <div class="col-md-4">
-                                                        <!-- act-widget--> 
+                                                        <!-- act-widget-->
                                                         <div class="act-widget fl-wrap">
                                                             <div class="act-widget-header">
                                                                 <h4>1. Promo video</h4>
@@ -232,13 +206,13 @@
                                                                     <input type="file" class="upload">
                                                                 </form>
                                                                 <label>Video url :  <i class="fa fa-youtube"></i></label>
-                                                                <input type="text" placeholder="https://www.youtube.com/" value=""/>   
+                                                                <input type="text" placeholder="https://www.youtube.com/" value=""/>
                                                             </div>
                                                         </div>
                                                         <!-- act-widget end-->
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <!-- act-widget--> 
+                                                        <!-- act-widget-->
                                                         <div class="act-widget fl-wrap">
                                                             <div class="act-widget-header">
                                                                 <h4>2. Gallery Thumbnails</h4>
@@ -262,7 +236,7 @@
                                                         <!-- act-widget end-->
                                                     </div>
                                                     <div class="col-md-4">
-                                                        <!-- act-widget--> 
+                                                        <!-- act-widget-->
                                                         <div class="act-widget fl-wrap">
                                                             <div class="act-widget-header">
                                                                 <h4>3. Slider</h4>
@@ -288,14 +262,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end-->                                       
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container end-->
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container add-list-container">
                                             <div class="profile-edit-header fl-wrap">
                                                 <h4>Sidebar Widgets</h4>
                                             </div>
                                             <div class="custom-form">
-                                                <!-- act-widget--> 
+                                                <!-- act-widget-->
                                                 <div class="act-widget fl-wrap">
                                                     <div class="act-widget-header">
                                                         <h4>1. Booking Form</h4>
@@ -308,8 +282,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- act-widget end--> 
-                                                <!-- act-widget--> 
+                                                <!-- act-widget end-->
+                                                <!-- act-widget-->
                                                 <div class="act-widget fl-wrap">
                                                     <div class="act-widget-header">
                                                         <h4>2. Event Counter</h4>
@@ -322,10 +296,10 @@
                                                         </div>
                                                     </div>
                                                     <label>Event Date<i class="fa fa-calendar-o"></i></label>
-                                                    <input type="text" placeholder="Date Example : 09/12/2019" value=""/>        
+                                                    <input type="text" placeholder="Date Example : 09/12/2019" value=""/>
                                                 </div>
-                                                <!-- act-widget end-->                                                    
-                                                <!-- act-widget--> 
+                                                <!-- act-widget end-->
+                                                <!-- act-widget-->
                                                 <div class="act-widget fl-wrap">
                                                     <div class="act-widget-header">
                                                         <h4>3. Working Hours</h4>
@@ -339,11 +313,11 @@
                                                     </div>
                                                     <textarea cols="40" rows="3" placeholder="Details"></textarea>
                                                 </div>
-                                                <!-- act-widget end--> 
+                                                <!-- act-widget end-->
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end-->                                         
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container end-->
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container">
                                             <div class="profile-edit-header fl-wrap" style="margin-top:30px">
                                                 <h4>Socials</h4>
@@ -360,7 +334,7 @@
                                                 <button class="btn  big-btn  color-bg flat-btn">Save Changes<i class="fa fa-angle-right"></i></button>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end-->   
+                                        <!-- profile-edit-container end-->
                                     </div>
                                 </div>
                             </div>
@@ -368,7 +342,7 @@
                         </div>
                         <!--container end -->
                     </section>
-                    <!-- section end -->	
+                    <!-- section end -->
                     <div class="limit-box fl-wrap"></div>
                     <!--section -->
                     <section class="gradient-bg">

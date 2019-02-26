@@ -32,7 +32,7 @@ class NotationController extends AbstractController
             return $this->redirectToRoute('front_notation_index');
         }
 
-        return $this->render('notation/new.html.twig', [
+        return $this->render('front/notation/new.html.twig', [
             'notation' => $notation,
             'form' => $form->createView(),
         ]);
@@ -50,6 +50,7 @@ class NotationController extends AbstractController
         //get the user's notations
         $notations = $this->getDoctrine()
         ->getRepository(Notation::class)
+        //>findAll();
         ->findByReceiver($user->getId());
 
         return $this->render('front/notation/notations.html.twig', [

@@ -14,11 +14,11 @@ class NotationType extends AbstractType
         $builder
             ->add('rating')
             ->add('comment')
-            ->add('isAnonymous')
-            ->add('isVisible')
-            ->add('meal')
-            ->add('giver')
-            ->add('receiver')
+            //->add('isAnonymous')
+            //->add('isVisible')
+            //->add('meal')
+            //->add('giver')
+            //->add('receiver')
         ;
     }
 
