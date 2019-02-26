@@ -92,7 +92,7 @@
                     <ul>
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <li>
-                                <a href="" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
+                                <a href="{{ path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
                             </li>
                         {%else%}
                             <li>
@@ -144,6 +144,9 @@
     <footer class="main-footer dark-footer  ">
         <div class="container">
             <div class="row">
+              <div class="col-md-3">
+                <img width="200" height="100" src="{{ asset('images/logo.png') }}" alt="" >
+              </div>
                 <div class="col-md-3">
                     <div class="footer-widget fl-wrap">
                         <h3>À propos</h3>
@@ -189,12 +192,6 @@
                 </div>
                 <div class="col-md-3">
                     <div class="footer-widget fl-wrap">
-                        <h3>Twitter</h3>
-                        <div id="footer-twiit"></div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="footer-widget fl-wrap">
                         <h3>Newsletter</h3>
                         <div class="subscribe-widget fl-wrap">
                             <p>Want to be notified when we launch a new template or an udpate. Just sign up and we'll send you a notification by email.</p>
@@ -224,7 +221,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="about-widget">
-                            <img src="images/logo.png" alt="">
+
                         </div>
                     </div>
                     <div class="col-md-4">
