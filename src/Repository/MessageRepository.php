@@ -58,7 +58,7 @@ class MessageRepository extends ServiceEntityRepository
             ))
             ->setParameter('user', $user)
             ->setParameter('other', $other)
-            ->orderBy('m.created_at', 'DESC')
+            ->orderBy('m.created_at', 'ASC')
             ->getQuery()
             ->getResult();
 

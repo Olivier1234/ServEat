@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 use App\Repository\MessageRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Message;
 use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PageController extends AbstractController
 {
@@ -96,48 +99,40 @@ class PageController extends AbstractController
         var_dump($other->getUsername());
 
 
-        return $this->render('page/messages.html.twig', [
+        return $this->render('page/messages_user.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $messageRepository->findAllMessagesUser($user, $other),
             'user' => $user,
+            'other' => $other,
             'title' => "Votre conversation avec " . $other->getFullName()
 
         ]);
     }
 
     /**
-     * @Route("/messages/create", name="message_create", methods={"POST"})
+     * @Route("/messages/create/", name="message_create", methods={"POST"})
      */
-    public function new_message(MessageRepository $messageRepository, Request $request)
+    public function new_message(ObjectManager $manager, MessageRepository $messageRepository, UserRepository $userRepository, Request $request)
     {
+        $user = $this->getUser();
+        $other = $userRepository->find($request->request->get('other'));
+
         $message = new Message();
-        $message->setContent("prout");
+        $message->setContent($request->request->get('message'));
         $message->setStatus("envoyé");
-        $message->setSender();
-        $message->setReceiver();
+        $message->setSender($user);
+        $message->setReceiver($other);
+        $manager->persist($message);
+        $manager->flush();
 
-        $user->setFirstName($faker->firstName);
-        $user->setLastName($faker->lastName);
-        $user->setPhone($faker->phoneNumber);
-        $user->setGender("M");
-        $user->setPseudo($faker->userName);
-        $user->setDescription($faker->text);
-        $password = "654321qwerty";
-        $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setImgpath("images/avatar/ludovic.lecurieux.jpg");
-        $manager->persist($user);
+        return $this->render('page/messages_user.html.twig', [
+            'controller_name' => 'PageController',
+            'messages' => $messageRepository->findAllMessagesUser($user, $other),
+            'user' => $user,
+            'other' => $other,
+            'title' => "Votre conversation avec " . $other->getFullName()
 
-        $form = $this->createForm(Message::class, $message);
-
-        $form->handleRequest($request);
-        var_dump("lol", $request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var $userManager UserManagerInterface */
-
-
-        }
+        ]);
 
     }
 
