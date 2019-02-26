@@ -9,7 +9,7 @@
 namespace App\Entity\Traits;
 
 
-trait IdsTraits
+trait IdsTrait
 {
     /**
      * @ORM\Id()
@@ -22,5 +22,7 @@ trait IdsTraits
     {
         return $this->id;
     }
+
+
 
 }

@@ -47,4 +47,9 @@ class MessageRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByTest()
+    {
+
+    }
 }

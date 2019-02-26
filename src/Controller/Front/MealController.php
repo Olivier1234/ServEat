@@ -2,10 +2,15 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Address;
 use App\Entity\Meal;
+use App\Form\AddressType;
 use App\Form\MealType;
+use App\Repository\AddressRepository;
 use App\Repository\MealRepository;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +40,19 @@ class MealController extends AbstractController
     {
         $meal = new Meal();
         $form = $this->createForm(MealType::class, $meal);
+
+        $address = new Address();
+        $address->setStreet("test");
+        $formOptions = [
+            'class' => Address::class,
+            'choice_label' => 'street',
+            'query_builder' => function (AddressRepository $userRepository) use ($address) {
+            },
+        ];
+        if (!$meal || null === $meal->getId()) {
+            $form->add('address', EntityType::class, $formOptions);
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
