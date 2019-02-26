@@ -5,6 +5,7 @@ use App\Entity\User;
 use App\Entity\Notation;
 use App\Entity\Meal;
 use App\Entity\Booking;
+use App\Entity\Address;
 use App\Entity\Message;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -87,8 +88,39 @@ class AppFixtures extends Fixture
 
         }
 
+        //////////////////////////////////////ADDRESSES/////////////////////////////////////
+        // user1 possede une addresse
+        $address1 = new Address();
+        $address1->setStreet("1 rue de Paris");
+        $address1->setZc("75000");
+        $address1->setCity("Paris");
+        $address1->setCountry("France");
+        $address1->setIsDefault(true);
+        $address1->setHost($user1);
+        $manager->persist($address1);
+
+        // user2 possede une addresse
+        $address2 = new Address();
+        $address2->setStreet("1 rue de Berlin");
+        $address2->setZc("23000");
+        $address2->setCity("Berlin");
+        $address2->setCountry("Allemagne");
+        $address2->setIsDefault(true);
+        $address2->setHost($user2);
+        $manager->persist($address2);
+
+        // user3 possede une addresse
+        $address3 = new Address();
+        $address3->setStreet("1 rue de Madrid");
+        $address3->setZc("46000");
+        $address3->setCity("Madrid");
+        $address3->setCountry("Espagne");
+        $address3->setIsDefault(false);
+        $address3->setHost($user3);
+        $manager->persist($address3);
+
         //////////////////////////////////////MEALS/////////////////////////////////////
-        //$user(ludovic lecurieux) cree un repas
+        //$user1 cree un repas
         $meal = new Meal();
         $meal->setTitle("Délicieuse cuisine maison");
         $meal->setDescription($faker->text);
@@ -96,14 +128,9 @@ class AppFixtures extends Fixture
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
         $meal->setDateMeal($date);
         $meal->setMaxTraveller(4);
-        $manager->persist($meal);
-
-        //$meal->setType($faker->text);
-        //$meal->setPicture($faker->text);
-        //$meal->setAdress($faker->text);
-        //$meal->setBooking($faker->text);
-        //$meal->setNotation($faker->text);
         $meal->setHost($user1);
+        $meal->setAddress($address1);
+        $manager->persist($meal);
 
         //////////////////////////////////////BOOKINGS/////////////////////////////////////
         //user2 reserve un repas chez $user1
