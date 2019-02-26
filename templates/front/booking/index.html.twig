@@ -1,38 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Booking index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>IsPayed</th>
-                <th>IsAccepted</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for booking in bookings %}
-            <tr>
-                <td>{{ booking.id }}</td>
-                <td>{{ booking.isPayed ? 'Yes' : 'No' }}</td>
-                <td>{{ booking.isAccepted ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('front_booking_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('front_booking_edit', {'id': booking.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('front_booking_new') }}">Create new</a>
-
     <!--section -->
     <section id="sec1">
         <!-- container -->
@@ -58,7 +26,7 @@
                                     <div class="dashboard-message">
                                         <span class="new-dashboard-item">New</span>
                                         <div class="dashboard-message-avatar">
-                                            <img src="images/avatar/1.jpg" alt="">
+                                            <img url="{{ booking.meal.host.getAvatar() }}" alt="">
                                         </div>
                                         <div class="dashboard-message-text">
                                             <h4>{{ booking.meal.host.getUserName() }} - <span>{{ booking.meal.host.getEmail() }}</span> - <span>{{ booking.meal.host.getPhone() }}</span></h4>
@@ -67,12 +35,12 @@
                                                 <span class="booking-text">{{ booking.meal.getTitle() }}</span>
                                             </div>
                                             <div class="booking-details fl-wrap">
-                                                <span class="booking-title">Nombre maximum de voyageurs invités </span> :
+                                                <span class="booking-title">Nombre d'invités max </span> :
                                                 <span class="booking-text">{{ booking.meal.getMaxTraveller() }}</span>
                                             </div>
                                             <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Dates de la réservation </span> :
-                                                <span class="booking-text">{{ booking.meal.getDateMeal() | date("m/d/Y", "Europe/Paris") }}</span>
+                                                <span class="booking-text">{{ booking.meal.getDateMeal() | date("m/d/Y à h:m", "Europe/Paris") }}</span>
                                             </div>
                                             <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Adresse </span> :
