@@ -185,6 +185,17 @@ class User implements UserInterface
     }
 
     /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getFullName(): string
+    {
+        return (string) $this->getFirstName() . " " . $this->getLastName();
+    }
+
+
+    /**
      * @see UserInterface
      */
     public function getRoles(): array

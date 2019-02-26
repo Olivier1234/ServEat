@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\MessageRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Message;
+use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PageController extends AbstractController
 {
@@ -53,16 +59,83 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/messages", name="messages")
+     * @Route("/messages", name="messages", methods={"GET"})
+     * Affiche toues les messages reçus et envoyés de l'utilisateur
      */
-    public function messages()
+    public function messages(MessageRepository $messageRepository)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+        $messages = $messageRepository->findAllMessages($user);
+        $distinct_messages = array();
+        $receiver_array = array();
+
+        foreach ($messages as $message) {
+            if (!in_array($message->getReceiver(),$receiver_array)) {
+                array_push($distinct_messages, $message);
+                array_push($receiver_array, $message->getReceiver());
+            }
+        }
 
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
+            'messages' => $distinct_messages,
+            'user' => $user,
+            'title' => "Toutes les conversations"
+
         ]);
     }
+
+    /**
+     * @Route("/messages/{id}", name="messages_user", methods={"GET"})
+     * Affiche tous les messages avec un utilisateur en particulier
+     */
+    public function messages_user(MessageRepository $messageRepository, User $other)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
+        var_dump($user->getUsername());
+        var_dump($other->getUsername());
+
+
+        return $this->render('page/messages_user.html.twig', [
+            'controller_name' => 'PageController',
+            'messages' => $messageRepository->findAllMessagesUser($user, $other),
+            'user' => $user,
+            'other' => $other,
+            'title' => "Votre conversation avec " . $other->getFullName()
+
+        ]);
+    }
+
+    /**
+     * @Route("/messages/create/", name="message_create", methods={"POST"})
+     */
+    public function new_message(ObjectManager $manager, MessageRepository $messageRepository, UserRepository $userRepository, Request $request)
+    {
+        $user = $this->getUser();
+        $other = $userRepository->find($request->request->get('other'));
+
+        $message = new Message();
+        $message->setContent($request->request->get('message'));
+        $message->setStatus("envoyé");
+        $message->setSender($user);
+        $message->setReceiver($other);
+        $manager->persist($message);
+        $manager->flush();
+
+        return $this->render('page/messages_user.html.twig', [
+            'controller_name' => 'PageController',
+            'messages' => $messageRepository->findAllMessagesUser($user, $other),
+            'user' => $user,
+            'other' => $other,
+            'title' => "Votre conversation avec " . $other->getFullName()
+
+        ]);
+
+    }
+
 
     /**
      * @Route("/user_profile", name="user_profile")
