@@ -47,7 +47,6 @@ class RegistrationFormType extends AbstractType
                     ],
                 ],
       ])
-            ->add('isVerified')
             ->add('firstname')
             ->add('lastname')
             ->add('description')

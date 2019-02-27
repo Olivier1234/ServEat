@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\Address;
 use App\Form\AddressType;
@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/address")
+ * @Route("/address", name="front_address_")
  */
 class AddressController extends AbstractController
 {
     /**
-     * @Route("/", name="address_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(AddressRepository $addressRepository): Response
     {
@@ -26,7 +26,7 @@ class AddressController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="address_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -39,7 +39,7 @@ class AddressController extends AbstractController
             $entityManager->persist($address);
             $entityManager->flush();
 
-            return $this->redirectToRoute('address_index');
+            return $this->redirectToRoute('front_address_index');
         }
 
         return $this->render('address/new.html.twig', [
@@ -49,7 +49,7 @@ class AddressController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="address_show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(Address $address): Response
     {
@@ -59,7 +59,7 @@ class AddressController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="address_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Address $address): Response
     {
@@ -69,7 +69,7 @@ class AddressController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('address_index', [
+            return $this->redirectToRoute('front_address_index', [
                 'id' => $address->getId(),
             ]);
         }
@@ -81,7 +81,7 @@ class AddressController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="address_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      */
     public function delete(Request $request, Address $address): Response
     {
@@ -91,6 +91,6 @@ class AddressController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('address_index');
+        return $this->redirectToRoute('front_address_index');
     }
 }

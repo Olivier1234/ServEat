@@ -9,8 +9,7 @@
     <!--content-->  
     <div class="content">
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm) }}
         <ul class="pictures" data-prototype='<div><div id="registration_form_addresses___name__"><div><label for="registration_form_addresses___name___street" class="required">Street</label><input type="text" id="registration_form_addresses___name___street" name="registration_form[addresses][__name__][street]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___zc" class="required">Zc</label><input type="text" id="registration_form_addresses___name___zc" name="registration_form[addresses][__name__][zc]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___city" class="required">City</label><input type="text" id="registration_form_addresses___name___city" name="registration_form[addresses][__name__][city]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___country" class="required">Country</label><input type="text" id="registration_form_addresses___name___country" name="registration_form[addresses][__name__][country]" required="required" maxlength="255" /></div></div></div>'>
         </ul>
             <button class="btn">Register</button>
@@ -27,7 +26,7 @@
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addPictureButton = $('<button type="button" class="add_picture_link">Add a picture</button>');
+        var $addPictureButton = $('');
         var $newLinkLi = $('<li></li>').append($addPictureButton);
 
         jQuery(document).ready(function() {
@@ -41,11 +40,8 @@
 // index when inserting a new item (e.g. 2)
             $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-            $addPictureButton.on('click', function(e) {
-// add a new tag form (see next code block)
-                console.log('test');
-                addPictureForm($collectionHolder, $newLinkLi);
-            });
+
+            addPictureForm($collectionHolder, $newLinkLi);
         });
 
         function addPictureForm($collectionHolder, $newLinkLi) {

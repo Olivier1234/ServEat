@@ -1,0 +1,30 @@
+<div class="fixed-bar fl-wrap">
+
+  <div class="user-profile-menu-wrap fl-wrap">
+
+    <!-- user-profile-menu-->
+    <div class="user-profile-menu">
+      <h3>Paramètres</h3>
+      <ul>
+        <li><a href="{{ path('dashboard') }}"><i class="fa fa-gears"></i>Tableau de bord</a></li>
+        <li><a href="{{ path('front_user_edit', {'id': app.user.id}) }}" class="user-profile-act"><i class="fa fa-user-o"></i> Modifier Profil</a></li>
+        <li><a href="dashboard-messages.html"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
+        <li><a href="dashboard-password.html"><i class="fa fa-unlock-alt"></i>Changer le Mot de Passe</a></li>
+      </ul>
+    </div>
+
+    <!-- user-profile-menu-->
+    <div class="user-profile-menu">
+      <h3>Annonces</h3>
+      <ul>
+        <li><a href="{{ path('front_meal_index') }}"><i class="fa fa-th-list"></i> Mes annonces  </a></li>
+        <li><a><i class="fa fa-calendar-check-o"></i> Réservations <span>2</span></a></li>
+        <li><a><i class="fa fa-comments-o"></i> Commentaires </a></li>
+      </ul>
+    </div>
+
+    <!-- user-profile-menu end-->
+    <a href="{{ path('front_logout') }}" class="log-out-btn">Deconnexion</a>
+
+  </div>
+</div>
