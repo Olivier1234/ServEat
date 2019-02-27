@@ -156,6 +156,10 @@ class AppFixtures extends Fixture
 
          //////////////////////////////////////BOOKINGS/////////////////////////////////////
 
+         // User : Ludovic
+         // User2, User3 : fakes
+         // avec User2, 3 messages dont un reçu et 2 envoyés
+         // Avec User3, 2 messages, un reçu et un envoyé
 
          $message = new Message();
          $message->setContent($faker->text);
@@ -190,6 +194,15 @@ class AppFixtures extends Fixture
          $message->setCreatedAt(date_create_from_format('j-M-Y', '19-Feb-2009'));
          $message->setSender($user3);
          $message->setReceiver($user);
+         $manager->persist($message);
+         $manager->flush();
+
+         $message = new Message();
+         $message->setContent($faker->text);
+         $message->setStatus("envoyé");
+         $message->setCreatedAt(date_create_from_format('j-M-Y', '29-Feb-2009'));
+         $message->setSender($user);
+         $message->setReceiver($user3);
          $manager->persist($message);
          $manager->flush();
 

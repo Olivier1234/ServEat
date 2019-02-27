@@ -71,17 +71,21 @@ class PageController extends AbstractController
         $receiver_array = array();
 
         foreach ($messages as $message) {
+
             if (!in_array($message->getReceiver(),$receiver_array)) {
                 array_push($distinct_messages, $message);
                 array_push($receiver_array, $message->getReceiver());
             }
         }
 
+        // On sait que l'utilisateur courant sera le premier de la liste, on l'enlève
+        unset($distinct_messages[0]);
+
+
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $distinct_messages,
             'user' => $user,
-            'title' => "Toutes les conversations"
 
         ]);
     }
@@ -95,16 +99,11 @@ class PageController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
 
-        var_dump($user->getUsername());
-        var_dump($other->getUsername());
-
-
         return $this->render('page/messages_user.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $messageRepository->findAllMessagesUser($user, $other),
             'user' => $user,
-            'other' => $other,
-            'title' => "Votre conversation avec " . $other->getFullName()
+            'other' => $other
 
         ]);
     }
@@ -114,6 +113,8 @@ class PageController extends AbstractController
      */
     public function new_message(ObjectManager $manager, MessageRepository $messageRepository, UserRepository $userRepository, Request $request)
     {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
         $other = $userRepository->find($request->request->get('other'));
 
