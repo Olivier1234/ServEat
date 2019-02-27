@@ -42,6 +42,26 @@ class MessageRepository extends ServiceEntityRepository
      */
     public function findAllMessagesUser($user, $other): array
     {
+
+        // On met les messages en "lu"
+        $ur = $this->createQueryBuilder('message');
+        $q = $ur->update('App\Entity\Message', 'm')
+                ->set('m.status', "'lu'")
+                ->where($this->createQueryBuilder('m')->expr()->andX(
+                    $this->createQueryBuilder('m')->expr()->eq('m.receiver', ':user'),
+                    $this->createQueryBuilder('m')->expr()->eq('m.sender', ':other')
+
+                ))
+                ->orWhere($this->createQueryBuilder('m')->expr()->andX(
+                    $this->createQueryBuilder('m')->expr()->eq('m.receiver', ':other'),
+                    $this->createQueryBuilder('m')->expr()->eq('m.sender', ':user')
+                ))
+                ->setParameter('user', $user)
+                ->setParameter('other', $other)
+                ->getQuery();
+        $p = $q->execute();
+
+
         $qb = $this->createQueryBuilder('m')
             ->select('m')
             // Deux configurations possibles :
