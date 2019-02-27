@@ -72,15 +72,16 @@ class PageController extends AbstractController
 
         foreach ($messages as $message) {
 
-            if (!in_array($message->getReceiver(),$receiver_array)) {
+            if (!in_array($message->getReceiver(),$receiver_array) && $message->getReceiver()) {
                 array_push($distinct_messages, $message);
                 array_push($receiver_array, $message->getReceiver());
             }
         }
 
         // On sait que l'utilisateur courant sera le premier de la liste, on l'enlève
-        unset($distinct_messages[0]);
+        //unset($distinct_messages[0]);
 
+        //dd($distinct_messages);
 
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
@@ -98,6 +99,8 @@ class PageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
+
+       // $messageRepository->readMessages($user, $other);
 
         return $this->render('page/messages_user.html.twig', [
             'controller_name' => 'PageController',
