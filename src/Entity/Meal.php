@@ -80,6 +80,19 @@ class Meal
     private $maxTraveller;
 
 
+    //used to find meals depending on a user adress search
+    
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $posX;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $posY;
+
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
@@ -294,5 +307,37 @@ class Meal
         $this->maxTraveller = $maxTraveller;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosX() : ?int
+    {
+        return $this->posX;
+    }
+
+    /**
+     * @param mixed $posX
+     */
+    public function setPosX($posX): void
+    {
+        $this->posX = $posX;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPosY() : ?float
+    {
+        return $this->posY;
+    }
+
+    /**
+     * @param mixed $posY
+     */
+    public function setPosY($posY): void
+    {
+        $this->posY = $posY;
     }
 }
