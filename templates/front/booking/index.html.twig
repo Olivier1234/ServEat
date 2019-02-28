@@ -26,29 +26,48 @@
                                     <div class="dashboard-message">
                                         <span class="new-dashboard-item">New</span>
                                         <div class="dashboard-message-avatar">
-                                            <img url="{{ booking.meal.host.getAvatar() }}" alt="">
+                                            {% if booking.meal.host.getAvatar() %}
+                                                <img src="images/avatar/default-avatar.png" alt="">
+                                            {% else %}
+                                                <img src="images/avatar/default-avatar.png" alt="">
+                                            {% endif %}
                                         </div>
                                         <div class="dashboard-message-text">
-                                            <h4>{{ booking.meal.host.getUserName() }} - <span>{{ booking.meal.host.getEmail() }}</span> - <span>{{ booking.meal.host.getPhone() }}</span></h4>
-                                            <div class="booking-details fl-wrap">
-                                                <span class="booking-title">Repas </span> :
-                                                <span class="booking-text">{{ booking.meal.getTitle() }}</span>
-                                            </div>
-                                            <div class="booking-details fl-wrap">
-                                                <span class="booking-title">Nombre d'invités max </span> :
-                                                <span class="booking-text">{{ booking.meal.getMaxTraveller() }}</span>
-                                            </div>
+                                            <h4>{{ booking.meal.getTitle() }}</h4>
                                             <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Dates de la réservation </span> :
                                                 <span class="booking-text">{{ booking.meal.getDateMeal() | date("m/d/Y à h:m", "Europe/Paris") }}</span>
+                                            </div>
+                                            <div class="booking-details fl-wrap">
+                                                <span class="booking-title">Nb d'invités max </span> :
+                                                <span class="booking-text">{{ booking.meal.getMaxTraveller() }}</span>
+                                            </div>
+                                            <div class="booking-details fl-wrap">
+                                                <span class="booking-title">Chez </span> :
+                                                <span class="booking-text">
+                                                    {% if booking.meal.host.getGender() == "M" %}
+                                                        M.
+                                                    {% else %}
+                                                        Mme
+                                                    {% endif %}
+                                                    {{ booking.meal.host.getUserName() }}
+                                                </span>
                                             </div>
                                             <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Adresse </span> :
                                                 <span class="booking-text"><a href="#" target="_top">{{ booking.meal.address.getStreet() }}, {{ booking.meal.address.getZc() }} {{ booking.meal.address.getCity() }} - {{ booking.meal.address.getCountry() }}</a></span>
                                             </div>
                                             <div class="booking-details fl-wrap">
+                                                <span class="booking-title">E-mail </span> :
+                                                <span class="booking-text">{{ booking.meal.host.getEmail() }}</span>
+                                            </div>
+                                            <div class="booking-details fl-wrap">
+                                                <span class="booking-title">Téléphone </span> :
+                                                <span class="booking-text">{{ booking.meal.host.getPhone() }}</span>
+                                            </div>
+                                            <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Prix </span> :
-                                                <span class="booking-text">{{ booking.meal.getPrice() }}</span>
+                                                <span class="booking-text">{{ booking.meal.getPrice() | price}}</span>
                                             </div>
                                             {% for type in booking.meal.getTypes() %}
                                               <p><a href="#" class="btn  circle-btn color-bg flat-btn">{{ type.getTitle() }}</a></p>
