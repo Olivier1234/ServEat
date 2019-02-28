@@ -63,11 +63,7 @@ class AppFixtures extends Fixture
             $lastName = $faker->lastName;
             $user3->setLastName($lastName);
             $user3->setPhone($faker->phoneNumber);
-<<<<<<< 4163c2b6997b3528478024f78edba34759c90ff4
-            $user3->setGender("M");
-=======
             $user3->setGender(true);
->>>>>>> Updated user fixtures
             $user3->setPseudo($faker->userName);
             $user3->setDescription($faker->text);
             $password = "654321qwerty";
