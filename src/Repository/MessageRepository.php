@@ -82,8 +82,22 @@ class MessageRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
 
+        return $qb;
+    }
 
-
+    /**
+     * Retourne tous les messages entre 2 utilisateurs
+     */
+    public function countMessageStatus($user, $status): array
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->select('count(m.id)')
+            ->where('m.status = :status')
+            ->andWhere('m.receiver = :user')
+            ->setParameter('user', $user)
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getResult();
 
         return $qb;
     }
