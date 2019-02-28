@@ -90,6 +90,6 @@ class AppUserAuthenticator extends AbstractFormLoginAuthenticator
 
     protected function getLoginUrl()
     {
-        return $this->router->generate('front_register');
+        return $this->router->generate('front_login');
     }
 }

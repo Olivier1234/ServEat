@@ -6,7 +6,7 @@
  */
 
 // any CSS you require will output into a single css file (_app.scss in this case)
-require('../css/_app.scss');
+require('../css/app.scss');
 
 require('./maps.js');
 

@@ -80,7 +80,7 @@ class PageController extends AbstractController
         $user = $this->getUser();
         $messages = $messageRepository->findAllMessages($user);
         $distinct_messages = array();
-        $receiver_array = array();
+        $receiver_array = array($user);
 
         // On regroupe les messages des utilisateurs
         foreach ($messages as $message) {

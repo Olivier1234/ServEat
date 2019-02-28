@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Meal;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +48,27 @@ class MealRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllBesideMine(User $user)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.host != :user')
+            ->setParameter('user', $user)
+            ->orderBy('m.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function findByHost(User $user)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.host = :user')
+            ->setParameter('user', $user)
+            ->orderBy('m.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
