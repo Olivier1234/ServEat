@@ -95,7 +95,7 @@
                     <ul>
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                             <li>
-                                <a href="{{ path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge">3</span></a>
+                                <a href="{{ path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge"></span></a>
                             </li>
                         {%else%}
                             <li>
@@ -255,6 +255,7 @@
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/count.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script>
 
 </body>
