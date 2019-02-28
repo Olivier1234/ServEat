@@ -101,6 +101,7 @@ class AppFixtures extends Fixture
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
         $meal->setDateMeal($date);
         $meal->setMaxTraveller(4);
+        $meal->setHost($user2);
         $manager->persist($meal);
 
         $meal2 = new Meal();

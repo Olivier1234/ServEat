@@ -48,18 +48,6 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/bookings", name="bookings")
-     */
-    public function bookings()
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        return $this->render('page/bookings.html.twig', [
-            'controller_name' => 'PageController',
-        ]);
-    }
-
-    /**
      * @Route("/messages/count/{status}", name="messages_count_status", methods={"GET"})
      * Compte tous les messages avec un param status
      */
