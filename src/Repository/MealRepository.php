@@ -37,6 +37,22 @@ class MealRepository extends ServiceEntityRepository
     }
     */
 
+    /**
+     * @param $posX
+     * @param $posY
+     * @return Meal[]
+     */
+    public function findMealsByPositions($posX, $posY)
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->Where('m.posX = :posX')
+            ->setParameter('posX', $posX)
+            ->andWhere('m.posY = :posY')
+            ->setParameter('posY', $posY)
+            ->setMaxResults(10)
+            ->getQuery();
+        return $qb->execute();
+    }
     /*
     public function findOneBySomeField($value): ?Meal
     {

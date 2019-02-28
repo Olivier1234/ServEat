@@ -11,10 +11,11 @@ function initmap() {
     map.locate({setView: true, maxZoom: 15});
 
     let query = window.location.search;
+    console.log(query.split('token')[1].split('=')[1]);
+    let token = query.split('token')[1].split('=')[1];
     let adressQuery = query.split('&')[0];
     let adress = adressQuery.split('=')[1].replace(/\+/g, ' ');
     adress = decodeURIComponent(adress);
-    console.log(decodeURIComponent(adress));
 
     // map.setView();
     // const provider = new LocationIQProvider ({
@@ -31,7 +32,10 @@ function initmap() {
 }
 
 function findMeals(result) {
-    var latlng = [result[0].y, result[0].x];
+    var posX = result[0].x;
+    var posY = result[0].y;
+    var latlng = [posY, posX];
+
     map.setView(latlng);
 
     var circle = L.circle(latlng, {
@@ -40,6 +44,23 @@ function findMeals(result) {
         fillOpacity: 0.3,
         radius: 1500
     }).addTo(map);
+
+    let query = window.location.search;
+    console.log(query.split('token')[1].split('=')[1]);
+    let token = query.split('token')[1].split('=')[1];
+    $.ajax({
+        url: "/search/ajax_search",
+        type: "GET",
+        dataType: "json",
+        data: {
+            "posX": posX,
+            "posY" : posY
+        },
+        success: function (data)
+        {
+            console.log(data);
+        }
+    });
 }
 
 initmap();
