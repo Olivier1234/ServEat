@@ -36,6 +36,12 @@ class Booking
      */
     private $isAccepted;
 
+    public function __construct()
+    {
+        $this->isAccepted = false;
+        $this->isPayed = false;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

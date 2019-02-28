@@ -39,7 +39,7 @@
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addPictureButton = $('<button type="button" class="add_picture_link">Add a picture</button>');
+        var $addPictureButton = $('');
         var $newLinkLi = $('<li></li>').append($addPictureButton);
 
         jQuery(document).ready(function() {
@@ -53,11 +53,8 @@
 // index when inserting a new item (e.g. 2)
             $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-            $addPictureButton.on('click', function(e) {
-// add a new tag form (see next code block)
-                console.log('test');
-                addPictureForm($collectionHolder, $newLinkLi);
-            });
+
+            addPictureForm($collectionHolder, $newLinkLi);
         });
 
         function addPictureForm($collectionHolder, $newLinkLi) {

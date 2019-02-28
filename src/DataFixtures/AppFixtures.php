@@ -98,6 +98,17 @@ class AppFixtures extends Fixture
         $meal->setMaxTraveller(4);
         $manager->persist($meal);
 
+        $meal2 = new Meal();
+        $meal2->setTitle("Un autre repas");
+        $meal2->setDescription($faker->text);
+        $meal2->setPrice(4);
+        $date = date_create_from_format('j-M-Y', '15-Feb-2009');
+        $meal2->setDateMeal($date);
+        $meal2->setMaxTraveller(4);
+        $meal2->setHost($user2);
+
+        $manager->persist($meal2);
+
         //$meal->setType($faker->text);
         //$meal->setPicture($faker->text);
         //$meal->setAdress($faker->text);

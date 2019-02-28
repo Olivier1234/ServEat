@@ -47,18 +47,6 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/bookings", name="bookings")
-     */
-    public function bookings()
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        return $this->render('page/bookings.html.twig', [
-            'controller_name' => 'PageController',
-        ]);
-    }
-
-    /**
      * @Route("/messages", name="messages", methods={"GET"})
      * Affiche toues les messages reçus et envoyés de l'utilisateur
      */
@@ -68,7 +56,7 @@ class PageController extends AbstractController
         $user = $this->getUser();
         $messages = $messageRepository->findAllMessages($user);
         $distinct_messages = array();
-        $receiver_array = array();
+        $receiver_array = array($user);
 
         foreach ($messages as $message) {
 

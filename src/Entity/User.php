@@ -155,6 +155,7 @@ class User implements UserInterface
         $this->claims = new ArrayCollection();
         $this->referenceDocuments = new ArrayCollection();
         $this->reports = new ArrayCollection();
+        $this->isVerified = "No";
     }
 
     public function getId(): ?int
@@ -328,7 +329,6 @@ class User implements UserInterface
 
     public function addAddress(Address $address): self
     {
-        dump($address);die();
         if (!$this->addresses->contains($address)) {
             $this->addresses[] = $address;
             $address->setHost($this);

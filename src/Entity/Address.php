@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\EntityTimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Address
 {
+    use EntityTimestampableTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -45,6 +47,11 @@ class Address
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="addresses")
      */
     private $host;
+
+    public function __construct()
+    {
+        $this->isDefault = "principale";
+    }
 
     public function getId(): ?int
     {
@@ -121,14 +128,5 @@ class Address
         $this->host = $host;
 
         return $this;
-    }
-
-    public function setIsDefaultBylist($key)
-    {
-        if ($key === 1) {
-            $this->setIsDefault("principale");
-        } else {
-            $this->setIsDefault("secondaire");
-        }
     }
 }

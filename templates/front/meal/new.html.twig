@@ -53,6 +53,8 @@
                                                 <h4>Location /  Contacts</h4>
                                             </div>
                                             <div class="custom-form">
+                                                {{ include('front/meal/_form.html.twig') }}
+
                                                 <label>Address<i class="fa fa-map-marker"></i></label>
                                                 <input type="text" placeholder="Address of your business" value=""/>
                                                 <div class="row">
@@ -350,7 +352,6 @@
 
     <h1>Create new Meal</h1>
 
-    {{ include('front/meal/_form.html.twig') }}
 
     <a href="{{ path('front_meal_index') }}">back to list</a>
 {% endblock %}
