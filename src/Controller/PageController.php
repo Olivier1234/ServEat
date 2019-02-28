@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Message;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -47,6 +48,29 @@ class PageController extends AbstractController
     }
 
     /**
+     * @Route("/bookings", name="bookings")
+     */
+    public function bookings()
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        return $this->render('page/bookings.html.twig', [
+            'controller_name' => 'PageController',
+        ]);
+    }
+
+    /**
+     * @Route("/messages/count/{status}", name="messages_count_status", methods={"GET"})
+     * Compte tous les messages avec un param status
+     */
+    public function messages_count_status(MessageRepository $messageRepository, string $status)
+    {
+        $user = $this->getUser();
+        $count = $messageRepository->countMessageStatus($user, $status);
+        return new JsonResponse($count[0][1]);
+    }
+
+    /**
      * @Route("/messages", name="messages", methods={"GET"})
      * Affiche toues les messages reçus et envoyés de l'utilisateur
      */
@@ -58,23 +82,21 @@ class PageController extends AbstractController
         $distinct_messages = array();
         $receiver_array = array($user);
 
+        // On regroupe les messages des utilisateurs
         foreach ($messages as $message) {
 
-            if (!in_array($message->getReceiver(),$receiver_array) && $message->getReceiver()) {
+            if ((!in_array($message->getReceiver(),$receiver_array))
+            && $message->getReceiver()) {
                 array_push($distinct_messages, $message);
                 array_push($receiver_array, $message->getReceiver());
             }
         }
 
-        // On sait que l'utilisateur courant sera le premier de la liste, on l'enlève
-        //unset($distinct_messages[0]);
-
-        //dd($distinct_messages);
-
         return $this->render('page/messages.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $distinct_messages,
             'user' => $user,
+            'messageseeee' => $messageRepository->countMessageStatus($user, "envoyé")
 
         ]);
     }
@@ -87,9 +109,6 @@ class PageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-
-       // $messageRepository->readMessages($user, $other);
-
         return $this->render('page/messages_user.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $messageRepository->findAllMessagesUser($user, $other),
