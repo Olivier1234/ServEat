@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
             $user1->setFirstName("Ludovic");
             $user1->setLastName("Le Curieux");
             $user1->setPhone($faker->phoneNumber);
-            $user1->setGender("M");
+            $user1->setGender(false);
             $user1->setPseudo($faker->userName);
             $user1->setDescription($faker->text);
             $password = "654321qwerty";
@@ -47,7 +47,7 @@ class AppFixtures extends Fixture
             $user2->setFirstName("Leyla");
             $user2->setLastName("LE NOAN");
             $user2->setPhone($faker->phoneNumber);
-            $user2->setGender("F");
+            $user2->setGender(true);
             $user2->setPseudo("LeylaLN");
             $user2->setDescription($faker->text);
             $password = "azerty";
@@ -61,7 +61,7 @@ class AppFixtures extends Fixture
             $user3->setFirstName("Mathilde");
             $user3->setLastName("Raphi");
             $user3->setPhone($faker->phoneNumber);
-            $user3->setGender("F");
+            $user3->setGender(true);
             $user3->setPseudo($faker->userName);
             $user3->setDescription($faker->text);
             $password = "654321qwerty";
@@ -77,7 +77,7 @@ class AppFixtures extends Fixture
           $otherUser->setFirstName($faker->firstname);
           $otherUser->setLastName($faker->lastname);
           $otherUser->setPhone($faker->phoneNumber);
-          $otherUser->setGender("F");
+          $otherUser->setGender($faker->boolean);
           $otherUser->setPseudo($faker->userName);
           $otherUser->setDescription($faker->text);
           $password = "654321qwerty";
