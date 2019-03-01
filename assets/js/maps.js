@@ -15,13 +15,6 @@ function initmap() {
     let adress = adressQuery.split('=')[1].replace(/\+/g, ' ');
     adress = decodeURIComponent(adress);
 
-    // map.setView();
-    // const provider = new LocationIQProvider ({
-    //     params: {
-    //         key: 'e070475af59dda',
-    //     },
-    // });
-
     const provider = new EsriProvider();
     
     provider
@@ -36,13 +29,6 @@ function findMeals(result) {
 
     map.setView(latlng);
 
-    var circle = L.circle(latlng, {
-        color: '#96D5F0',
-        fillColor: '#96D5F0',
-        fillOpacity: 0.3,
-        radius: 1500
-    }).addTo(map);
-
     $.ajax({
         url: "/search/ajax_search",
         type: "GET",
@@ -55,8 +41,25 @@ function findMeals(result) {
         success: function (data)
         {
             console.log(JSON.parse(data));
+            setMealsMarker(JSON.parse(data));
         }
     });
+}
+
+function setMealsMarker(meals) {
+    for (var meal of meals) {
+
+        var lat = parseFloat(meal.posY);
+        var long = parseFloat(meal.posX);
+
+
+        console.log(meal);
+        var marker = L.marker([lat, long]).addTo(map);
+        marker.bindPopup(`<div>` + meal.title + `</div>` +
+           `<div>` + meal.description + '</div>' +
+            '<div>' +  meal.price + '€</div>' +
+            ' <a href=\"/booking\"><button class="btn btn-primary">Book</button> </a> ')
+    }
 }
 
 initmap();
