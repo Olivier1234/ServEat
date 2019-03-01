@@ -7,8 +7,8 @@
       <h3>Paramètres</h3>
       <ul>
         <li><a href="{{ path('front_user_edit', {'id': app.user.id}) }}" class="user-profile-act"><i class="fa fa-user-o"></i> Modifier Profil</a></li>
-        <li><a href="{{ path('messages') }}"><i class="fa fa-envelope-o"></i> Messages <span class="msg-badge"></span></a></li>
-        <li><a href="#"><i class="fa fa-unlock-alt"></i>Changer le Mot de Passe</a></li>
+        <li><a href="{{ path('messages') }}"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
+        {#<li><a href="#"><i class="fa fa-unlock-alt"></i>Changer le Mot de Passe</a></li>#}
       </ul>
     </div>
 
@@ -16,9 +16,9 @@
     <div class="user-profile-menu">
       <h3>Annonces</h3>
       <ul>
-        <li><a href="{{ path('front_meal_index') }}"><i class="fa fa-th-list"></i>Mes repas</a></li>
-        <li><a href="{{ path('front_meal_all') }}"><i class="fa fa-th-list"></i>Tous les repas</a></li>
-        <li><a href="{{ path('front_booking_index') }}"><i class="fa fa-calendar-check-o"></i>Réservations</a></li>
+        <li><a href="{{ path('front_meal_index') }}"><i class="fa fa-th-list"></i> Mes repas  </a></li>
+        <li><a href="{{ path('front_meal_all') }}"><i class="fa fa-th-list"></i> Tous les repas  </a></li>
+        {#<li><a href="{{ path('booking_indexgit ') }}"><i class="fa fa-calendar-check-o"></i> Réservations <span>2</span></a></li>#}
         <li><a href="{{ path('front_notation_user_notations') }}"><i class="fa fa-comments-o"></i> Commentaires </a></li>
       </ul>
     </div>

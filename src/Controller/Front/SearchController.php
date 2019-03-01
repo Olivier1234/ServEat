@@ -59,6 +59,7 @@ class SearchController extends AbstractController
 
 
         dump($posX, $posY);
+
         $meals = $this->getDoctrine()
             ->getRepository(Meal::class)
             ->findMealsByPositions($posX, $posY);
@@ -71,10 +72,14 @@ class SearchController extends AbstractController
             ['content-type' => 'text/html']
         );
         $result = json_encode($meals);
+
         $response->setContent($result);
         $response->setCharset('ISO-8859-1');
+        $response->headers->set('Content-Type', 'text/html');
         $response->prepare($request);
-        $response->send();
+        dump($response);
+//        $response->send();
+        return $response;
         // $user = new User();
         // $form = $this->createForm(UserType::class, $user);
         // $form->handleRequest($request);
