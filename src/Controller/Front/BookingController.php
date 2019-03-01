@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\Booking;
 use App\Form\BookingType;
@@ -11,23 +11,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/bookings")
+ * @Route("/booking", name="front_booking_")
  */
 class BookingController extends AbstractController
 {
     /**
-     * @Route("/", name="booking_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(BookingRepository $bookingRepository): Response
     {
-        $bookings = $bookingRepository->findBy(array('traveler' => $this->getUser()->getId()));
-        return $this->render('page/bookings.html.twig', [
-            'bookings' => $bookings,
+        // get the user id
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+        dump($bookingRepository->findAll());
+        return $this->render('front/booking/index.html.twig', [
+          'myBookings' => $bookingRepository->findMyBookings($user->getId()),
+          'myTravelersBookings' => $bookingRepository->findMyTravelersBookings($user->getId()),
         ]);
     }
 
     /**
-     * @Route("/new", name="booking_new", methods={"GET","POST"})
+     * @Route("/new", name="new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -43,24 +47,24 @@ class BookingController extends AbstractController
             return $this->redirectToRoute('booking_index');
         }
 
-        return $this->render('booking/new.html.twig', [
+        return $this->render('front/booking/new.html.twig', [
             'booking' => $booking,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="booking_show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET"})
      */
     public function show(Booking $booking): Response
     {
-        return $this->render('booking/show.html.twig', [
+        return $this->render('front/booking/show.html.twig', [
             'booking' => $booking,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="booking_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Booking $booking): Response
     {
@@ -75,14 +79,14 @@ class BookingController extends AbstractController
             ]);
         }
 
-        return $this->render('booking/edit.html.twig', [
+        return $this->render('front/booking/edit.html.twig', [
             'booking' => $booking,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="booking_delete", methods={"DELETE"})
+     * @Route("/{id}", name="delete", methods={"DELETE"})
      */
     public function delete(Request $request, Booking $booking): Response
     {

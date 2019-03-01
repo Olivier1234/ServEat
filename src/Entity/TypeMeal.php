@@ -21,7 +21,7 @@ class TypeMeal
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Wording;
+    private $title;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Meal", mappedBy="types")
@@ -38,14 +38,14 @@ class TypeMeal
         return $this->id;
     }
 
-    public function getWording(): ?string
+    public function getTitle(): ?string
     {
-        return $this->Wording;
+        return $this->title;
     }
 
-    public function setWording(string $Wording): self
+    public function setTitle(string $title): self
     {
-        $this->Wording = $Wording;
+        $this->title = $title;
 
         return $this;
     }
