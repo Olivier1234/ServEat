@@ -116,19 +116,19 @@ class MealController extends AbstractController
     /**
      * @Route("/{id}", name="show", methods={"GET","POST"})
      */
-    public function show(Meal $meal,Request $request): Response
+    public function show(Meal $meal, Request $request): Response
     {
-      //get the user id
-      $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-      $user = $this->getUser();
+        //get the user id
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
 
         //to add a notation for the meal
         $notation = new Notation();
         $notation->setMeal($meal);
         $notation->setGiver($user);
         $notation->setReceiver($meal->getHost());
-        $form = $this->createForm(NotationType::class, $notation);
-        $form->handleRequest($request);
+        $formNotation = $this->createForm(NotationType::class, $notation);
+        $formNotation->handleRequest($request);
 
         $booking = new Booking();
         $booking->setMeal($meal);
@@ -136,7 +136,7 @@ class MealController extends AbstractController
         $formBooking = $this->createForm(BookingType::class, $booking);
         $formBooking->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formNotation->isSubmitted() && $formNotation->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($notation);
             $entityManager->flush();
@@ -152,12 +152,11 @@ class MealController extends AbstractController
             return $this->redirectToRoute('front_meal_show', ['id'=> $meal->getId()] );
         }
 
-
         return $this->render('front/meal/show.html.twig', [
             'meal' => $meal,
             'notation' => $notation,
             'booking' => $booking,
-            'form' => $form->createView(),
+            'form' => $formNotation->createView(),
             'formBooking' => $formBooking->createView(),
         ]);
     }
