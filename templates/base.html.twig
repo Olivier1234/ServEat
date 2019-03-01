@@ -76,7 +76,6 @@
 
 
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <a href="{{ path('user_profile') }}"><img src="{{ asset(app.user.avatar) }}" alt="image profile" class="image--cover" style="float: right; width:40px;height: 40px;border-radius: 50%;margin: 20px;object-fit: cover;object-position: center right;" /></a>
                 <a href="{{ path('front_logout') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Deconnexion</div></a>
             {%else%}
                 <a href="{{ path('front_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>
@@ -94,8 +93,22 @@
                 <nav>
                     <ul>
                         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
                             <li>
-                                <a href="{{ path('messages') }}" class="msg-notification"><span>Messages</span><span class="msg-badge"></span></a>
+                              <a href="{{ path('user_profile') }}"><img src="{{ asset(app.user.avatar) }}" alt="image profile" class="image--cover" style="float: right; width:50px;height: 50px;border-radius: 50%;margin: -5px;object-fit: cover;object-position: center right;" /></a>
+                                <!--second level -->
+                                <ul>
+                                    <h3>Paramètres</h3>
+                                      <li><a href="{{ path('front_user_edit', {'id': app.user.id}) }}" class="user-profile-act"><i class="fa fa-user-o"></i> Modifier Profil</a></li>
+                                      <li><a href="{{ path('messages') }}"><i class="fa fa-envelope-o"></i> Messages </a></li>
+                                      <li><a href="#"><i class="fa fa-unlock-alt"></i>Changer le Mot de Passe</a></li>
+                                      <h3>Annonces</h3>
+                                      <li><a href="{{ path('front_meal_index') }}"><i class="fa fa-th-list"></i>Mes repas</a></li>
+                                      <li><a href="{{ path('front_meal_all') }}"><i class="fa fa-th-list"></i>Tous les repas</a></li>
+                                      <li><a href="{{ path('front_booking_index') }}"><i class="fa fa-calendar-check-o"></i>Réservations</a></li>
+                                      <li><a href="{{ path('front_notation_user_notations') }}"><i class="fa fa-comments-o"></i> Commentaires </a></li>
+                                </ul>
+                                <!--second level end-->
                             </li>
                         {%else%}
                             <li>

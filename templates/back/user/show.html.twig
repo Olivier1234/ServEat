@@ -7,7 +7,7 @@
                         <div class="shapes-bg-big"></div>
                         <div class="container">
                             <div class="section-title center-align">
-                                <div class="breadcrumbs fl-wrap"><a href="#">Acceuil</a><a href="#">Annonce</a><span>Profil</span></div>
+                                <div class="breadcrumbs fl-wrap"><a href="{{ path('front_home') }}">Acceuil</a><a href="#">Annonce</a><span>Profil</span></div>
                                 <h2><span>{{ user.firstname }} {{ user.lastname }}</span></h2>
                                 <div class="user-profile-avatar"><img src="{{ asset(user.avatar) }}" alt=""></div>
                                 <div class="user-profile-rating clearfix">
