@@ -1,4 +1,114 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="col-md-7">
+        <!-- profile-edit-container-->
+        <div class="profile-edit-container">
+            <div class="profile-edit-header fl-wrap">
+                <h4>Mon compte</h4>
+            </div>
+            <div class="custom-form">
+                <label>Pseudo <i class="fa fa-user-o"></i></label>
+                <input type="text" placeholder="Pseudo" value="{{ user.pseudo }}" />
+                <label>Nom <i class="fa fa-user-o"></i></label>
+                <input type="text" placeholder="Nom" value="{{ user.lastname }}" />
+                <label>Prénom <i class="fa fa-user-o"></i></label>
+                <input type="text" placeholder="Prénom" value="{{ user.firstname }}" />
+                <label>Anniversaire <i class="fa fa-calendar"></i></label>
+                <input type="date" placeholder="JJ/MM/AAAA" value="{{ user.birthday | date("m/d/Y à h:m", "Europe/Paris") }}" />
+                <label>E-mail<i class="fa fa-envelope-o"></i> </label>
+                <input type="text" placeholder="E-mail" value="{{ user.email }}" />
+                <label>Téléphone<i class="fa fa-phone"></i> </label>
+                <input type="text" placeholder="Téléphone" value="{{ user.phone }}" />
+                <label> Adresse(s) </label>
+                {% for address in user.getAddresses() %}
+                    <p>{{ address.getStreet() }}, {{ address.getZc() }} {{ address.getCity() }} - {{ address.getCountry() }}</p>
+                {% endfor %}
+                <label> Description</label>
+                <textarea cols="40" rows="3" placeholder="Dites quelque chose d'intéressant!">{{ user.description }}</textarea>
+                <button class="btn">{{ button_label|default('Save') }}</button>
+            </div>
+        </div>
+        <!-- profile-edit-container end-->
+        <!-- profile-edit-container
+        <div class="profile-edit-container">
+            <div class="profile-edit-header fl-wrap" style="margin-top:30px">
+                <h4>Social</h4>
+            </div>
+            <div class="custom-form">
+                <label>Facebook <i class="fa fa-facebook"></i></label>
+                <input type="text" placeholder="https://www.facebook.com/" value=""/>
+                <label>Twitter<i class="fa fa-twitter"></i>  </label>
+                <input type="text" placeholder="https://twitter.com/" value=""/>
+                <label>Vkontakte<i class="fa fa-vk"></i>  </label>
+                <input type="text" placeholder="vk.com" value=""/>
+                <label> Whatsapp <i class="fa fa-whatsapp"></i>  </label>
+                <input type="text" placeholder="https://www.whatsapp.com" value=""/>
+                <button class="btn  big-btn  color-bg flat-btn">Sauvegarder<i class="fa fa-angle-right"></i></button>
+            </div>
+        </div>
+    <!-- profile-edit-container end-->
+    </div>
+    <div class="col-md-2">
+        <div class="edit-profile-photo fl-wrap">
+            <img src="{{ asset(user.avatar) }}" class="respimg" alt="image profil" width="200" height="200">
+            <div class="change-photo-btn">
+                <div class="photoUpload">
+                    <span><i class="fa fa-upload"></i>Envoyer Photo</span>
+                    <ul class="pictures" data-prototype='<div><div id="registration_form_addresses___name__"><div><label for="registration_form_addresses___name___street" class="required">Street</label><input type="text" id="registration_form_addresses___name___street" name="registration_form[addresses][__name__][street]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___zc" class="required">Zc</label><input type="text" id="registration_form_addresses___name___zc" name="registration_form[addresses][__name__][zc]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___city" class="required">City</label><input type="text" id="registration_form_addresses___name___city" name="registration_form[addresses][__name__][city]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___country" class="required">Country</label><input type="text" id="registration_form_addresses___name___country" name="registration_form[addresses][__name__][country]" required="required" maxlength="255" /></div></div></div>'>
+                    </ul>
+                    <input type="file" class="upload">
+                </div>
+            </div>
+        </div>
+    </div>
 {{ form_end(form) }}
+
+<script>
+    var $collectionHolder;
+
+    // setup an "add a tag" link
+    var $addPictureButton = $('<button type="button" class="add_picture_link">Add a picture</button>');
+    var $newLinkLi = $('<li></li>').append($addPictureButton);
+
+    jQuery(document).ready(function() {
+        // Get the ul that holds the collection of tags
+        $collectionHolder = $('ul.pictures');
+
+        // add the "add a tag" anchor and li to the tags ul
+        $collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        $addPictureButton.on('click', function(e) {
+            // add a new tag form (see next code block)
+            console.log('test');
+            addPictureForm($collectionHolder, $newLinkLi);
+        });
+    });
+
+    function addPictureForm($collectionHolder, $newLinkLi) {
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+
+        // get the new index
+        var index = $collectionHolder.data('index');
+
+        var newForm = prototype;
+        // You need this only if you didn't set 'label' => false in your tags field in TaskType
+        // Replace '__name__label__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        // newForm = newForm.replace(/__name__label__/g, index);
+
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        newForm = newForm.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('<li></li>').append(newForm);
+        $newLinkLi.before($newFormLi);
+    }
+</script>

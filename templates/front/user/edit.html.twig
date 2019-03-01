@@ -1,13 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
-
 {% block body %}
-    <h1>Edit User</h1>
-
-    {{ include('front/user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('front_user_index') }}">back to list</a>
-
-    {{ include('front//user/_delete_form.html.twig') }}
+    <!--section -->
+    <section>
+        <!-- container -->
+        <div class="container">
+            <!-- profile-edit-wrap -->
+            <div class="profile-edit-wrap">
+                <div class="profile-edit-page-header">
+                    <h2>Modifier Profil</h2>
+                    <div class="breadcrumbs"><a href="#">Acceuil</a><a href="#">Tableau de bord</a><span>Modifier Profil</span></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        {% include 'partials/leftPanel.html.twig' %}
+                    </div>
+                    {{ include('front/user/_form.html.twig', {'button_label': 'Update'}) }}
+                </div>
+            </div>
+            <!--profile-edit-wrap end -->
+        </div>
+        <!--container end -->
+    </section>
+    <!-- section end -->
+    <div class="limit-box fl-wrap"></div>
+    <!--section -->
+    <section class="gradient-bg">
+        <div class="cirle-bg">
+            <div class="bg" data-bg="images/bg/circle.png"></div>
+        </div>
+    </section>
+    <!-- section end -->
+    <a class="to-top"><i class="fa fa-angle-up"></i></a>
 {% endblock %}
