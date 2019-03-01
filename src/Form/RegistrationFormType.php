@@ -61,7 +61,7 @@ class RegistrationFormType extends AbstractType
             //->add('phone')
             //->add('birthday')
             //->add('pseudo')
-            ->add('imgpath', FileType::class, ['label' => 'Picture'])
+            ->add('avatar', FileType::class, ['label' => 'Picture'])
 
         ;
     }

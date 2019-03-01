@@ -129,7 +129,7 @@ class PageController extends AbstractController
             'messages' => $messageRepository->findAllMessagesUser($user, $other),
             'user' => $user,
             'other' => $other,
-            'title' => "Votre conversation avec " . $other->getFullName()
+            'title' => "Votre conversation avec " . $other->getUserName()
 
         ]);
 

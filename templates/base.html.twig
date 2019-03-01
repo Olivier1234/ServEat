@@ -3,7 +3,7 @@
     <head>
         <!--=============== basic  ===============-->
         <meta charset="UTF-8">
-        <title>{% block title %}Serveat -Directory Listing Template{% endblock %}</title>
+        <title>{% block title %}Serveat{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta name="robots" content="index, follow"/>
         <meta name="keywords" content=""/>
@@ -76,7 +76,7 @@
 
 
             {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                <a href="{{ path('user_profile') }}"><img src="{{ asset(app.user.imgpath) }}" alt="image profile" class="image--cover" style="float: right; width:40px;height: 40px;border-radius: 50%;margin: 20px;object-fit: cover;object-position: center right;" /></a>
+                <a href="{{ path('user_profile') }}"><img src="{{ asset(app.user.avatar) }}" alt="image profile" class="image--cover" style="float: right; width:40px;height: 40px;border-radius: 50%;margin: 20px;object-fit: cover;object-position: center right;" /></a>
                 <a href="{{ path('front_logout') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Deconnexion</div></a>
             {%else%}
                 <a href="{{ path('front_login') }}"><div class="show-reg-form modal-opn"> <i class="fa fa-sign-in"></i>Se connecter</div></a>

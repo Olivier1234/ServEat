@@ -32,10 +32,10 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            $file = $form->get('imgpath')->getData();
+            $file = $form->get('avatar')->getData();
             $path = $fileUploadService->uploadFile($file,'images/user/');
 
-            $user->setImgPath($path);
+            $user->setAvatar($path);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Booking;
+use App\Entity\Meal;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,38 @@ class BookingRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Booking::class);
+    }
+
+    /**
+     * @return Booking[] Returns an array of Booking objects
+     */
+    public function findMyBookings($value)
+    {
+        return $this->createQueryBuilder('b')
+            ->select('b')
+            ->leftJoin(Meal::class, 'm', 'WITH', 'b.meal = m.id')
+            ->andWhere('b.traveler = :val')
+            ->setParameter('val', $value)
+            ->orderBy('m.dateMeal', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Booking[] Returns an array of Booking objects
+     */
+    public function findMyTravelersBookings($value)
+    {
+        return $this->createQueryBuilder('b')
+            ->select('b')
+            ->leftJoin(Meal::class, 'm', 'WITH', 'b.meal = m.id')
+            ->andWhere('m.host = :val')
+            ->setParameter('val', $value)
+            ->orderBy('m.dateMeal', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**
