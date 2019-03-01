@@ -13,7 +13,9 @@ class BookingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+      /*$builder->add('isPayed', HiddenType::class, [
+        'data' => false,
+      ]);*/
     }
 
     public function configureOptions(OptionsResolver $resolver)
