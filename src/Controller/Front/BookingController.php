@@ -20,8 +20,13 @@ class BookingController extends AbstractController
      */
     public function index(BookingRepository $bookingRepository): Response
     {
+        // get the user id
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
         return $this->render('front/booking/index.html.twig', [
-            'bookings' => $bookingRepository->findAll(),
+          'myBookings' => $bookingRepository->findMyBookings($user->getId()),
+          'myTravelersBookings' => $bookingRepository->findMyTravelersBookings($user->getId()),
         ]);
     }
 
