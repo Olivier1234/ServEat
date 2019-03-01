@@ -83,12 +83,12 @@ class Meal
     //used to find meals depending on a user adress search
     
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=255)
      */
     private $posX;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=255)
      */
     private $posY;
 
@@ -312,7 +312,7 @@ class Meal
     /**
      * @return mixed
      */
-    public function getPosX() : ?int
+    public function getPosX() : ?string
     {
         return $this->posX;
     }
@@ -328,7 +328,7 @@ class Meal
     /**
      * @return mixed
      */
-    public function getPosY() : ?float
+    public function getPosY() : ?string
     {
         return $this->posY;
     }

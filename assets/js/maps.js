@@ -11,8 +11,6 @@ function initmap() {
     map.locate({setView: true, maxZoom: 15});
 
     let query = window.location.search;
-    console.log(query.split('token')[1].split('=')[1]);
-    let token = query.split('token')[1].split('=')[1];
     let adressQuery = query.split('&')[0];
     let adress = adressQuery.split('=')[1].replace(/\+/g, ' ');
     adress = decodeURIComponent(adress);
@@ -45,20 +43,18 @@ function findMeals(result) {
         radius: 1500
     }).addTo(map);
 
-    let query = window.location.search;
-    console.log(query.split('token')[1].split('=')[1]);
-    let token = query.split('token')[1].split('=')[1];
     $.ajax({
         url: "/search/ajax_search",
         type: "GET",
-        dataType: "json",
+        dataType: "text",
+        contentType  : "text/html; charset=ISO-8859-1",
         data: {
             "posX": posX,
             "posY" : posY
         },
         success: function (data)
         {
-            console.log(data);
+            console.log(JSON.parse(data));
         }
     });
 }
