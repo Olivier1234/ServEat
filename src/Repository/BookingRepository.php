@@ -46,5 +46,17 @@ class BookingRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    public function findByHost($value)
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.meal', 'm', 'WITH', 'm.host = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     */
+
+
 }

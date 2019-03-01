@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Service\FileUploadService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="front_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, FileUploadService $fileUploadService): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -32,12 +33,10 @@ class RegistrationController extends AbstractController
             );
 
             $file = $form->get('imgpath')->getData();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move(
-                'images/user/',
-                $fileName
-            );
-            $user->setImgPath( '/images/user/'. $fileName);
+            $path = $fileUploadService->uploadFile($file,'images/user/');
+
+            $user->setImgPath($path);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
