@@ -33,7 +33,6 @@ class SearchController extends AbstractController
      */
     public function show(Request $request) : Response
     {
-        var_dump($request->query->get('adressInput'));
         // $user = new User();
         // $form = $this->createForm(UserType::class, $user);
         // $form->handleRequest($request);
@@ -57,14 +56,9 @@ class SearchController extends AbstractController
         $posX = $request->query->get('posX');
         $posY = $request->query->get('posY');
 
-
-        dump($posX, $posY);
-
         $meals = $this->getDoctrine()
             ->getRepository(Meal::class)
             ->findMealsByPositions($posX, $posY);
-
-        dump($meals);
 
         $response = new Response(
             'Content',
@@ -77,7 +71,6 @@ class SearchController extends AbstractController
         $response->setCharset('ISO-8859-1');
         $response->headers->set('Content-Type', 'text/html');
         $response->prepare($request);
-        dump($response);
 //        $response->send();
         return $response;
         // $user = new User();
