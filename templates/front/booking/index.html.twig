@@ -26,12 +26,12 @@
                                 <!-- dashboard-list start-->
                                 <div class="dashboard-list">
                                     <div class="dashboard-message">
-                                        <span class="new-dashboard-item">New</span>
+                                        <span class="new-dashboard-item"><i class="fa fa-envelope"></i></span>
                                         <div class="dashboard-message-avatar">
                                             {% if booking.meal.getPictures() %}
-                                                <img src="images/favicon/default-meal.png" alt="">
+                                                <img src="/images/favicon/default-meal.png" alt="">
                                             {% else %}
-                                                <img src="images/favicon/default-meal.png" alt="">
+                                                <img src="/images/favicon/default-meal.png" alt="">
                                             {% endif %}
                                         </div>
                                         <div class="dashboard-message-text">
@@ -43,7 +43,7 @@
                                             <div class="booking-details fl-wrap">
                                                 <span class="booking-title">Chez </span> :
                                                 <span class="booking-text">
-                                                    {% if booking.meal.host.getGender() == "M" %}
+                                                    {% if not booking.meal.host.getGender() %}
                                                         M.
                                                     {% else %}
                                                         Mme
@@ -75,7 +75,7 @@
                                               <p><a href="#" class="btn  circle-btn color-bg flat-btn">{{ type.getTitle() }}</a></p>
                                             {% endfor %}
                                             {% if booking.getIsAccepted() %}
-                                                <a href="#" class="btn  circle-btn color-bg flat-btn">Payer<i class="fa fa-check-square-o"></i></a>
+                                                <a href="#" class="btn  circle-btn color-bg flat-btn">Payer</i></a>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -85,27 +85,36 @@
                                 <p>Vous n'avez fait aucune demande de réservation</p>
                             {% endfor %}
                         </div>
+                        <!-- pagination-->
+                        <!--<div class="pagination">
+                            <a href="#" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
+                            <a href="#" class="current-page">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
+                        </div>-->
 
                         <!-- TRAVELERS-BOOKINGS -->
                         <div class="dashboard-list-box fl-wrap">
                             <div class="dashboard-header fl-wrap">
                                 <h3>Je reçois</h3>
                             </div>
-                            {% for booking in myBookings %}
+                            {% for booking in myTravelersBookings %}
                                 <!-- dashboard-list start-->
                                 <div class="dashboard-list">
                                     <div class="dashboard-message">
-                                        <span class="new-dashboard-item">New</span>
+                                        <span class="new-dashboard-item"><i class="fa fa-envelope"></i></span>
                                         <div class="dashboard-message-avatar">
                                             {% if booking.traveler.getAvatar() %}
-                                                <img src="{{ booking.traveler.getAvatar() }}" alt="">
+                                                <img src="/{{ booking.traveler.getAvatar() }}" alt="">
                                             {% else %}
-                                                <img src="images/favicon/default-avatar.png" alt="">
+                                                <img src="/images/favicon/default-avatar.png" alt="">
                                             {% endif %}
                                         </div>
                                         <div class="dashboard-message-text">
                                             <h4>
-                                                {% if booking.traveler.getGender() == "M" %}
+                                                {% if not booking.traveler.getGender() %}
                                                     M.
                                                 {% else %}
                                                     Mme
@@ -132,26 +141,25 @@
                                               <p><a href="#" class="btn  circle-btn color-bg flat-btn">{{ type.getTitle() }}</a></p>
                                             {% endfor %}
                                             {% if not booking.isAccepted %}
-                                                <a href="#" class="btn circle-btn color-bg flat-btn">Accepter<i class="fa fa-check-square-o"></i></a>
+                                                <a href="#" class="btn circle-btn color-bg flat-btn">Accepter</a>
                                             {% endif %}
                                         </div>
                                     </div>
                                 </div>
                                 <!-- dashboard-list end-->
                             {% else %}
-                                <p>Vous n'avez aucune réservation</p>
+                                <p>Vous n'avez reçu aucune demande de réservation</p>
                             {% endfor %}
                         </div>
-
                         <!-- pagination-->
-                        <div class="pagination">
+                        <!--<div class="pagination">
                             <a href="#" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
                             <a href="#" class="current-page">1</a>
                             <a href="#">2</a>
                             <a href="#">3</a>
                             <a href="#">4</a>
                             <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
-                        </div>
+                        </div>-->
 
                     </div>
                 </div>
