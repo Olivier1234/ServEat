@@ -23,7 +23,7 @@ class BookingController extends AbstractController
         // get the user id
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-
+        dump($bookingRepository->findAll());
         return $this->render('front/booking/index.html.twig', [
           'myBookings' => $bookingRepository->findMyBookings($user->getId()),
           'myTravelersBookings' => $bookingRepository->findMyTravelersBookings($user->getId()),
