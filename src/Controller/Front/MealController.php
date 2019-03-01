@@ -149,7 +149,7 @@ class MealController extends AbstractController
             $entityManager->persist($booking);
             $entityManager->flush();
 
-            return $this->redirectToRoute('front_meal_show', ['id'=> $meal->getId()] );
+            return $this->redirectToRoute('front_booking_index', ['id'=> $meal->getId()] );
         }
 
         return $this->render('front/meal/show.html.twig', [
