@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
             $password = "654321qwerty";
             $user1->setPassword($this->passwordEncoder->encodePassword($user1, $password));
             $user1->setRoles(['ROLE_ADMIN']);
-            $user1->setAvatar("images/avatar/ludovic.lecurieux.jpg");
+            $user1->setAvatar("/images/avatar/ludovic.lecurieux.jpg");
             $manager->persist($user1);
 
             $user2 = new User();
@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
             $password = "azerty";
             $user2->setPassword($this->passwordEncoder->encodePassword($user2, $password));
             $user2->setRoles(['ROLE_ADMIN']);
-            $user2->setAvatar("images/avatar/leyla-lenoan.jpg");
+            $user2->setAvatar("/images/avatar/leyla-lenoan.jpg");
             $manager->persist($user2);
 
             $user3 = new User();
@@ -67,9 +67,9 @@ class AppFixtures extends Fixture
             $user3->setPseudo($faker->userName);
             $user3->setDescription($faker->text);
             $password = "654321qwerty";
-            $user3->setPassword($this->passwordEncoder->encodePassword($user, $password));
+            $user3->setPassword($this->passwordEncoder->encodePassword($user3, $password));
             $user3->setRoles(['ROLE_ADMIN']);
-            $user3->setAvatar("images/avatar/user3.jpg");
+            $user3->setAvatar("/images/avatar/user3.jpg");
             $manager->persist($user3);
 
         // create 20 products! Bam!
@@ -85,7 +85,7 @@ class AppFixtures extends Fixture
           $password = "654321qwerty";
           $otherUser->setPassword($this->passwordEncoder->encodePassword($otherUser, $password));
           $otherUser->setRoles(['ROLE_USER']);
-          $otherUser->setAvatar("images/avatar/"."user".$i.".jpg");
+          $otherUser->setAvatar("/images/avatar/"."user".$i.".jpg");
           $manager->persist($otherUser);
 
         }
@@ -122,63 +122,56 @@ class AppFixtures extends Fixture
         $manager->persist($address3);
 
         //////////////////////////////////////MEALS/////////////////////////////////////
-        //$user1 cree un repas
-        $meal = new Meal();
-        $meal->setTitle($faker->text);
-        $meal->setDescription($faker->text);
-        $meal->setPrice(4);
+        //user1 cree un repas
+        $meal1 = new Meal();
+        $meal1->setTitle("Un premier repas");
+        $meal1->setDescription($faker->text);
+        $meal1->setPrice(6);
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
-        $meal->setDateMeal($date);
-        $meal->setMaxTraveller(4);
-        $meal->setHost($user2);
-        $manager->persist($meal);
+        $meal1->setDateMeal($date);
+        $meal1->setMaxTraveller(4);
+        $meal1->setHost($user1);
+        $meal1->setAddress($address1);
+        $manager->persist($meal1);
 
+        //user2 cree un repas
         $meal2 = new Meal();
         $meal2->setTitle("Un autre repas");
         $meal2->setDescription($faker->text);
         $meal2->setPrice(4);
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
         $meal2->setDateMeal($date);
-        $meal2->setMaxTraveller(4);
+        $meal2->setMaxTraveller(3);
         $meal2->setHost($user2);
-
+        $meal2->setAddress($address2);
         $manager->persist($meal2);
-
-        //$meal->setType($faker->text);
-        //$meal->setPicture($faker->text);
-        //$meal->setAdress($faker->text);
-        //$meal->setBooking($faker->text);
-        //$meal->setNotation($faker->text);
-        $meal->setHost($user1);
-        $meal->setAddress($address1);
-        $manager->persist($meal);
 
         //////////////////////////////////////BOOKINGS/////////////////////////////////////
         //user2 reserve un repas chez $user1
-        $booking = new Booking();
-        $booking->setIsPayed(0);
-        $booking->setMeal($meal);
-        $booking->setTraveler($user2);
-        $booking->setIsAccepted(0);
-        $manager->persist($booking);
+        $booking1 = new Booking();
+        $booking1->setIsPayed(false);
+        $booking1->setMeal($meal1);
+        $booking1->setTraveler($user2);
+        $booking1->setIsAccepted(false);
+        $manager->persist($booking1);
 
         //user3 reserve un repas chez $user1
-        $booking = new Booking();
-        $booking->setIsPayed(0);
-        $booking->setMeal($meal);
-        $booking->setTraveler($user3);
-        $booking->setIsAccepted(0);
-        $manager->persist($booking);
+        $booking2 = new Booking();
+        $booking2->setIsPayed(false);
+        $booking2->setMeal($meal1);
+        $booking2->setTraveler($user3);
+        $booking2->setIsAccepted(true);
+        $manager->persist($booking2);
 
         //////////////////////////////////////MESSAGES/////////////////////////////////////
-        $message = new Message();
-        $message->setContent($faker->text);
-        $message->setStatus("fsgdfsd");
+        $message1 = new Message();
+        $message1->setContent($faker->text);
+        $message1->setStatus("fsgdfsd");
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
-        $message->setCreatedAt($date);
-        $message->setSender($user2);
-        $message->setReceiver($user1);
-        $manager->persist($message);
+        $message1->setCreatedAt($date);
+        $message1->setSender($user2);
+        $message1->setReceiver($user1);
+        $manager->persist($message1);
 
         $message2 = new Message();
         $message2->setContent($faker->text);
@@ -194,7 +187,7 @@ class AppFixtures extends Fixture
             $notation = new Notation();
             $notation->setRating(4);
             $notation->setComment($faker->text);
-            $notation->setMeal($meal);
+            $notation->setMeal($meal1);
             if($i % 3 == 0 ){
               $notation->setGiver($user2);}else{$notation->setGiver($user3);
             }
@@ -204,22 +197,12 @@ class AppFixtures extends Fixture
             $manager->persist($notation);
          }
 
-
-        //////////////////////////////////////BOOKINGS/////////////////////////////////////
-        $booking = new Booking();
-        $booking->setIsPayed(0);
-        $booking->setMeal($meal);
-        $booking->setTraveler($user1);
-        $booking->setIsAccepted(0);
-        $manager->persist($booking);
-        $manager->flush();
-
          //////////////////////////////////////MESSAGES/////////////////////////////////////
          $message = new Message();
          $message->setContent($faker->text);
          $message->setStatus("envoyé");
          $message->setCreatedAt(date_create_from_format('j-M-Y h:m', '15-Feb-2009 9:43'));
-         $message->setSender($user);
+         $message->setSender($user1);
          $message->setReceiver($user2);
          $manager->persist($message);
          $manager->flush();
@@ -228,7 +211,7 @@ class AppFixtures extends Fixture
          $message->setContent($faker->text);
          $message->setStatus("envoyé");
          $message->setCreatedAt(date_create_from_format('j-M-Y', '16-Feb-2009'));
-         $message->setSender($user);
+         $message->setSender($user1);
          $message->setReceiver($user2);
          $manager->persist($message);
          $manager->flush();
@@ -238,7 +221,7 @@ class AppFixtures extends Fixture
          $message->setStatus("envoyé");
          $message->setCreatedAt(date_create_from_format('j-M-Y h:m', '15-Feb-2009 10:54'));
          $message->setSender($user2);
-         $message->setReceiver($user);
+         $message->setReceiver($user1);
          $manager->persist($message);
          $manager->flush();
 
@@ -247,7 +230,7 @@ class AppFixtures extends Fixture
          $message->setStatus("envoyé");
          $message->setCreatedAt(date_create_from_format('j-M-Y', '19-Feb-2009'));
          $message->setSender($user3);
-         $message->setReceiver($user);
+         $message->setReceiver($user1);
          $manager->persist($message);
          $manager->flush();
 
@@ -255,7 +238,7 @@ class AppFixtures extends Fixture
          $message->setContent($faker->text);
          $message->setStatus("envoyé");
          $message->setCreatedAt(date_create_from_format('j-M-Y', '29-Feb-2009'));
-         $message->setSender($user);
+         $message->setSender($user1);
          $message->setReceiver($user3);
          $manager->persist($message);
          $manager->flush();

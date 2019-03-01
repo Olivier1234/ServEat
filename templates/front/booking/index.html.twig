@@ -26,12 +26,12 @@
                                 <!-- dashboard-list start-->
                                 <div class="dashboard-list">
                                     <div class="dashboard-message">
-                                        <span class="new-dashboard-item"><i class="fa fa-envelope"></i></span>
+                                        <span class="new-dashboard-item"><a href="{{ path('messages_user', {'id': booking.meal.host.id}) }}"><i class="fa fa-envelope"></i></a></span>
                                         <div class="dashboard-message-avatar">
-                                            {% if booking.meal.getPictures() %}
-                                                <img src="/images/favicon/default-meal.png" alt="">
+                                            {% if booking.meal.host.getAvatar() %}
+                                                <img src="{{ booking.meal.host.getAvatar() }}" alt="">
                                             {% else %}
-                                                <img src="/images/favicon/default-meal.png" alt="">
+                                                <img src="/images/favicon/default-avatar.png" alt="">
                                             {% endif %}
                                         </div>
                                         <div class="dashboard-message-text">
@@ -104,10 +104,10 @@
                                 <!-- dashboard-list start-->
                                 <div class="dashboard-list">
                                     <div class="dashboard-message">
-                                        <span class="new-dashboard-item"><i class="fa fa-envelope"></i></span>
+                                        <span class="new-dashboard-item"><a href="{{ path('messages_user', {'id': booking.traveler.id}) }}"><i class="fa fa-envelope"></i></a></span>
                                         <div class="dashboard-message-avatar">
                                             {% if booking.traveler.getAvatar() %}
-                                                <img src="/{{ booking.traveler.getAvatar() }}" alt="">
+                                                <img src="{{ booking.traveler.getAvatar() }}" alt="">
                                             {% else %}
                                                 <img src="/images/favicon/default-avatar.png" alt="">
                                             {% endif %}

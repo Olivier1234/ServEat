@@ -9,15 +9,11 @@ use App\Entity\Traits\IdsTrait;
 use App\Entity\Traits\EntityTimestampableTrait;
 
 
-
-
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MealRepository")
  */
 class Meal
 {
-
     use IdsTrait;
     use EntityTimestampableTrait;
 
@@ -36,7 +32,6 @@ class Meal
      */
     private $price;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\TypeMeal", inversedBy="meals")
      */
@@ -46,7 +41,6 @@ class Meal
      * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="meal",cascade={"remove","persist"})
      */
     private $pictures;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Address")

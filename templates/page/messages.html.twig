@@ -37,8 +37,8 @@
                                                                 <img src="images/avatar/1.jpg" alt="">
                                                             </div>
                                                             <div class="dashboard-message-text">
-                                                                <h4><a href="{{ path('messages_user', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getFullName() : message.sender.getFullName()}}</a> - <span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span></h4>
-                                                                <p style="{{ message.status == "envoyé" ? "font-weight: bold; color: black;" : "" }}" ><b style="color: blue">{{ message.sender == user ? "Vous" : message.sender.getFullName()}} </b>:
+                                                                <h4><a href="{{ path('messages_user', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getUserName() : message.sender.getUserName()}}</a> - <span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span></h4>
+                                                                <p style="{{ message.status == "envoyé" ? "font-weight: bold; color: black;" : "" }}" ><b style="color: blue">{{ message.sender == user ? "Vous" : message.sender.getUserName()}} </b>:
                                                                     {{message.content}}
                                                                 </p>
                                                                 <span class="reply-mail clearfix">{{message.status}}</span>

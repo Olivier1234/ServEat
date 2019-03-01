@@ -32,9 +32,7 @@
                                                 <label>Téléphone<i class="fa fa-phone"></i>  </label>
                                                 <input type="text" placeholder="Téléphone" value="{{ app.user.phone }}"/>
                                                 <label> Adresse <i class="fa fa-map-marker"></i>  </label>
-                                                {% for adress in app.user.addresses %}
-                                                    <input type="text" placeholder="Adresse" value="{{ adress.street }}"/>
-                                                {% endfor %}
+                                                
                                                 <label> Description</label>
                                                 <textarea cols="40" rows="3" placeholder="Dites quelque chose d'intéressant!">{{ app.user.description }}</textarea>
                                             </div>

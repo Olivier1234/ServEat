@@ -186,16 +186,6 @@ class User implements UserInterface
         return (string) $this->firstName." ".$this->lastName;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getFullName(): string
-    {
-        return (string) $this->getFirstName() . " " . $this->getLastName();
-    }
-
 
     /**
      * @see UserInterface
