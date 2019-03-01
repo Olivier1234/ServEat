@@ -9,6 +9,7 @@
 namespace App\Controller\Front;
 
 
+use App\Entity\Meal;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,11 +29,10 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @Route("/", name="search", methods="POST")
+     * @Route("/new", name="search", methods="GET")
      */
-    public function search(Request $request) : Response
+    public function show(Request $request) : Response
     {
-        var_dump($request);
         // $user = new User();
         // $form = $this->createForm(UserType::class, $user);
         // $form->handleRequest($request);
@@ -45,9 +45,46 @@ class SearchController extends AbstractController
         //     return $this->redirectToRoute('front_user_index');
         // }
 
-        // return $this->render('front_user/new.html.twig', [
-        //     'user' => $user,
-        //     'form' => $form->createView(),
-        // ]);
+         return $this->render('front/search.html.twig', []);
+    }
+
+    /**
+     * @Route("/ajax_search", name="ajax_search", methods="GET")
+     */
+    public function ajaxSearch(Request $request)
+    {
+        $posX = $request->query->get('posX');
+        $posY = $request->query->get('posY');
+
+        $meals = $this->getDoctrine()
+            ->getRepository(Meal::class)
+            ->findMealsByPositions($posX, $posY);
+
+        $response = new Response(
+            'Content',
+            Response::HTTP_OK,
+            ['content-type' => 'text/html']
+        );
+        $result = json_encode($meals);
+
+        $response->setContent($result);
+        $response->setCharset('ISO-8859-1');
+        $response->headers->set('Content-Type', 'text/html');
+        $response->prepare($request);
+//        $response->send();
+        return $response;
+        // $user = new User();
+        // $form = $this->createForm(UserType::class, $user);
+        // $form->handleRequest($request);
+
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $entityManager = $this->getDoctrine()->getManager();
+        //     $entityManager->persist($user);
+        //     $entityManager->flush();
+
+        //     return $this->redirectToRoute('front_user_index');
+        // }
+
+//        return $this->render('front/search.html.twig', []);
     }
 }

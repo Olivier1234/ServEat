@@ -262,14 +262,14 @@
 </div>
 <!-- Main end -->
 <!--=============== scripts  ===============-->
-{% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
-{% endblock %}
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/count.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script>
 
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 </body>
 </html>
