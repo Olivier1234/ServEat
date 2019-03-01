@@ -21,6 +21,8 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('firstname')
+            ->add('lastname')
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -37,7 +39,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('roles', CollectionType::class, [
+            /*->add('roles', CollectionType::class, [
                 'entry_type'   => ChoiceType::class,
                 'entry_options'  => [
                     'label' => false,
@@ -46,21 +48,20 @@ class RegistrationFormType extends AbstractType
                         'Super' => 'ROLE_SUPER_ADMIN',
                     ],
                 ],
-      ])
-            ->add('isVerified')
-            ->add('firstname')
-            ->add('lastname')
-            ->add('description')
-            ->add('addresses', CollectionType::class, array(
+      ])*/
+            //->add('isVerified')
+
+            //->add('description')
+            /*->add('addresses', CollectionType::class, array(
                 'entry_type' => AddressType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
-            ))
-            ->add('phone')
-            ->add('birthday')
-            ->add('pseudo')
-            ->add('imgpath', FileType::class, ['label' => 'Picture'])
+            ))*/
+            //->add('phone')
+            //->add('birthday')
+            //->add('pseudo')
+            ->add('avatar', FileType::class, ['label' => 'Picture'])
 
         ;
     }

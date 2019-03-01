@@ -2,10 +2,18 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\Address;
+use App\Entity\Booking;
 use App\Entity\Meal;
+use App\Entity\Notation;
+use App\Form\BookingType;
 use App\Form\MealType;
+use App\Form\NotationType;
 use App\Repository\MealRepository;
+use App\Repository\NotationRepository;
+use App\Repository\AddressRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,17 +21,41 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/meal", name="front_meal_")
- * @Security("is_granted('ROLE_USER')")
+ * //@Security("is_granted('ROLE_ADMIN')")
  */
 class MealController extends AbstractController
 {
     /**
-     * @Route("/", name="index", methods={"GET"})
-     */
+ * @Route("/", name="index", methods={"GET"})
+ */
     public function index(MealRepository $mealRepository): Response
     {
+        //get the user id
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
+        //get the user's notations
+        $meals = $mealRepository->findByHost($user);
+
         return $this->render('front/meal/index.html.twig', [
-            'meals' => $mealRepository->findAll(),
+            'meals' => $meals,
+        ]);
+    }
+
+    /**
+     * @Route("/all", name="all", methods={"GET"})
+     */
+    public function allMeal(MealRepository $mealRepository): Response
+    {
+        //get the user id
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
+
+        //get the user's notations
+        $meals = $mealRepository->findAllBesideMine($user);
+
+        return $this->render('front/meal/all.html.twig', [
+            'meals' => $meals,
         ]);
     }
 
@@ -34,6 +66,19 @@ class MealController extends AbstractController
     {
         $meal = new Meal();
         $form = $this->createForm(MealType::class, $meal);
+
+        $address = new Address();
+        $address->setStreet("test");
+        $formOptions = [
+            'class' => Address::class,
+            'choice_label' => 'street',
+            'query_builder' => function (AddressRepository $userRepository) use ($address) {
+            },
+        ];
+        if (!$meal || null === $meal->getId()) {
+            $form->add('address', EntityType::class, $formOptions);
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -61,6 +106,7 @@ class MealController extends AbstractController
         }
 
 
+
         return $this->render('front/meal/new.html.twig', [
             'meal' => $meal,
             'form' => $form->createView(),
@@ -68,12 +114,51 @@ class MealController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET","POST"})
      */
-    public function show(Meal $meal): Response
+    public function show(Meal $meal,Request $request): Response
     {
+      //get the user id
+      $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+      $user = $this->getUser();
+
+        //to add a notation for the meal
+        $notation = new Notation();
+        $notation->setMeal($meal);
+        $notation->setGiver($user);
+        $notation->setReceiver($meal->getHost());
+        $form = $this->createForm(NotationType::class, $notation);
+        $form->handleRequest($request);
+
+        $booking = new Booking();
+        $booking->setMeal($meal);
+        $booking->setTraveler($user);
+        $formBooking = $this->createForm(BookingType::class, $booking);
+        $formBooking->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($notation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('front_meal_show', ['id'=> $meal->getId()] );
+        }
+
+        if ($formBooking->isSubmitted() && $formBooking->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($booking);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('front_meal_show', ['id'=> $meal->getId()] );
+        }
+
+
         return $this->render('front/meal/show.html.twig', [
             'meal' => $meal,
+            'notation' => $notation,
+            'booking' => $booking,
+            'form' => $form->createView(),
+            'formBooking' => $formBooking->createView(),
         ]);
     }
 

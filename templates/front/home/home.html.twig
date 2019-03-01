@@ -1,28 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-  <!-- wrapper -->	
-            <div id="wrapper">
-                <!-- Content-->   
-                <div class="content">
+
                     <!--section -->
                     <section class="scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
                         <div class="media-container video-parallax" data-scrollax="properties: { translateY: '200px' }">
-                            <div class="bg mob-bg" style="background-image: url(images/bg/1.jpg)"></div>
+                            <div class="bg mob-bg" style="background-image: url({{ asset('images/bg/logo.jpg') }})"></div>
                             <div class="video-container">
                                 <video autoplay  loop muted  class="bgid">
-                                    <source src="video/2.mp4" type="video/mp4">
+                                    <source src="{{ asset('video/2.mp4') }}" type="video/mp4">
                                 </video>
                             </div>
-                                    <!--  
+                                    <!--
                                         Vimeo code
-                                        
-                                         <div  class="background-vimeo" data-vim="97871257"> </div> --> 
-                                    <!--  
-                                        Youtube code 
-                                        
+
+                                         <div  class="background-vimeo" data-vim="97871257"> </div> -->
+                                    <!--
+                                        Youtube code
+
                                          <div  class="background-youtube-wrapper" data-vid="Hg5iNVSp2z8" data-mv="1"> </div> -->
-                            
+
                         </div>
                         <div class="overlay"></div>
                         <div class="hero-section-wrap fl-wrap">
@@ -81,7 +78,7 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/vegan1.jpg"   alt="">
+                                            <img  src="{{ asset('images/all/vegan1.jpg') }}"   alt="">
                                             <div class="listing-counter"><span>10 </span> Emplacements</div>
                                             <div class="listing-item-cat">
                                                 <h3><a href="listing.html">Végétarien</a></h3>
@@ -95,7 +92,7 @@
                                 <div class="gallery-item gallery-item-second">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/dombre_crevettes_antillais.jpg"   alt="">
+                                            <img  src="{{ asset('images/all/dombre_crevettes_antillais.jpg') }}"   alt="">
                                             <div class="listing-counter"><span>6 </span> Emplacements</div>
                                             <div class="listing-item-cat">
                                                 <h3><a href="listing.html">Antillais</a></h3>
@@ -109,7 +106,7 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/italian1.jpg"   alt="">
+                                            <img  src="{{ asset('images/all/italian1.jpg') }}"   alt="">
                                             <div class="listing-counter"><span>21 </span> Emplacements</div>
                                             <div class="listing-item-cat">
                                                 <h3><a href="listing.html">Italien</a></h3>
@@ -123,7 +120,7 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/bacalhau-a-bras-receita-portuguese.jpg"   alt="">
+                                            <img  src="{{ asset('images/all/bacalhau-a-bras-receita-portuguese.jpg') }}"   alt="">
                                             <div class="listing-counter"><span>7 </span> Emplacements</div>
                                             <div class="listing-item-cat">
                                                 <h3><a href="listing.html">Portuguais</a></h3>
@@ -137,7 +134,7 @@
                                 <div class="gallery-item">
                                     <div class="grid-item-holder">
                                         <div class="listing-item-grid">
-                                            <img  src="images/all/tortilla_patatas_spain.jpg"   alt="">
+                                            <img  src="{{ asset('images/all/tortilla_patatas_spain.jpg') }}"   alt="">
                                             <div class="listing-counter"><span>15 </span> Emplacements</div>
                                             <div class="listing-item-cat">
                                                 <h3><a href="listing.html">Espagnol</a></h3>
@@ -157,13 +154,13 @@
                     <section class="gray-section">
                         <div class="container">
                             <div class="section-title">
-                                <h2>Popular listings</h2>
-                                <div class="section-subtitle">Best Listings</div>
+                                <h2>Annonces populaires</h2>
+                                <div class="section-subtitle">Meilleurs annonces</div>
                                 <span class="section-separator"></span>
                                 <p>Nulla tristique mi a massa convallis cursus. Nulla eu mi magna.</p>
                             </div>
                         </div>
-                        <!-- carousel --> 
+                        <!-- carousel -->
                         <div class="list-carousel fl-wrap card-listing ">
                             <!--listing-carousel-->
                             <div class="listing-carousel  fl-wrap ">
@@ -173,17 +170,17 @@
                                     <div class="listing-item">
                                         <article class="geodir-category-listing fl-wrap">
                                             <div class="geodir-category-img">
-                                                <img src="images/all/1.jpg" alt="">
+                                                <img src="{{ asset('images/all/1.jpg') }}" alt="">
                                                 <div class="overlay"></div>
                                                 <div class="list-post-counter"><span>4</span><i class="fa fa-heart"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap">
-                                                <a class="listing-geodir-category" href="listing.html">Retail</a>
-                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                <a class="listing-geodir-category" href="listing.html">Mexicain</a>
+                                                <div class="listing-avatar"><a href="author-single.html"><img src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
                                                     <span class="avatar-tooltip">Added By  <strong>Lisa Smith</strong></span>
                                                 </div>
-                                                <h3><a href="listing-single.html">Event in City Mol</a></h3>
-                                                <p>Sed interdum metus at nisi tempor laoreet.  </p>
+                                                <h3><a href="listing-single.html">La Belle Epoque</a></h3>
+                                                <p>La Belle Epoque.  </p>
                                                 <div class="geodir-category-options fl-wrap">
                                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
                                                         <span>(7 reviews)</span>
@@ -193,7 +190,7 @@
                                             </div>
                                         </article>
                                     </div>
-                                    <!-- listing-item end-->                         
+                                    <!-- listing-item end-->
                                 </div>
                                 <!--slick-slide-item end-->
                                 <!--slick-slide-item-->
@@ -202,13 +199,13 @@
                                     <div class="listing-item">
                                         <article class="geodir-category-listing fl-wrap">
                                             <div class="geodir-category-img">
-                                                <img src="images/all/1.jpg" alt="">
+                                                <img src="{{ asset('images/all/1.jpg') }}" alt="">
                                                 <div class="overlay"></div>
                                                 <div class="list-post-counter"><span>15</span><i class="fa fa-heart"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap">
-                                                <a class="listing-geodir-category" href="listing.html">Event</a>
-                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                <a class="listing-geodir-category" href="listing.html">Chinois</a>
+                                                <div class="listing-avatar"><a href="author-single.html"><img src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
                                                     <span class="avatar-tooltip">Added By  <strong>Mark Rose</strong></span>
                                                 </div>
                                                 <h3><a href="listing-single.html">Cafe "Lollipop"</a></h3>
@@ -222,26 +219,26 @@
                                             </div>
                                         </article>
                                     </div>
-                                    <!-- listing-item end-->  
+                                    <!-- listing-item end-->
                                 </div>
-                                <!--slick-slide-item end-->  
+                                <!--slick-slide-item end-->
                                 <!--slick-slide-item-->
                                 <div class="slick-slide-item">
                                     <!-- listing-item -->
                                     <div class="listing-item">
                                         <article class="geodir-category-listing fl-wrap">
                                             <div class="geodir-category-img">
-                                                <img src="images/all/1.jpg" alt="">
+                                                <img src="{{ asset('images/all/plat5.png') }}" alt="">
                                                 <div class="overlay"></div>
                                                 <div class="list-post-counter"><span>13</span><i class="fa fa-heart"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap">
-                                                <a class="listing-geodir-category" href="listing.html">Gym </a>
-                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                <a class="listing-geodir-category" href="listing.html">Japonais </a>
+                                                <div class="listing-avatar"><a href="author-single.html"><img src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
                                                     <span class="avatar-tooltip">Added By  <strong>Nasty Wood</strong></span>
                                                 </div>
-                                                <h3><a href="listing-single.html">Gym In Brooklyn</a></h3>
-                                                <p>Morbiaccumsan ipsum velit tincidunt . </p>
+                                                <h3><a href="listing-single.html">Loly of LolyPop Kitchen</a></h3>
+                                                <p>À chacune de mes escapades Parisiennes, je m'offre le plaisir de manger Vegan chez Loly . Toujours délicieux et un accueil adorable !.je recommande à 100% </p>
                                                 <div class="geodir-category-options fl-wrap">
                                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="3">
                                                         <span>(16 reviews)</span>
@@ -251,26 +248,26 @@
                                             </div>
                                         </article>
                                     </div>
-                                    <!-- listing-item end--> 
+                                    <!-- listing-item end-->
                                 </div>
-                                <!--slick-slide-item end-->                                
+                                <!--slick-slide-item end-->
                                 <!--slick-slide-item-->
                                 <div class="slick-slide-item">
                                     <!-- listing-item -->
                                     <div class="listing-item">
                                         <article class="geodir-category-listing fl-wrap">
                                             <div class="geodir-category-img">
-                                                <img src="images/all/1.jpg" alt="">
+                                                <img src="{{ asset('images/all/plat10.png') }}" alt="">
                                                 <div class="overlay"></div>
                                                 <div class="list-post-counter"><span>3</span><i class="fa fa-heart"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap">
-                                                <a class="listing-geodir-category" href="listing.html">Shops</a>
-                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                <a class="listing-geodir-category" href="listing.html">Francais</a>
+                                                <div class="listing-avatar"><a href="author-single.html"><img src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
                                                     <span class="avatar-tooltip">Added By  <strong>Nasty Wood</strong></span>
                                                 </div>
-                                                <h3><a href="listing-single.html">Shop in Boutique Zone</a></h3>
-                                                <p>Morbiaccumsan ipsum velit tincidunt . </p>
+                                                <h3><a href="listing-single.html">Francoise of Mercy Fanny</a></h3>
+                                                <p>L'acceuil est super. Les plats sont tres copieux. L'attente n'est pas trop longue. Je vous conseille le boeuf. Et la tarte aux pommes </p>
                                                 <div class="geodir-category-options fl-wrap">
                                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="4">
                                                         <span>(6 reviews)</span>
@@ -280,26 +277,26 @@
                                             </div>
                                         </article>
                                     </div>
-                                    <!-- listing-item end--> 
+                                    <!-- listing-item end-->
                                 </div>
-                                <!--slick-slide-item end-->                                
+                                <!--slick-slide-item end-->
                                 <!--slick-slide-item-->
                                 <div class="slick-slide-item">
                                     <!-- listing-item -->
                                     <div class="listing-item">
                                         <article class="geodir-category-listing fl-wrap">
                                             <div class="geodir-category-img">
-                                                <img src="images/all/1.jpg" alt="">
+                                                <img src="{{ asset('images/all/plat12.png') }}" alt="">
                                                 <div class="overlay"></div>
                                                 <div class="list-post-counter"><span>35</span><i class="fa fa-heart"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap">
-                                                <a class="listing-geodir-category" href="listing.html">Cars</a>
-                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                <a class="listing-geodir-category" href="listing.html"> Italien</a>
+                                                <div class="listing-avatar"><a href="author-single.html"><img src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
                                                     <span class="avatar-tooltip">Added By  <strong>Kliff Antony</strong></span>
                                                 </div>
-                                                <h3><a href="listing-single.html">Best deal For the Cars</a></h3>
-                                                <p>Lorem ipsum gravida nibh vel velit.</p>
+                                                <h3><a href="listing-single.html">Diogo & Lizzie of Dili Gastronomy</a></h3>
+                                                <p>Je dinais pour la première fois chez l'habitant et ce fut une grande réussite avec l'avantage d'avoir une nourriture excellente et d'être en petit comité ! </p>
                                                 <div class="geodir-category-options fl-wrap">
                                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
                                                         <span>(11 reviews)</span>
@@ -309,26 +306,26 @@
                                             </div>
                                         </article>
                                     </div>
-                                    <!-- listing-item end-->  
+                                    <!-- listing-item end-->
                                 </div>
-                                <!--slick-slide-item end-->                                                             
+                                <!--slick-slide-item end-->
                                 <!--slick-slide-item-->
                                 <div class="slick-slide-item">
                                     <!-- listing-item -->
                                     <div class="listing-item">
                                         <article class="geodir-category-listing fl-wrap">
                                             <div class="geodir-category-img">
-                                                <img src="images/all/1.jpg" alt="">
+                                                <img src="{{ asset('images/all/plat14.png') }}" alt="">
                                                 <div class="overlay"></div>
                                                 <div class="list-post-counter"><span>553</span><i class="fa fa-heart"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap">
-                                                <a class="listing-geodir-category" href="listing.html">Restourants</a>
-                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                <a class="listing-geodir-category" href="listing.html">Vegetarien</a>
+                                                <div class="listing-avatar"><a href="author-single.html"><img src="{{ asset('images/avatar/1.jpg') }}" alt=""></a>
                                                     <span class="avatar-tooltip">Added By  <strong>Adam Koncy</strong></span>
                                                 </div>
-                                                <h3><a href="listing-single.html">Luxury Restourant</a></h3>
-                                                <p>Sed non neque elit. Sed ut imperdie.</p>
+                                                <h3><a href="listing-single.html">Alexis of Legumes & Vegetables</a></h3>
+                                                <p>Un chef français talentueux prépare un repas pour 10 personnes dans un appartement privé.En fait, c'était encore mieux que prévu. Tout était remarquable.</p>
                                                 <div class="geodir-category-options fl-wrap">
                                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
                                                         <span>(7 reviews)</span>
@@ -338,15 +335,15 @@
                                             </div>
                                         </article>
                                     </div>
-                                    <!-- listing-item end-->   
+                                    <!-- listing-item end-->
                                 </div>
-                                <!--slick-slide-item end-->                              
+                                <!--slick-slide-item end-->
                             </div>
                             <!--listing-carousel end-->
                             <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
                             <div class="swiper-button-next sw-btn"><i class="fa fa-long-arrow-right"></i></div>
                         </div>
-                        <!--  carousel end--> 
+                        <!--  carousel end-->
                     </section>
                     <!-- section end -->
                     <!--section -->
@@ -356,12 +353,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="images-collage fl-wrap">
-                                        <div class="images-collage-title">City<span>Book</span></div>
-                                        <div class="images-collage-main images-collage-item"><img src="images/avatar/1.jpg" alt=""></div>
-                                        <div class="images-collage-other images-collage-item" data-position-left="23" data-position-top="10" data-zindex="2"><img src="images/avatar/1.jpg" alt=""></div>
-                                        <div class="images-collage-other images-collage-item" data-position-left="62" data-position-top="54" data-zindex="5"><img src="images/avatar/1.jpg" alt=""></div>
-                                        <div class="images-collage-other images-collage-item anim-col" data-position-left="18" data-position-top="70" data-zindex="11"><img src="images/avatar/1.jpg" alt=""></div>
-                                        <div class="images-collage-other images-collage-item" data-position-left="37" data-position-top="90" data-zindex="1"><img src="images/avatar/1.jpg" alt=""></div>
+                                        <div class="images-collage-title">Serv<span>eat</span></div>
+                                        <div class="images-collage-main images-collage-item"><img src="{{ asset('images/all/smile1.jpg') }}" alt=""></div>
+                                        <div class="images-collage-other images-collage-item" data-position-left="23" data-position-top="10" data-zindex="2"><img src="{{ asset('images/all/smile5.jpg') }}" alt=""></div>
+                                        <div class="images-collage-other images-collage-item" data-position-left="62" data-position-top="54" data-zindex="5"><img src="{{ asset('images/all/smile2.jpg') }}" alt=""></div>
+                                        <div class="images-collage-other images-collage-item anim-col" data-position-left="18" data-position-top="70" data-zindex="11"><img src="{{ asset('images/all/smile3.jpg') }}" alt=""></div>
+                                        <div class="images-collage-other images-collage-item" data-position-left="37" data-position-top="90" data-zindex="1"><img src="{{ asset('images/all/smile4.jpg') }}" alt=""></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -374,15 +371,15 @@
                             </div>
                         </div>
                     </section>
-                    <!--section   end -->  
-                    <!--section -->  
+                    <!--section   end -->
+                    <!--section -->
                     <section>
                         <div class="container">
                             <div class="section-title">
-                                <h2>How it works</h2>
-                                <div class="section-subtitle">Discover & Connect </div>
+                                <h2>Comment ça marche</h2>
+                                <div class="section-subtitle"></div>
                                 <span class="section-separator"></span>
-                                <p>Explore some of the best tips from around the world.</p>
+                                <p></p>
                             </div>
                             <!--process-wrap  -->
                             <div class="process-wrap fl-wrap">
@@ -391,8 +388,8 @@
                                         <div class="process-item">
                                             <span class="process-count">01 . </span>
                                             <div class="time-line-icon"><i class="fa fa-map-o"></i></div>
-                                            <h4> Find Interesting Place</h4>
-                                            <p>Proin dapibus nisl ornare diam varius tempus. Aenean a quam luctus, finibus tellus ut, convallis eros sollicitudin turpis.</p>
+                                            <h4>Tu recherche un restaurant</h4>
+                                            <p>A l'aide de multiple filtre, vous pouvez localiser LE restaurant qu'il vous faut.</p>
                                         </div>
                                         <span class="pr-dec"></span>
                                     </li>
@@ -400,8 +397,8 @@
                                         <div class="process-item">
                                             <span class="process-count">02 .</span>
                                             <div class="time-line-icon"><i class="fa fa-envelope-open-o"></i></div>
-                                            <h4> Contact a Few Owners</h4>
-                                            <p>Faucibus ante, in porttitor tellus blandit et. Phasellus tincidunt metus lectus sollicitudin feugiat pharetra consectetur.</p>
+                                            <h4> Je reserve ma place</h4>
+                                            <p>La reservation se fait en un clin d'oeil.</p>
                                         </div>
                                         <span class="pr-dec"></span>
                                     </li>
@@ -409,7 +406,7 @@
                                         <div class="process-item">
                                             <span class="process-count">03 .</span>
                                             <div class="time-line-icon"><i class="fa fa-hand-peace-o"></i></div>
-                                            <h4> Make a Listing</h4>
+                                            <h4> Je deguste mon plat</h4>
                                             <p>Maecenas pulvinar, risus in facilisis dignissim, quam nisi hendrerit nulla, id vestibulum metus nullam viverra porta.</p>
                                         </div>
                                     </li>
@@ -420,14 +417,13 @@
                         </div>
                     </section>
                     <section class="parallax-section" data-scrollax-parent="true">
-                        <div class="bg"  data-bg="images/bg/1.jpg" data-scrollax="properties: { translateY: '100px' }"></div>
+                        <div class="bg"  data-bg="{{ asset('images/bg/1.jpg') }}" data-scrollax="properties: { translateY: '100px' }"></div>
                         <div class="overlay co lor-overlay"></div>
                         <!--container-->
                         <div class="container">
                             <div class="intro-item fl-wrap">
-                                <h2>Visit the Best Places In Your City</h2>
-                                <h3>Find great places , hotels , restourants , shops.</h3>
-                                <a class="trs-btn" href="#">Add Listing + </a>
+                                <h2>Trouvez les meilleurs restaurant amateurs.</h2>
+                                <a class="trs-btn" href="#">Créer un repas </a>
                             </div>
                         </div>
                     </section>
@@ -472,7 +468,7 @@
                                         <h6>Won Awards</h6>
                                     </div>
                                 </div>
-                                <!-- inline-facts end -->                            
+                                <!-- inline-facts end -->
                                 <!-- inline-facts  -->
                                 <div class="inline-facts-wrap">
                                     <div class="inline-facts">
@@ -484,7 +480,7 @@
                                         <h6>New Listing Every Week</h6>
                                     </div>
                                 </div>
-                                <!-- inline-facts end -->                             
+                                <!-- inline-facts end -->
                             </div>
                         </div>
                     </section>
@@ -493,13 +489,12 @@
                     <section>
                         <div class="container">
                             <div class="section-title">
-                                <h2>Testimonials</h2>
+                                <h2>Témoignages</h2>
                                 <div class="section-subtitle">Clients Reviews</div>
                                 <span class="section-separator"></span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar.</p>
                             </div>
                         </div>
-                        <!-- testimonials-carousel --> 
+                        <!-- testimonials-carousel -->
                         <div class="carousel fl-wrap">
                             <!--testimonials-carousel-->
                             <div class="testimonials-carousel single-carousel fl-wrap">
@@ -507,10 +502,10 @@
                                 <div class="slick-slide-item">
                                     <div class="testimonilas-text">
                                         <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi arch itecto beatae vitae dicta sunt explicabo. </p>
+                                        <p>Magnifique accueil! Cuisine d'un grand chef ! Ambiance sympathique ! Formule midi inclut boissons et dessert, tout ça pour seulement 13€ , mais les portions généreuses.</p>
                                     </div>
                                     <div class="testimonilas-avatar-item">
-                                        <div class="testimonilas-avatar"><img src="images/avatar/1.jpg" alt=""></div>
+                                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile1.jpg') }}" alt=""></div>
                                         <h4>Lisa Noory</h4>
                                         <span>Restaurant Owner</span>
                                     </div>
@@ -520,10 +515,10 @@
                                 <div class="slick-slide-item">
                                     <div class="testimonilas-text">
                                         <div class="listing-rating card-popup-rainingvis" data-starrating2="4"> </div>
-                                        <p>Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.</p>
+                                        <p>Habituer depuis peut j'y retourne les yeux fermer , la nourriture est de très bonne qualité service impeccable l'accueil parfaite ni trop ni pas assez , je ne trouve pas sa dans les autres restaurants !</p>
                                     </div>
                                     <div class="testimonilas-avatar-item">
-                                        <div class="testimonilas-avatar"><img src="images/avatar/1.jpg" alt=""></div>
+                                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile2.jpg') }}" alt=""></div>
                                         <h4>Antony Moore</h4>
                                         <span>Restaurant Owner</span>
                                     </div>
@@ -533,28 +528,28 @@
                                 <div class="slick-slide-item">
                                     <div class="testimonilas-text">
                                         <div class="listing-rating card-popup-rainingvis" data-starrating2="5"> </div>
-                                        <p>Feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te odio dignissim qui blandit praesent.</p>
+                                        <p>restaurant sympathique , avec un accueil plaisant , la cuisine est très bonne , un riz excellent , des saveurs a découvrir .</p>
                                     </div>
                                     <div class="testimonilas-avatar-item">
-                                        <div class="testimonilas-avatar"><img src="images/avatar/1.jpg" alt=""></div>
-                                        <h4>Austin Harisson</h4>
+                                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile3.jpg') }}" alt=""></div>
+                                        <h4>Camila Harisson</h4>
                                         <span>Restaurant Owner</span>
                                     </div>
                                 </div>
-                                <!--slick-slide-item end-->                      
+                                <!--slick-slide-item end-->
                                 <!--slick-slide-item-->
                                 <div class="slick-slide-item">
                                     <div class="testimonilas-text">
                                         <div class="listing-rating card-popup-rainingvis" data-starrating2="4"> </div>
-                                        <p>Qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram seacula quarta decima et quinta decima.</p>
+                                        <p>Nous mangeons régulièrement dans ce restaurant depuis des années, accueil très chaleureux, service assez rapide même en cas de "Reuch" (contrairement à la livraison très longue), plats tres bons le seul hic c'est le prix qui ne cesse d'augmenter d'année en année.</p>
                                     </div>
                                     <div class="testimonilas-avatar-item">
-                                        <div class="testimonilas-avatar"><img src="images/avatar/1.jpg" alt=""></div>
+                                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile5.jpg') }}" alt=""></div>
                                         <h4>Garry Colonsi</h4>
                                         <span>Restaurant Owner</span>
                                     </div>
                                 </div>
-                                <!--slick-slide-item end-->   
+                                <!--slick-slide-item end-->
                             </div>
                             <!--testimonials-carousel end-->
                             <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
@@ -568,12 +563,12 @@
                         <div class="container">
                             <div class="fl-wrap spons-list">
                                 <ul class="client-carousel">
-                                    <li><a href="#" target="_blank"><img src="images/clients/1.png" alt=""></a></li>
-                                    <li><a href="#" target="_blank"><img src="images/clients/1.png" alt=""></a></li>
-                                    <li><a href="#" target="_blank"><img src="images/clients/1.png" alt=""></a></li>
-                                    <li><a href="#" target="_blank"><img src="images/clients/1.png" alt=""></a></li>
-                                    <li><a href="#" target="_blank"><img src="images/clients/1.png" alt=""></a></li>
-                                    <li><a href="#" target="_blank"><img src="images/clients/1.png" alt=""></a></li>
+                                    <li><a href="#" target="_blank"><img src="{{ asset('images/clients/1.png') }}" alt=""></a></li>
+                                    <li><a href="#" target="_blank"><img src="{{ asset('images/clients/1.png') }}" alt=""></a></li>
+                                    <li><a href="#" target="_blank"><img src="{{ asset('images/clients/1.png') }}" alt=""></a></li>
+                                    <li><a href="#" target="_blank"><img src="{{ asset('images/clients/1.png') }}" alt=""></a></li>
+                                    <li><a href="#" target="_blank"><img src="{{ asset('images/clients/1.png') }}" alt=""></a></li>
+                                    <li><a href="#" target="_blank"><img src="{{ asset('images/clients/1.png') }}" alt=""></a></li>
                                 </ul>
                                 <div class="sp-cont sp-cont-prev"><i class="fa fa-angle-left"></i></div>
                                 <div class="sp-cont sp-cont-next"><i class="fa fa-angle-right"></i></div>
@@ -581,82 +576,11 @@
                         </div>
                     </section>
                     <!-- section end -->
-                    <!--section -->
-                    <section>
-                        <div class="container">
-                            <div class="section-title">
-                                <h2>Tips & Articles</h2>
-                                <div class="section-subtitle">From the blog.</div>
-                                <span class="section-separator"></span>
-                                <p>Browse the latest articles from our blog.</p>
-                            </div>
-                            <div class="row home-posts">
-                                <div class="col-md-4">
-                                    <article class="card-post">
-                                        <div class="card-post-img fl-wrap">
-                                            <a href="blog-single.html"><img src="images/all/1.jpg"   alt=""></a>
-                                        </div>
-                                        <div class="card-post-content fl-wrap">
-                                            <h3><a href="blog-single.html">Gallery Post</a></h3>
-                                            <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. </p>
-                                            <div class="post-author"><a href="#"><img src="images/avatar/1.jpg" alt=""><span>By , Alisa Noory</span></a></div>
-                                            <div class="post-opt">
-                                                <ul>
-                                                    <li><i class="fa fa-calendar-check-o"></i> <span>25 April 2018</span></li>
-                                                    <li><i class="fa fa-eye"></i> <span>264</span></li>
-                                                    <li><i class="fa fa-tags"></i> <a href="#">Photography</a>  </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="col-md-4">
-                                    <article class="card-post">
-                                        <div class="card-post-img fl-wrap">
-                                            <a href="blog-single.html"><img  src="images/all/1.jpg"   alt=""></a>
-                                        </div>
-                                        <div class="card-post-content fl-wrap">
-                                            <h3><a href="blog-single.html">Video and gallery post</a></h3>
-                                            <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. </p>
-                                            <div class="post-author"><a href="#"><img src="images/avatar/1.jpg" alt=""><span>By , Mery Lynn</span></a></div>
-                                            <div class="post-opt">
-                                                <ul>
-                                                    <li><i class="fa fa-calendar-check-o"></i> <span>25 April 2018</span></li>
-                                                    <li><i class="fa fa-eye"></i> <span>264</span></li>
-                                                    <li><i class="fa fa-tags"></i> <a href="#">Design</a>  </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                                <div class="col-md-4">
-                                    <article class="card-post">
-                                        <div class="card-post-img fl-wrap">
-                                            <a href="blog-single.html"><img  src="images/all/1.jpg"   alt=""></a>
-                                        </div>
-                                        <div class="card-post-content fl-wrap">
-                                            <h3><a href="blog-single.html">Post Article</a></h3>
-                                            <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam suscipit commodo gravida. </p>
-                                            <div class="post-author"><a href="#"><img src="images/avatar/1.jpg" alt=""><span>By , Garry Dee</span></a></div>
-                                            <div class="post-opt">
-                                                <ul>
-                                                    <li><i class="fa fa-calendar-check-o"></i> <span>25 April 2018</span></li>
-                                                    <li><i class="fa fa-eye"></i> <span>264</span></li>
-                                                    <li><i class="fa fa-tags"></i> <a href="#">Stories</a>  </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </div>
-                            </div>
-                            <a href="blog.html" class="btn  big-btn circle-btn  dec-btn color-bg flat-btn">Read All<i class="fa fa-eye"></i></a>
-                        </div>
-                    </section>
-                    <!-- section end -->
+
                     <!--section -->
                     <section class="gradient-bg">
                         <div class="cirle-bg">
-                            <div class="bg" data-bg="images/bg/circle.png"></div>
+                            <div class="bg" data-bg="{{ asset('images/bg/circle.png') }}"></div>
                         </div>
                         <div class="container">
                             <div class="join-wrap fl-wrap">
@@ -665,14 +589,12 @@
                                         <h3>Do You Have Questions ?</h3>
                                         <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
                                     </div>
-                                    <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i class="fa fa-envelope-o"></i></a></div>
+                                    <div class="col-md-4"><a href="{{ path('contact') }}" class="join-wrap-btn">Get In Touch <i class="fa fa-envelope-o"></i></a></div>
                                 </div>
                             </div>
                         </div>
                     </section>
-                </div>
-                <!-- Content end -->      
-            </div>
+
             <!-- wrapper end -->
             <!--register form -->
             <div class="main-register-wrap modal">
@@ -697,10 +619,10 @@
                                     <div class="custom-form">
                                         <form method="post"  name="registerform">
                                             <label>Username or Email Address * </label>
-                                            <input name="email" type="text"   onClick="this.select()" value=""> 
+                                            <input name="email" type="text"   onClick="this.select()" value="">
                                             <label >Password * </label>
-                                            <input name="password" type="password"   onClick="this.select()" value="" > 
-                                            <button type="submit"  class="log-submit-btn"><span>Log In</span></button> 
+                                            <input name="password" type="password"   onClick="this.select()" value="" >
+                                            <button type="submit"  class="log-submit-btn"><span>Log In</span></button>
                                             <div class="clearfix"></div>
                                             <div class="filter-tags">
                                                 <input id="check-a" type="checkbox" name="check">
@@ -717,14 +639,14 @@
                                         <div class="custom-form">
                                             <form method="post"   name="registerform" class="main-register-form" id="main-register-form2">
                                                 <label >First Name * </label>
-                                                <input name="name" type="text"   onClick="this.select()" value=""> 
+                                                <input name="name" type="text"   onClick="this.select()" value="">
                                                 <label>Second Name *</label>
                                                 <input name="name2" type="text"  onClick="this.select()" value="">
                                                 <label>Email Address *</label>
-                                                <input name="email" type="text"  onClick="this.select()" value="">                                              
+                                                <input name="email" type="text"  onClick="this.select()" value="">
                                                 <label >Password *</label>
-                                                <input name="password" type="password"   onClick="this.select()" value="" > 
-                                                <button type="submit"     class="log-submit-btn"  ><span>Register</span></button> 
+                                                <input name="password" type="password"   onClick="this.select()" value="" >
+                                                <button type="submit"     class="log-submit-btn"  ><span>Register</span></button>
                                             </form>
                                         </div>
                                     </div>
@@ -736,5 +658,5 @@
             </div>
             <!--register form end -->
             <a class="to-top"><i class="fa fa-angle-up"></i></a>
-        
+
 {% endblock %}

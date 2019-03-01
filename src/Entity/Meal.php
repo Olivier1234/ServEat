@@ -5,9 +5,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Traits\IdsTraits;
-
-
+use App\Entity\Traits\IdsTrait;
+use App\Entity\Traits\EntityTimestampableTrait;
 
 
 /**
@@ -15,8 +14,8 @@ use App\Entity\Traits\IdsTraits;
  */
 class Meal
 {
-
-    use IdsTraits;
+    use IdsTrait;
+    use EntityTimestampableTrait;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -33,17 +32,15 @@ class Meal
      */
     private $price;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\TypeMeal", inversedBy="meals")
      */
     private $types;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="meal",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="meal",cascade={"remove","persist"})
      */
     private $pictures;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Address")
@@ -66,6 +63,7 @@ class Meal
     private $host;
 
     /**
+     *
      * @ORM\Column(type="datetime")
      */
     private $dateMeal;
@@ -74,7 +72,6 @@ class Meal
      * @ORM\Column(type="integer")
      */
     private $maxTraveller;
-
 
 
     public function __construct()

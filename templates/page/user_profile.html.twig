@@ -2,7 +2,7 @@
 
 
 {% block body %}
-                    <!--section --> 
+                    <!--section -->
                     <section>
                         <!-- container -->
                         <div class="container">
@@ -14,36 +14,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <div class="fixed-bar fl-wrap">
-                                            <div class="user-profile-menu-wrap fl-wrap">
-                                                <!-- user-profile-menu-->
-                                                <div class="user-profile-menu">
-                                                    <h3>Main</h3>
-                                                    <ul>
-                                                    	<li><a href="dashboard.html"><i class="fa fa-gears"></i>Tableau de bord</a></li>															
-                                                        <li><a href="dashboard-myprofile.html" class="user-profile-act"><i class="fa fa-user-o"></i> Modifier Profil</a></li>
-                                                        <li><a href="dashboard-messages.html"><i class="fa fa-envelope-o"></i> Messages <span>3</span></a></li>
-                                                        <li><a href="dashboard-password.html"><i class="fa fa-unlock-alt"></i>Changer le Mot de Passe</a></li>
-                                                    </ul>
-                                                </div>
-                                                <!-- user-profile-menu end-->
-                                                <!-- user-profile-menu-->
-                                                <div class="user-profile-menu">
-                                                    <h3>Annonces</h3>
-                                                    <ul>
-                                                        <li><a href="dashboard-listing-table.html"><i class="fa fa-th-list"></i> Mes annonces  </a></li>
-                                                        <li><a href="dashboard-bookings.html"> <i class="fa fa-calendar-check-o"></i> Réservations <span>2</span></a></li>
-                                                        <li><a href="dashboard-review.html"><i class="fa fa-comments-o"></i> Commentaires </a></li>
-                                                        <li><a href="dashboard-add-listing.html"><i class="fa fa-plus-square-o"></i> Add New</a></li>
-                                                    </ul>
-                                                </div>
-                                                <!-- user-profile-menu end-->                                        
-                                                <a href="#" class="log-out-btn">Deconnexion</a>
-                                            </div>
-                                        </div>
+                                        {% include 'partials/leftPanel.html.twig' %}
                                     </div>
                                     <div class="col-md-7">
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container-->
                                         <div class="profile-edit-container">
                                             <div class="profile-edit-header fl-wrap">
                                                 <h4>Mon compte</h4>
@@ -58,16 +32,14 @@
                                                 <label>Téléphone<i class="fa fa-phone"></i>  </label>
                                                 <input type="text" placeholder="Téléphone" value="{{ app.user.phone }}"/>
                                                 <label> Adresse <i class="fa fa-map-marker"></i>  </label>
-                                                {% for adress in app.user.addresses %}
-                                                    <input type="text" placeholder="Adresse" value="{{ adress.street }}"/>
-                                                {% endfor %}
+                                                
                                                 <label> Description</label>
                                                 <textarea cols="40" rows="3" placeholder="Dites quelque chose d'intéressant!">{{ app.user.description }}</textarea>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end--> 
-                                        									
-                                        <!-- profile-edit-container--> 
+                                        <!-- profile-edit-container end-->
+
+                                        <!-- profile-edit-container
                                         <div class="profile-edit-container">
                                             <div class="profile-edit-header fl-wrap" style="margin-top:30px">
                                                 <h4>Social</h4>
@@ -84,14 +56,16 @@
                                                 <button class="btn  big-btn  color-bg flat-btn">Sauvegarder<i class="fa fa-angle-right"></i></button>
                                             </div>
                                         </div>
-                                        <!-- profile-edit-container end-->                                        
+                                        <!-- profile-edit-container end-->
                                     </div>
                                     <div class="col-md-2">
                                         <div class="edit-profile-photo fl-wrap">
-                                            <img src="{{ app.user.imgpath }}" class="respimg" alt="image profil" width="200" height="200">
+                                            <img src="{{ asset(app.user.avatar) }}" class="respimg" alt="image profil" width="200" height="200">
                                             <div class="change-photo-btn">
                                                 <div class="photoUpload">
                                                     <span><i class="fa fa-upload"></i> Envoyer Photo</span>
+                                                    <ul class="pictures" data-prototype='<div><div id="registration_form_addresses___name__"><div><label for="registration_form_addresses___name___street" class="required">Street</label><input type="text" id="registration_form_addresses___name___street" name="registration_form[addresses][__name__][street]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___zc" class="required">Zc</label><input type="text" id="registration_form_addresses___name___zc" name="registration_form[addresses][__name__][zc]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___city" class="required">City</label><input type="text" id="registration_form_addresses___name___city" name="registration_form[addresses][__name__][city]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___country" class="required">Country</label><input type="text" id="registration_form_addresses___name___country" name="registration_form[addresses][__name__][country]" required="required" maxlength="255" /></div></div></div>'>
+                                                    </ul>
                                                     <input type="file" class="upload">
                                                 </div>
                                             </div>
@@ -113,4 +87,56 @@
                     </section>
                     <!-- section end -->
             <a class="to-top"><i class="fa fa-angle-up"></i></a>
+
+            <script>
+                var $collectionHolder;
+
+                // setup an "add a tag" link
+                var $addPictureButton = $('<button type="button" class="add_picture_link">Add a picture</button>');
+                var $newLinkLi = $('<li></li>').append($addPictureButton);
+
+                jQuery(document).ready(function() {
+        // Get the ul that holds the collection of tags
+                    $collectionHolder = $('ul.pictures');
+
+        // add the "add a tag" anchor and li to the tags ul
+                    $collectionHolder.append($newLinkLi);
+
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+                    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+                    $addPictureButton.on('click', function(e) {
+        // add a new tag form (see next code block)
+                        console.log('test');
+                        addPictureForm($collectionHolder, $newLinkLi);
+                    });
+                });
+
+                function addPictureForm($collectionHolder, $newLinkLi) {
+                    // Get the data-prototype explained earlier
+                    var prototype = $collectionHolder.data('prototype');
+
+                    // get the new index
+                    var index = $collectionHolder.data('index');
+
+                    var newForm = prototype;
+                    // You need this only if you didn't set 'label' => false in your tags field in TaskType
+                    // Replace '__name__label__' in the prototype's HTML to
+                    // instead be a number based on how many items we have
+                    // newForm = newForm.replace(/__name__label__/g, index);
+
+                    // Replace '__name__' in the prototype's HTML to
+                    // instead be a number based on how many items we have
+                    newForm = newForm.replace(/__name__/g, index);
+
+                    // increase the index with one for the next item
+                    $collectionHolder.data('index', index + 1);
+
+                    // Display the form in the page in an li, before the "Add a tag" link li
+                    var $newFormLi = $('<li></li>').append(newForm);
+                    $newLinkLi.before($newFormLi);
+                }
+
+            </script>
 {% endblock %}

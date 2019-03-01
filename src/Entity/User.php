@@ -30,7 +30,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", nullable=true)
      */
     private $roles = [];
 
@@ -46,12 +46,12 @@ class User implements UserInterface
     private $isVerified;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $lastName;
 
@@ -85,6 +85,14 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pseudo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank(message="Please, upload the file")
+     * @Assert\File(mimeTypes={ "image/jpeg" } )
+     */
+    private $avatar;
+
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Message", mappedBy="sender")
      */
@@ -134,13 +142,6 @@ class User implements UserInterface
      */
     private $reports;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message="Please, upload the file")
-     * @Assert\File(mimeTypes={ "image/jpeg" } )
-     */
-    private $imgpath;
-
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -155,6 +156,7 @@ class User implements UserInterface
         $this->claims = new ArrayCollection();
         $this->referenceDocuments = new ArrayCollection();
         $this->reports = new ArrayCollection();
+        $this->isVerified = "No";
     }
 
     public function getId(): ?int
@@ -179,10 +181,11 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUserName(): string
     {
-        return (string) $this->email;
+        return (string) $this->firstName." ".$this->lastName;
     }
+
 
     /**
      * @see UserInterface
@@ -317,7 +320,6 @@ class User implements UserInterface
 
     public function addAddress(Address $address): self
     {
-        dump($address);die();
         if (!$this->addresses->contains($address)) {
             $this->addresses[] = $address;
             $address->setHost($this);
@@ -508,14 +510,14 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getImgpath()
+    public function getAvatar()
     {
-        return $this->imgpath;
+        return $this->avatar;
     }
 
-    public function setImgpath( $imgpath): self
+    public function setAvatar($avatar): self
     {
-        $this->imgpath = $imgpath;
+        $this->avatar = $avatar;
         return $this;
     }
 
@@ -527,7 +529,6 @@ class User implements UserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
-
         return $this;
     }
 

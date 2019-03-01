@@ -91,6 +91,11 @@ class Message
         return $this->sender;
     }
 
+    public function getSenderId(): ?User
+    {
+        return $this->sender->id;
+    }
+
     public function setSender(?User $sender): self
     {
         $this->sender = $sender;

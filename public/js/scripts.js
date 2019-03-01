@@ -1,5 +1,5 @@
 //   all ------------------
-function initCitybook() {
+function initServeat() {
     "use strict";
     //   loader ------------------
     $(".loader-wrap").fadeOut(300, function () {
@@ -744,6 +744,6 @@ cahtwidbutton.on("click", function () {
 });
 //   Init All ------------------
 $(function () {
-    initCitybook();
+    initServeat();
     initparallax();
 });

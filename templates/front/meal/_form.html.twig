@@ -1,7 +1,12 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-<ul class="pictures" data-prototype='<div><div id="meal_pictures___name__"><div><label for="meal_pictures___name___path" class="required">Picture</label><input type="file" id="meal_pictures___name___path" name="meal[pictures][__name__][path]" required="required" /></div></div></div>'>
-</ul>
+
+<div class="change-photo-btn">
+    <div >
+        <ul class="pictures"  data-prototype='<div><div id="meal_pictures___name__"><div><label for="meal_pictures___name___path" class="required">Picture</label><input type="file" id="meal_pictures___name___path" name="meal[pictures][__name__][path]" required="required" /></div></div></div>'>
+        </ul>
+    </div>
+</div>
 <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 
