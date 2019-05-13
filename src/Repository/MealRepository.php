@@ -32,27 +32,11 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
     */
 
-    /**
-     * @param $posX
-     * @param $posY
-     * @return Meal[]
-     */
-    public function findMealsByPositions($posX, $posY)
-    {
-        $qb = $this->createQueryBuilder('m')
-            ->Where('m.posX = :posX')
-            ->setParameter('posX', $posX, 'string')
-            ->andWhere('m.posY = :posY')
-            ->setParameter('posY', $posY,'string')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getArrayResult();
-        return $qb;
-    }
     /*
     public function findOneBySomeField($value): ?Meal
     {
@@ -73,7 +57,8 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+            ;
     }
     public function findByHost(User $user)
     {
@@ -83,6 +68,7 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+            ;
     }
 }
