@@ -74,19 +74,6 @@ class Meal
     private $maxTraveller;
 
 
-    //used to find meals depending on a user adress search
-    
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $posX;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $posY;
-
-
     public function __construct()
     {
         $this->types = new ArrayCollection();
@@ -301,37 +288,5 @@ class Meal
         $this->maxTraveller = $maxTraveller;
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPosX() : ?string
-    {
-        return $this->posX;
-    }
-
-    /**
-     * @param mixed $posX
-     */
-    public function setPosX($posX): void
-    {
-        $this->posX = $posX;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPosY() : ?string
-    {
-        return $this->posY;
-    }
-
-    /**
-     * @param mixed $posY
-     */
-    public function setPosY($posY): void
-    {
-        $this->posY = $posY;
     }
 }
