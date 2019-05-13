@@ -32,8 +32,7 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
     */
 
@@ -74,8 +73,7 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
     public function findByHost(User $user)
     {
@@ -85,7 +83,6 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 }
