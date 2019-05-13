@@ -28,8 +28,6 @@ class MealType extends AbstractType
             ->add('price')
             ->add('maxTraveller')
             ->add('dateMeal')
-            ->add('posX')
-            ->add('posY')
             ->add('pictures', CollectionType::class, array(
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],
