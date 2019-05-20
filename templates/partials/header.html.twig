@@ -1,0 +1,61 @@
+{# header #}
+<header class="main-header dark-header fs-header sticky">
+    <div class="header-inner">
+        <div class="logo-holder">
+            <a href="{{ path('front_page_home') }}"><img width="200" height="100" src="{{ asset('images/logo.png') }}" alt=""></a>
+        </div>
+        {# header-search #}
+        <div class="header-search vis-header-search">
+            <div class="header-search-input-item">
+                <input placeholder="Adresse" type="text" value=""/>
+            </div>
+            <button
+                class="header-search-button" onclick="window.location.href='{{ path('front_page_listing') }}'">
+                {# à changer vers la bonne route #}
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+        <div class="show-search-button">
+            <i class="fa fa-search"></i>
+            <span>Rechercher</span>
+        </div>
+
+        {# header-menu #}
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            <a href="{{ path('front_meal_new') }}" class="add-list">
+                <span>
+                    Créer un repas
+                    <i class="fa fa-plus" style="margin-left:5px;"></i>
+                </span>
+            </a>
+            <a href="{{ path('front_logout') }}">
+                <div class="show-reg-form modal-opn">
+                    <i class="fa fa-sign-out"></i>
+                    Deconnexion
+                </div>
+            </a>
+            <a href="{{ path('front_user_edit', {'id': app.user.id}) }}">
+                <div class="show-reg-form modal-opn" style="top:15px;">
+                    <img src="{{ asset(app.user.avatar) }}" alt="image profile" class="user-avatar"/>
+                </div>
+            </a>
+        {% else %}
+            <a href="{{ path('front_security_login') }}">
+                <div class="hide-reg-form modal-opn">
+                    Se connecter
+                </div>
+            </a>
+            <a href="{{ path('front_security_register') }}">
+                <div class="show-reg-form modal-opn">
+                    S'inscrire
+                </div>
+            </a>
+            <a href="{{ path('front_page_concept') }}">
+                <div class="show-reg-form modal-opn">
+                    Concept
+                </div>
+            </a>
+        {% endif %}
+    </div>
+</header>
+{# header end #}

@@ -10,42 +10,31 @@
                             <div class="profile-edit-wrap">
                                 <div class="profile-edit-page-header">
                                     <h2>Messages </h2>
-                                    <div class="breadcrumbs"><a href="{{ path('front_home') }}">Acceuil</a><a href="#">Administration</a><span>Messages</span></div>
+                                    <div class="breadcrumbs"><a href="{{ path('front_page_home') }}">Acceuil</a><a href="#">Administration</a><span>Messages</span></div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-3">
-
-
-                                        {% include 'partials/leftPanel.html.twig' %}
-
+                                        {% include '/partials/vertical-nav.html.twig' %}
                                     </div>
                                     <div class="col-md-9">
                                         <div class="dashboard-list-box fl-wrap">
                                             <div class="dashboard-header fl-wrap">
-                                                <h3>Toutes les conversations</h3>
+                                                <h3>Votre conversation avec  {{other.getUserName()}}</h3>
                                             </div>
 
-
                                             {% for message in messages %}
-                                                {% if message.receiver.id != user.id %}
-                                                    <div class="dashboard-list">
-                                                        <div class="dashboard-message">
-                                                            {% if message.status == "envoyé"  %}
-                                                                <span class="new-dashboard-item">Nouveau message</span>
-                                                            {% endif %}
-                                                            <div class="dashboard-message-avatar">
-                                                                <img src="images/avatar/1.jpg" alt="">
-                                                            </div>
-                                                            <div class="dashboard-message-text">
-                                                                <h4><a href="{{ path('messages_user', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getUserName() : message.sender.getUserName()}}</a> - <span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span></h4>
-                                                                <p style="{{ message.status == "envoyé" ? "font-weight: bold; color: black;" : "" }}" ><b style="color: blue">{{ message.sender == user ? "Vous" : message.sender.getUserName()}} </b>:
-                                                                    {{message.content}}
-                                                                </p>
-                                                                <span class="reply-mail clearfix">{{message.status}}</span>
-                                                            </div>
+                                                <div class="dashboard-list" style="padding-{{ message.sender == user ? "left" : "right"}}: 100px!important; background: {{ message.sender == user ? "#e6ecf7" : "#f7e6f7"}};">
+                                                    <div class="dashboard-message">
+                                                        <div class="dashboard-message-avatar">
+                                                            <img src="images/avatar/1.jpg" alt="">
+                                                        </div>
+                                                        <div class="dashboard-message-text">
+                                                            <h4><span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span></h4>
+                                                            <p>{{message.content}}</p>
+                                                            <span class="reply-mail clearfix">{{message.status}}</span>
                                                         </div>
                                                     </div>
-                                                {% endif %}
+                                                </div>
                                             {% else %}
                                                 <tr>
                                                     <td colspan="13">no records found</td>
@@ -53,6 +42,16 @@
                                             {% endfor %}
 
 
+                                            <div class="custom-form">
+                                                <form method="post", action="/messages/create/">
+
+
+                                                    <input type="text" value="" name="message" id="message" class="form-control" placeholder="Votre message..." required autofocus onClick="this.select()">
+                                                    <input type="hidden" name="other" value="{{other.id}}">
+                                                    <button type="submit"  class="log-submit-btn"><span>Envoyer</span></button>
+
+                                                </form>
+                                            </div>
                                         </div>
 
 

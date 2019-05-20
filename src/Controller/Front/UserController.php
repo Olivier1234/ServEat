@@ -9,74 +9,81 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\FileUploadService;
 
 /**
  * @Route("/user", name="front_user_")
  */
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/", name="index", methods={"GET"})
-     */
-    public function index(UserRepository $userRepository): Response
-    {
-        return $this->render('front/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
-        ]);
-    }
+    // /**
+    //  * @Route("/", name="index", methods={"GET"})
+    //  */
+    // public function index(UserRepository $userRepository): Response
+    // {
+    //     return $this->render('front/user/index.html.twig', [
+    //         'users' => $userRepository->findAll(),
+    //     ]);
+    // }
 
-    /**
-     * @Route("/new", name="new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+    // /**
+    //  * @Route("/new", name="new", methods={"GET","POST"})
+    //  */
+    // public function new(Request $request): Response
+    // {
+    //     $user = new User();
+    //     $form = $this->createForm(UserType::class, $user);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager = $this->getDoctrine()->getManager();
+    //         $entityManager->persist($user);
+    //         $entityManager->flush();
 
-            return $this->redirectToRoute('front_user_index');
-        }
+    //         return $this->redirectToRoute('front_user_index');
+    //     }
 
-        return $this->render('front/user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
+    //     return $this->render('front/user/new.html.twig', [
+    //         'user' => $user,
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 
-    /**
-     * @Route("/{id}", name="show", methods={"GET"})
-     */
-    public function show(User $user): Response
-    {
-        return $this->render('front/user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
+    // /**
+    //  * @Route("/{id}", name="show", methods={"GET"})
+    //  */
+    // public function show(User $user): Response
+    // {
+    //     return $this->render('front/user/show.html.twig', [
+    //         'user' => $user,
+    //     ]);
+    // }
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, FileUploadService $fileUploadService): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('avatar')->getData();
+            $path = $fileUploadService->uploadFile($file,'images/user/');
+            $user->setAvatar($path);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('front_user_index', [
+            return $this->redirectToRoute('front_user_edit', [
                 'id' => $user->getId(),
             ]);
         }
 
         return $this->render('front/user/edit.html.twig', [
+            'controller_name' => 'UserController',
             'user' => $user,
-            'form' => $form->createView(),
+            'profileForm' => $form->createView(),
         ]);
     }
 
@@ -85,7 +92,7 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();

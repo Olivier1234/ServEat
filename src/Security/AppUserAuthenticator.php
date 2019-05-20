@@ -38,7 +38,7 @@ class AppUserAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return 'front_login' === $request->attributes->get('_route')
+        return 'front_security_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -85,11 +85,11 @@ class AppUserAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->router->generate('user_profile'));
+        return new RedirectResponse($this->router->generate('front_page_home'));
     }
 
     protected function getLoginUrl()
     {
-        return $this->router->generate('front_login');
+        return $this->router->generate('front_security_login');
     }
 }

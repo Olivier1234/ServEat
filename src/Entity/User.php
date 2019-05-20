@@ -156,7 +156,7 @@ class User implements UserInterface
         $this->claims = new ArrayCollection();
         $this->referenceDocuments = new ArrayCollection();
         $this->reports = new ArrayCollection();
-        $this->isVerified = "No";
+        $this->isVerified = false;
     }
 
     public function getId(): ?int

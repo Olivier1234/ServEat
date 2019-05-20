@@ -20,8 +20,10 @@ class MessageController extends AbstractController
      */
     public function index(MessageRepository $messageRepository): Response
     {
-        return $this->render('message/index.html.twig', [
-            'messages' => $messageRepository->findAll(),
+        $user = $this->getUser();
+        return $this->render('front/message/index.html.twig', [
+            'messages' => $messageRepository->findAllMessages($user),
+            'user' => $user
         ]);
     }
 
@@ -42,7 +44,7 @@ class MessageController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('message/new.html.twig', [
+        return $this->render('front/message/new.html.twig', [
             'message' => $message,
             'form' => $form->createView(),
         ]);
@@ -53,8 +55,8 @@ class MessageController extends AbstractController
      */
     public function show(Message $message): Response
     {
-        return $this->render('message/show.html.twig', [
-            'message' => $message,
+        return $this->render('front/message/show.html.twig', [
+            'messages' => $messageRepository->findAll(),
         ]);
     }
 
@@ -74,7 +76,7 @@ class MessageController extends AbstractController
             ]);
         }
 
-        return $this->render('message/edit.html.twig', [
+        return $this->render('front/message/edit.html.twig', [
             'message' => $message,
             'form' => $form->createView(),
         ]);

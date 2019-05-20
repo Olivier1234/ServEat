@@ -12,7 +12,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker;
-use Faker\Provider\Base;
 
 
 class AppFixtures extends Fixture
@@ -179,7 +178,7 @@ class AppFixtures extends Fixture
         $date = date_create_from_format('j-M-Y', '15-Feb-2009');
         $message2->setCreatedAt($date);
         $message2->setSender($user1);
-        $message2->getReceiver($user2);
+        $message2->setReceiver($user2);
         $manager->persist($message2);
 
         //////////////////////////////////////NOTATIONS/////////////////////////////////////
@@ -192,8 +191,8 @@ class AppFixtures extends Fixture
               $notation->setGiver($user2);}else{$notation->setGiver($user3);
             }
             $notation->setReceiver($user1);
-            $notation->setIsAnonymous(0);
-            $notation->setIsVisible(0);
+            $notation->setIsAnonymous(false);
+            $notation->setIsVisible(false);
             $manager->persist($notation);
          }
 

@@ -12,29 +12,30 @@
                 <div class="profile-edit-page-header">
                     <h2>Les réservations</h2>
                     <div class="breadcrumbs">
-                        <a href="{{ path('front_home') }}">Acceuil</a>
-                        <a href="#">Administration</a>
+                        <a href="{{ path('front_page_home') }}">Acceuil</a>
                         <span>Reservations</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        {% include 'partials/leftPanel.html.twig' %}
+                        {% include 'partials/vertical-nav.html.twig' %}
                     </div>
                     <div
                         class="col-md-9">
-
                         <!-- MY-BOOKINGS -->
-                        <div class="dashboard-list-box fl-wrap">
+                        <div class="row dashboard-list-box fl-wrap" style="margin-bottom:15px;">
                             <div class="dashboard-header fl-wrap">
                                 <h3>Je souhaite</h3>
                             </div>
                             {% for booking in myBookings %}
                                 <!-- dashboard-list start-->
                                 <div class="dashboard-list">
-                                    <div
-                                        class="dashboard-message">
-                                        <span class="new-dashboard-item"><a href="{{ path('messages_user', {'id': booking.meal.host.id}) }}"><i class="fa fa-envelope"></i></a></span>
+                                    <div class="dashboard-message">
+                                        <span class="new-dashboard-item">
+                                            <a href="{{ path('front_page_messages_user', {'id': booking.meal.host.id}) }}">
+                                                <i class="fa fa-envelope"></i>
+                                            </a>
+                                        </span>
                                         <div class="dashboard-message-avatar">
                                             {% if booking.meal.host.getAvatar() %}
                                                 <img src="{{ booking.meal.host.getAvatar() }}" alt="">
@@ -126,7 +127,7 @@
                                                 </div>-->
 
                         <!-- TRAVELERS-BOOKINGS -->
-                            <div class="dashboard-list-box fl-wrap"> <div class="dashboard-header fl-wrap">
+                            <div class="row dashboard-list-box fl-wrap"> <div class="dashboard-header fl-wrap">
                                 <h3>Je reçois</h3>
                             </div>
                             {% for booking in myTravelersBookings %}
@@ -134,7 +135,7 @@
                                 <div class="dashboard-list">
                                     <div class="dashboard-message">
                                         <span class="new-dashboard-item">
-                                            <a href="{{ path('messages_user', {'id': booking.traveler.id}) }}">
+                                            <a href="{{ path('front_page_messages_user', {'id': booking.traveler.id}) }}">
                                                 <i class="fa fa-envelope"></i>
                                             </a>
                                         </span>

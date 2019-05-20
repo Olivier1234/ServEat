@@ -1,56 +1,20 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Message index{% endblock %}
-
-{% block body %}
-    <h1>Message index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Content</th>
-                <th>Status</th>
-                <th>Created_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for message in messages %}
-            <tr>
-                <td>{{ message.id }}</td>
-                <td>{{ message.content }}</td>
-                <td>{{ message.status }}</td>
-                <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('front_message_show', {'id': message.id}) }}">show</a>
-                    <a href="{{ path('front_message_edit', {'id': message.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('front_message_new') }}">Create new</a>
-{% endblock %} #}
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
     <!--section -->
-    <section id="sec1">
+    <section
+        id="sec1">
         <!-- container -->
-        <div class="container">
+        <div
+            class="container">
             <!-- profile-edit-wrap -->
             <div class="profile-edit-wrap">
                 <div class="profile-edit-page-header">
-                    <h2>Messages</h2>
+                    <h2>Messages
+                    </h2>
                     <div class="breadcrumbs">
                         <a href="{{ path('front_page_home') }}">Acceuil</a>
+                        <a href="#">Administration</a>
                         <span>Messages</span>
                     </div>
                 </div>
@@ -67,7 +31,7 @@
                                 {% if message.receiver.id != user.id %}
                                     <div class="dashboard-list">
                                         <div class="dashboard-message">
-                                            {% if message.status == "envoyé" %}
+                                            {% if message.status == "envoyé"  %}
                                                 <span class="new-dashboard-item">Nouveau message</span>
                                             {% endif %}
                                             <div class="dashboard-message-avatar">
@@ -79,12 +43,13 @@
                                             </div>
                                             <div class="dashboard-message-text">
                                                 <h4>
-                                                    <a href="{{ path('front_message_show', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getUserName() : message.sender.getUserName()}}</a>
+                                                    <a href="{{ path('front_page_messages_user', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getUserName() : message.sender.getUserName()}}</a>
                                                     -
                                                     <span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span>
                                                 </h4>
                                                 <p style="{{ message.status == "envoyé" ? "font-weight: bold; color: black;" : "" }}">
-                                                    <b style="color: blue">{{ message.sender == user ? "Vous" : message.sender.getUserName()}}</b>
+                                                    <b style="color: blue">{{ message.sender == user ? "Vous" : message.sender.getUserName()}}
+                                                    </b>:
                                                     {{message.content}}
                                                 </p>
                                                 <span class="reply-mail clearfix">{{message.status}}</span>
@@ -94,7 +59,7 @@
                                 {% endif %}
                             {% else %}
                                 <tr>
-                                    <td colspan="13">Vous n'avez aucun messages.</td>
+                                    <td colspan="13">no records found</td>
                                 </tr>
                             {% endfor %}
                         </div>

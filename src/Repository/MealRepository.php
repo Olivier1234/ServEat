@@ -57,9 +57,17 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
+
+    public function countMeals()
+    {
+        return $this->createQueryBuilder('m')
+            ->select('COUNT(m)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
     public function findByHost(User $user)
     {
         return $this->createQueryBuilder('m')
@@ -68,7 +76,6 @@ class MealRepository extends ServiceEntityRepository
             ->orderBy('m.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-            ;
+            ->getResult();
     }
 }

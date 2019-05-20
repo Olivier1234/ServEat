@@ -1,26 +1,56 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
+
 use App\Repository\MessageRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Message;
 use App\Entity\User;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Repository\MealRepository;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+/**
+ * @Route("/", name="front_page_")
+ */
 class PageController extends AbstractController
 {
+    /**
+     * @Route("/", name="home", methods={"GET","POST"}))
+     */
+    public function home(MealRepository $mealRepository, UserRepository $userRepository)
+    {
+
+        $searchForm = $this->createFormBuilder()
+            ->setAction($this->generateUrl('front_search_search'))
+            ->setMethod('GET')
+            ->add('adressInput', TextType::class)
+            ->add('submit', SubmitType::class, ['label' => 'Rechercher'])
+            ->getForm();
+
+        $usersCount = $userRepository->countUsers();
+        $mealsCount = $mealRepository->countMeals();
+
+
+        return $this->render('front/page/home.html.twig', [
+            'controller_name' => 'PageController',
+            'searchForm' => $searchForm->createView(),
+            'usersCount' => $usersCount,
+            'mealsCount' => $mealsCount,
+        ]);
+    }
+    
     /**
      * @Route("/about", name="about")
      */
     public function about()
     {
-        return $this->render('page/about.html.twig', [
+        return $this->render('front/page/about.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -30,7 +60,7 @@ class PageController extends AbstractController
      */
     public function contact()
     {
-        return $this->render('page/contact.html.twig', [
+        return $this->render('front/page/contact.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -42,7 +72,7 @@ class PageController extends AbstractController
         {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        return $this->render('page/add_listing.html.twig', [
+        return $this->render('front/page/add_listing.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -80,7 +110,7 @@ class PageController extends AbstractController
             }
         }
 
-        return $this->render('page/messages.html.twig', [
+        return $this->render('front/page/messages.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $distinct_messages,
             'user' => $user,
@@ -97,7 +127,7 @@ class PageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
-        return $this->render('page/messages_user.html.twig', [
+        return $this->render('front/page/messages_user.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $messageRepository->findAllMessagesUser($user, $other),
             'user' => $user,
@@ -124,7 +154,7 @@ class PageController extends AbstractController
         $manager->persist($message);
         $manager->flush();
 
-        return $this->render('page/messages_user.html.twig', [
+        return $this->render('front/page/messages_user.html.twig', [
             'controller_name' => 'PageController',
             'messages' => $messageRepository->findAllMessagesUser($user, $other),
             'user' => $user,
@@ -143,7 +173,7 @@ class PageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        return $this->render('page/user_profile.html.twig', [
+        return $this->render('front/page/user_profile.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -153,7 +183,7 @@ class PageController extends AbstractController
      */
     public function change_password()
     {
-        return $this->render('page/change_password.html.twig', [
+        return $this->render('front/page/change_password.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -165,7 +195,7 @@ class PageController extends AbstractController
         {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        return $this->render('page/reviews.html.twig', [
+        return $this->render('front/page/reviews.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -177,7 +207,7 @@ class PageController extends AbstractController
         {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        return $this->render('page/dashboard.html.twig', [
+        return $this->render('front/page/dashboard.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -187,7 +217,7 @@ class PageController extends AbstractController
      */
     public function concept()
     {
-        return $this->render('page/concept.html.twig', [
+        return $this->render('front/page/concept.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -197,7 +227,7 @@ class PageController extends AbstractController
      */
     public function member()
     {
-        return $this->render('page/member.html.twig', [
+        return $this->render('front/page/member.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
@@ -207,7 +237,7 @@ class PageController extends AbstractController
      */
     public function listing()
     {
-        return $this->render('page/listing.html.twig', [
+        return $this->render('front/page/listing.html.twig', [
             'controller_name' => 'PageController',
         ]);
     }
