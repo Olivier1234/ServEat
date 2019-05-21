@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Service\FileUploadService;
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Form\RegistrationType;
 
 /**
  * @Route("/", name="front_security_")
@@ -36,7 +36,7 @@ class SecurityController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, FileUploadService $fileUploadService): Response
     {
         $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,7 +50,6 @@ class SecurityController extends AbstractController
 
             $file = $form->get('avatar')->getData();
             $path = $fileUploadService->uploadFile($file,'images/user/');
-
             $user->setAvatar($path);
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -58,7 +57,7 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
-            return $this->redirectToRoute('front_page_dashboard');
+            return $this->redirectToRoute('front_security_login');
         }
 
         return $this->render('front/security/register.html.twig', [

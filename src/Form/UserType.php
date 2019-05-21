@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType as SymfonyDateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UserType extends AbstractType
 {
@@ -21,7 +20,7 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, array(
                 'label' => 'Adresse e-mail',
                 'attr' => array(
-                    'placeholder' => 'nom.prenom@domaine.com'
+                    'placeholder' => 'Adresse e-mail'
                 )
             ))
             ->add('pseudo', TextType::class, array(
@@ -62,24 +61,7 @@ class UserType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'Dîtes quelque chose pour vous présenter'
                 )
-            ))
-            ->add('avatar', FileType::class, array(
-                    'label' => 'Picture'
-                )
-            )
-            // ->add('roles', CollectionType::class, [
-            //             'entry_type'   => ChoiceType::class,
-            //             'entry_options'  => [
-            //                 'label' => false,
-            //                 'choices' => [
-            //                     'Admin' => 'ROLE_ADMIN',
-            //                     'Super' => 'ROLE_SUPER_ADMIN',
-            //                 ],
-            //             ],
-            //   ])
-            // ->add('password')
-            // ->add('isVerified')
-        ;
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -4,12 +4,12 @@ namespace App\Controller\Front;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Service\FileUploadService;
+use App\Form\AvatarType;
 
 /**
  * @Route("/user", name="front_user_")
@@ -66,13 +66,25 @@ class UserController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        $profileForm = $this->createForm(UserType::class, $user);
+        $profileForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->get('avatar')->getData();
+        $avatarForm = $this->createForm(AvatarType::class);
+        $avatarForm->handleRequest($request);
+
+        if ($profileForm->isSubmitted() && $profileForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('front_user_edit', [
+                'id' => $user->getId(),
+            ]);
+        }
+
+        if ($avatarForm->isSubmitted() && $avatarForm->isValid()) {
+            $file = $avatarForm->get('avatar')->getData();
             $path = $fileUploadService->uploadFile($file,'images/user/');
             $user->setAvatar($path);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('front_user_edit', [
@@ -83,7 +95,8 @@ class UserController extends AbstractController
         return $this->render('front/user/edit.html.twig', [
             'controller_name' => 'UserController',
             'user' => $user,
-            'profileForm' => $form->createView(),
+            'profileForm' => $profileForm->createView(),
+            'avatarForm' => $avatarForm->createView(),
         ]);
     }
 

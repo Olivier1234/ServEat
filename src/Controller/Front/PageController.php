@@ -203,14 +203,14 @@ class PageController extends AbstractController
     /**
      * @Route("/dashboard", name="dashboard")
      */
-    public function dashboard()
-        {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+    // public function dashboard()
+    //     {
+    //     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        return $this->render('front/page/dashboard.html.twig', [
-            'controller_name' => 'PageController',
-        ]);
-    }
+    //     return $this->render('front/page/dashboard.html.twig', [
+    //         'controller_name' => 'PageController',
+    //     ]);
+    // }
 
     /**
      * @Route("/concept", name="concept")

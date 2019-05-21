@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use App\Entity\Address;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -10,22 +9,45 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-
-class RegistrationFormType extends AbstractType
+class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email')
-            ->add('firstname')
-            ->add('lastname')
+            ->add('avatar', FileType::class, array(
+                'label' => 'Picture'
+            ))
+            ->add('pseudo', TextType::class, array(
+                'attr' => array(
+                    'placeholder' => 'Pseudo'
+                )
+            ))
+            ->add('lastname', TextType::class, array(
+                'label' => 'Nom',
+                'attr' => array(
+                    'placeholder' => 'Nom'
+                )
+            ))
+            ->add('firstname', TextType::class, array(
+                'label' => 'Prénom',
+                'attr' => array(
+                    'placeholder' => 'Prénom'
+                )
+            ))
+            ->add('email', EmailType::class, array(
+                'label' => 'Adresse e-mail',
+                'attr' => array(
+                    'placeholder' => 'Adresse e-mail'
+                )
+            ))
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'Mot de passe',
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -38,32 +60,10 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            ])
-            /*->add('roles', CollectionType::class, [
-                'entry_type'   => ChoiceType::class,
-                'entry_options'  => [
-                    'label' => false,
-                    'choices' => [
-                        'Admin' => 'ROLE_ADMIN',
-                        'Super' => 'ROLE_SUPER_ADMIN',
-                    ],
-                ],
-      ])*/
-            //->add('isVerified')
-
-            //->add('description')
-            /*->add('addresses', CollectionType::class, array(
-                'entry_type' => AddressType::class,
-                'entry_options' => ['label' => false],
-                'allow_add' => true,
-                'allow_delete' => true,
-            ))*/
-            //->add('phone')
-            //->add('birthday')
-            //->add('pseudo')
-            ->add('avatar', FileType::class, ['label' => 'Picture'])
-
-        ;
+                'attr' => array(
+                    'placeholder' => 'Mot de passe'
+                )
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

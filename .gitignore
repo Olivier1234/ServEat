@@ -50,7 +50,6 @@
 
 # Embedded web-server pid file
 /.web-server-pid
-
 composer.lock
 .env
 .idea/
@@ -78,3 +77,7 @@ yarn-error.log
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+
+###> public/image/user ###
+/public/images/user/**
+###< public/image/user ###

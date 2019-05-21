@@ -1,67 +1,20 @@
-{# {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }} #}
-
 {{ form_start(profileForm) }}
-<div
-    class="col-md-7">
-    {# profile-edit-container #}
-    <div class="profile-edit-container">
-        <div class="profile-edit-header fl-wrap">
-            <h4>Mon compte</h4>
-        </div>
-        <div class="custom-form">
-            {{ form_errors(profileForm) }}
-            {{ form_row(profileForm.email) }}
-            {{ form_row(profileForm.pseudo) }}
-            {{ form_row(profileForm.lastname) }}
-            {{ form_row(profileForm.firstname) }}
-            {{ form_row(profileForm.birthday) }}
-            {{ form_row(profileForm.gender) }}
-            {{ form_row(profileForm.phone) }}
-            {{ form_row(profileForm.description) }}
-            <button class="log-submit-btn">
-                <span>Enregistrer</span>
-            </button>
-        </div>
-    </div>
-    {# profile-edit-container end #}
-</div>
-<div class="col-md-2">
-    <div class="edit-profile-photo fl-wrap">
-        <img src="{{ asset(app.user.avatar) }}" class="respimg" alt="image profil" width="200" height="200">
-        <div class="change-photo-btn">
-            <div class="photo-upload">
-                <span>
-                    <i class="fa fa-upload"></i>
-                    Envoyer Photo
-                </span>
-                {# <ul class="pictures" data-prototype='<div><div id="registration_form_addresses___name__"><div><label for="registration_form_addresses___name___street" class="required">Street</label><input type="text" id="registration_form_addresses___name___street" name="registration_form[addresses][__name__][street]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___zc" class="required">Zc</label><input type="text" id="registration_form_addresses___name___zc" name="registration_form[addresses][__name__][zc]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___city" class="required">City</label><input type="text" id="registration_form_addresses___name___city" name="registration_form[addresses][__name__][city]" required="required" maxlength="255" /></div><div><label for="registration_form_addresses___name___country" class="required">Country</label><input type="text" id="registration_form_addresses___name___country" name="registration_form[addresses][__name__][country]" required="required" maxlength="255" /></div></div></div>'></ul> #}
-                {{ form_row(profileForm.avatar, {'attr': {'class': 'upload'}}) }}
-            </div>
-        </div>
-    </div>
-</div>
+    {{ form_errors(profileForm) }}
+    {{ form_row(profileForm.email) }}
+    {{ form_row(profileForm.pseudo) }}
+    {{ form_row(profileForm.lastname) }}
+    {{ form_row(profileForm.firstname) }}
+    {{ form_row(profileForm.birthday) }}
+    {{ form_row(profileForm.gender) }}
+    {{ form_row(profileForm.phone) }}
+    {{ form_row(profileForm.description) }}
+    <button class="log-submit-btn">
+        <span>Enregistrer</span>
+    </button>
 {{ form_end(profileForm) }}
 
-{# <label>Nom
-    <i class="fa fa-user-o"></i>
-</label>
-<input type="text" placeholder="Nom" value="{{ app.user.lastname }}"/>
-<label>Prénom
-    <i class="fa fa-user-o"></i>
-</label>
-<input type="text" placeholder="Prénom" value="{{ app.user.firstname }}"/>
-<label>Adresse Email<i class="fa fa-envelope-o"></i>
-</label>
-<input type="text" placeholder="Adresse Email" value="{{ app.user.email }}"/>
-<label>Téléphone<i class="fa fa-phone"></i>
-</label>
-<input type="text" placeholder="Téléphone" value="{{ app.user.phone }}"/>
-<label>
-    Adresse
-    <i class="fa fa-map-marker"></i>
-</label>
-
-<textarea cols="40" placeholder="Dites quelque chose d'intéressant!" rows="3">{{ app.user.description }}</textarea> #}
+{# Nom <i class="fa fa-user-o"></i>
+Prénom <i class="fa fa-user-o"></i>
+Adresse Email <i class="fa fa-envelope-o"></i>
+Téléphone <i class="fa fa-phone"></i>
+Adresse <i class="fa fa-map-marker"></i> #}

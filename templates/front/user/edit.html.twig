@@ -4,22 +4,37 @@
     {# section #}
     <section>
         {# container #}
-        <div
-            class="container">
+        <div class="container">
             {# profile-edit-wrap #}
             <div class="profile-edit-wrap">
                 <div class="profile-edit-page-header">
-                    <h2>Modifier Profil</h2>
+                    <h2>Modifier profil</h2>
                     <div class="breadcrumbs">
                         <a href="{{ path('front_page_home') }}">Acceuil</a>
-                        <span>Modifier Profil</span>
+                        <span>Modifier profil</span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
                         {% include 'partials/vertical-nav.html.twig' %}
                     </div>
-                    {{ include('front/user/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+                    <div class="col-md-7">
+                        {# profile-edit-container #}
+                        <div class="profile-edit-container">
+                            <div class="profile-edit-header fl-wrap">
+                                <h4>Mon compte</h4>
+                            </div>
+                            <div class="custom-form">
+                                {{ include('front/user/_form.html.twig') }}
+                            </div>
+                        </div>
+                        {# profile-edit-container end #}
+                    </div>
+                    <div class="col-md-2">
+                        <div class="custom-form">
+                            {{ include('front/user/_avatar_form.html.twig') }}
+                        </div>
+                    </div>
                 </div>
             </div>
             {# profile-edit-wrap end #}
