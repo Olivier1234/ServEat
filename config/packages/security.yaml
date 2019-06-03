@@ -46,5 +46,5 @@ security:
     #- { path: ^/admin, roles: ROLE_ADMIN }
     - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/user_profile, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     

@@ -32,7 +32,7 @@
                                 <div class="dashboard-list">
                                     <div class="dashboard-message">
                                         <span class="new-dashboard-item">
-                                            <a href="{{ path('front_page_messages_user', {'id': booking.meal.host.id}) }}">
+                                            <a href="{{ path('front_message_show', {'id': booking.meal.host.id}) }}">
                                                 <i class="fa fa-envelope"></i>
                                             </a>
                                         </span>
@@ -135,7 +135,7 @@
                                 <div class="dashboard-list">
                                     <div class="dashboard-message">
                                         <span class="new-dashboard-item">
-                                            <a href="{{ path('front_page_messages_user', {'id': booking.traveler.id}) }}">
+                                            <a href="{{ path('front_message_show', {'id': booking.traveler.id}) }}">
                                                 <i class="fa fa-envelope"></i>
                                             </a>
                                         </span>

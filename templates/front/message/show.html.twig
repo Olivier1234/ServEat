@@ -1,46 +1,11 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Message{% endblock %}
-
-{% block body %}
-    <h1>Message</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ message.id }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ message.content }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ message.status }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ message.createdAt ? message.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('front_message_index') }}">back to list</a>
-
-    <a href="{{ path('front_message_edit', {'id': message.id}) }}">edit</a>
-
-    {{ include('message/_delete_form.html.twig') }}
-{% endblock %} #}
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!--section -->
+    {# section #}
     <section id="sec1">
-        <!-- container -->
+        {# container #}
         <div class="container">
-            <!-- profile-edit-wrap -->
+            {# profile-edit-wrap #}
             <div class="profile-edit-wrap">
                 <div class="profile-edit-page-header">
                     <h2>Messages </h2>
@@ -59,7 +24,7 @@
                                 <div class="dashboard-list" style="padding-{{ message.sender == user ? "left" : "right"}}: 100px!important; background: {{ message.sender == user ? "#e6ecf7" : "#f7e6f7"}};">
                                     <div class="dashboard-message">
                                         <div class="dashboard-message-avatar">
-                                            <img src="images/avatar/1.jpg" alt="">
+                                            <img src="images/avatars/1.jpg" alt="">
                                         </div>
                                         <div class="dashboard-message-text">
                                             <h4><span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span></h4>
@@ -73,29 +38,31 @@
                                     <td colspan="13">Démarrez la conversation avec {{other.getUserName()}}</td>
                                 </tr>
                             {% endfor %}
+                            {# form #}
                             <div class="custom-form">
-                                <form method="post", action="/messages/create/">
+                                <form method="post", action="">
                                     <input type="text" value="" name="message" id="message" class="form-control" placeholder="Votre message..." required autofocus onClick="this.select()">
                                     <input type="hidden" name="other" value="{{other.id}}">
                                     <button type="submit" class="log-submit-btn"><span>Envoyer</span></button>
                                 </form>
                             </div>
+                            {# form end #}
                         </div>
                     </div>
                 </div>
             </div>
-            <!--profile-edit-wrap end -->
+            {# profile-edit-wrap end #}
         </div>
-        <!--container end -->
+        {# container end #}
     </section>
-    <!-- section end -->
+    {# section end #}
     <div class="limit-box fl-wrap"></div>
-    <!--section -->
+    {# section #}
     <section class="gradient-bg">
         <div class="cirle-bg">
             <div class="bg" data-bg="images/bg/circle.png"></div>
         </div>
     </section>
-    <!-- section end -->
+    {# section end #}
 <a class="to-top"><i class="fa fa-angle-up"></i></a>
 {% endblock %}

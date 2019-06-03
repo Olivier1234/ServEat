@@ -12,7 +12,6 @@ use App\Form\NotationType;
 use App\Repository\MealRepository;
 use App\Repository\NotationRepository;
 use App\Repository\AddressRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,8 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/meal", name="front_meal_")
- * //@Security("is_granted('ROLE_ADMIN')")
+ * @Route("/meals", name="front_meal_")
  */
 class MealController extends AbstractController
 {
@@ -88,10 +86,10 @@ class MealController extends AbstractController
                 $path = $file->getPath();
                 $fileName = md5(uniqid()).'.'.$path->guessExtension();
                 $path->move(
-                    'images/meal/',
+                    'images/meals/',
                     $fileName
                 );
-                $file->setPath( '/images/meal/'. $fileName);
+                $file->setPath( '/images/meals/'. $fileName);
             }
             $meal->setHost($this->getUser());
 

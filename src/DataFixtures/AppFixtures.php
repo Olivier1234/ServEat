@@ -38,7 +38,7 @@ class AppFixtures extends Fixture
             $password = "654321qwerty";
             $user1->setPassword($this->passwordEncoder->encodePassword($user1, $password));
             $user1->setRoles(['ROLE_ADMIN']);
-            $user1->setAvatar("/images/avatar/ludovic.lecurieux.jpg");
+            $user1->setAvatar("/images/avatars/ludovic.lecurieux.jpg");
             $manager->persist($user1);
 
             $user2 = new User();
@@ -52,7 +52,7 @@ class AppFixtures extends Fixture
             $password = "azerty";
             $user2->setPassword($this->passwordEncoder->encodePassword($user2, $password));
             $user2->setRoles(['ROLE_ADMIN']);
-            $user2->setAvatar("/images/avatar/leyla-lenoan.jpg");
+            $user2->setAvatar("/images/avatars/leyla-lenoan.jpg");
             $manager->persist($user2);
 
             $user3 = new User();
@@ -68,7 +68,7 @@ class AppFixtures extends Fixture
             $password = "654321qwerty";
             $user3->setPassword($this->passwordEncoder->encodePassword($user3, $password));
             $user3->setRoles(['ROLE_ADMIN']);
-            $user3->setAvatar("/images/avatar/user3.jpg");
+            $user3->setAvatar("/images/avatars/user3.jpg");
             $manager->persist($user3);
 
         // create 20 products! Bam!
@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
           $password = "654321qwerty";
           $otherUser->setPassword($this->passwordEncoder->encodePassword($otherUser, $password));
           $otherUser->setRoles(['ROLE_USER']);
-          $otherUser->setAvatar("/images/avatar/"."user".$i.".jpg");
+          $otherUser->setAvatar("/images/avatars/"."user".$i.".jpg");
           $manager->persist($otherUser);
 
         }

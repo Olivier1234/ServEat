@@ -27,14 +27,11 @@ class MessageRepository extends ServiceEntityRepository
             ->where('m.receiver = :user')
             ->orWhere('m.sender = :user')
             ->setParameter('user', $user)
-            // ->groupBy(':user')
             ->orderBy('m.created_at', 'DESC')
             ->getQuery()
             ->getResult();
-
+            
         return $qb;
-
-
     }
 
     /**
@@ -42,7 +39,6 @@ class MessageRepository extends ServiceEntityRepository
      */
     public function findAllMessagesUser($user, $other): array
     {
-
         // On met les messages en "lu"
         $ur = $this->createQueryBuilder('message');
         $q = $ur->update('App\Entity\Message', 'm')
@@ -60,7 +56,6 @@ class MessageRepository extends ServiceEntityRepository
                 ->setParameter('other', $other)
                 ->getQuery();
         $p = $q->execute();
-
 
         $qb = $this->createQueryBuilder('m')
             ->select('m')

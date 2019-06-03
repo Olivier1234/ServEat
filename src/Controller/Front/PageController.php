@@ -78,107 +78,6 @@ class PageController extends AbstractController
     }
 
     /**
-     * @Route("/messages/count/{status}", name="messages_count_status", methods={"GET"})
-     * Compte tous les messages avec un param status
-     */
-    public function messages_count_status(MessageRepository $messageRepository, string $status)
-    {
-        $user = $this->getUser();
-        $count = $messageRepository->countMessageStatus($user, $status);
-        return new JsonResponse($count[0][1]);
-    }
-
-    /**
-     * @Route("/messages", name="messages", methods={"GET"})
-     * Affiche toues les messages reçus et envoyés de l'utilisateur
-     */
-    public function messages(MessageRepository $messageRepository)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
-        $messages = $messageRepository->findAllMessages($user);
-        $distinct_messages = array();
-        $receiver_array = array($user);
-
-        // On regroupe les messages des utilisateurs
-        foreach ($messages as $message) {
-
-            if ((!in_array($message->getReceiver(),$receiver_array))
-            && $message->getReceiver()) {
-                array_push($distinct_messages, $message);
-                array_push($receiver_array, $message->getReceiver());
-            }
-        }
-
-        return $this->render('front/page/messages.html.twig', [
-            'controller_name' => 'PageController',
-            'messages' => $distinct_messages,
-            'user' => $user,
-            'messageseeee' => $messageRepository->countMessageStatus($user, "envoyé")
-
-        ]);
-    }
-
-    /**
-     * @Route("/messages/{id}", name="messages_user", methods={"GET"})
-     * Affiche tous les messages avec un utilisateur en particulier
-     */
-    public function messages_user(MessageRepository $messageRepository, User $other)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
-        return $this->render('front/page/messages_user.html.twig', [
-            'controller_name' => 'PageController',
-            'messages' => $messageRepository->findAllMessagesUser($user, $other),
-            'user' => $user,
-            'other' => $other
-
-        ]);
-    }
-
-    /**
-     * @Route("/messages/create/", name="message_create", methods={"POST"})
-     */
-    public function new_message(ObjectManager $manager, MessageRepository $messageRepository, UserRepository $userRepository, Request $request)
-    {
-
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
-        $other = $userRepository->find($request->request->get('other'));
-
-        $message = new Message();
-        $message->setContent($request->request->get('message'));
-        $message->setStatus("envoyé");
-        $message->setSender($user);
-        $message->setReceiver($other);
-        $manager->persist($message);
-        $manager->flush();
-
-        return $this->render('front/page/messages_user.html.twig', [
-            'controller_name' => 'PageController',
-            'messages' => $messageRepository->findAllMessagesUser($user, $other),
-            'user' => $user,
-            'other' => $other,
-            'title' => "Votre conversation avec " . $other->getUserName()
-
-        ]);
-
-    }
-
-
-    /**
-     * @Route("/user_profile", name="user_profile")
-     */
-    public function user_profile()
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        return $this->render('front/page/user_profile.html.twig', [
-            'controller_name' => 'PageController',
-        ]);
-    }
-
-    /**
      * @Route("/change_password", name="change_password")
      */
     public function change_password()
@@ -199,18 +98,6 @@ class PageController extends AbstractController
             'controller_name' => 'PageController',
         ]);
     }
-
-    /**
-     * @Route("/dashboard", name="dashboard")
-     */
-    // public function dashboard()
-    //     {
-    //     $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-    //     return $this->render('front/page/dashboard.html.twig', [
-    //         'controller_name' => 'PageController',
-    //     ]);
-    // }
 
     /**
      * @Route("/concept", name="concept")

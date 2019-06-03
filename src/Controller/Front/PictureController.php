@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/picture", name="front_picture_")
+ * @Route("/pictures", name="front_picture_")
  */
 class PictureController extends AbstractController
 {
@@ -20,7 +20,7 @@ class PictureController extends AbstractController
      */
     public function index(PictureRepository $pictureRepository): Response
     {
-        return $this->render('picture/index.html.twig', [
+        return $this->render('pictures/index.html.twig', [
             'pictures' => $pictureRepository->findAll(),
         ]);
     }

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/notation", name="front_notation_")
+ * @Route("/notations", name="front_notation_")
  */
 class NotationController extends AbstractController
 {
@@ -74,7 +74,7 @@ class NotationController extends AbstractController
             ]);
         }
 
-        return $this->render('notation/edit.html.twig', [
+        return $this->render('notations/edit.html.twig', [
             'notation' => $notation,
             'form' => $form->createView(),
         ]);

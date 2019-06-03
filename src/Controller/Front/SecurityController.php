@@ -49,7 +49,7 @@ class SecurityController extends AbstractController
             );
 
             $file = $form->get('avatar')->getData();
-            $path = $fileUploadService->uploadFile($file,'images/user/');
+            $path = $fileUploadService->uploadFile($file,'images/users/');
             $user->setAvatar($path);
 
             $entityManager = $this->getDoctrine()->getManager();

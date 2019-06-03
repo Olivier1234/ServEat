@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/address", name="front_address_")
+ * @Route("/addresses", name="front_address_")
  */
 class AddressController extends AbstractController
 {
@@ -20,7 +20,7 @@ class AddressController extends AbstractController
      */
     public function index(AddressRepository $addressRepository): Response
     {
-        return $this->render('address/index.html.twig', [
+        return $this->render('addresses/index.html.twig', [
             'addresses' => $addressRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class AddressController extends AbstractController
             return $this->redirectToRoute('front_address_index');
         }
 
-        return $this->render('address/new.html.twig', [
+        return $this->render('addresses/new.html.twig', [
             'address' => $address,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class AddressController extends AbstractController
      */
     public function show(Address $address): Response
     {
-        return $this->render('address/show.html.twig', [
+        return $this->render('addresses/show.html.twig', [
             'address' => $address,
         ]);
     }
@@ -74,7 +74,7 @@ class AddressController extends AbstractController
             ]);
         }
 
-        return $this->render('address/edit.html.twig', [
+        return $this->render('addresses/edit.html.twig', [
             'address' => $address,
             'form' => $form->createView(),
         ]);

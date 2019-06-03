@@ -12,7 +12,7 @@ use App\Service\FileUploadService;
 use App\Form\AvatarType;
 
 /**
- * @Route("/user", name="front_user_")
+ * @Route("/users", name="front_users_")
  */
 class UserController extends AbstractController
 {
@@ -40,7 +40,7 @@ class UserController extends AbstractController
     //         $entityManager->persist($user);
     //         $entityManager->flush();
 
-    //         return $this->redirectToRoute('front_user_index');
+    //         return $this->redirectToRoute('front_users_index');
     //     }
 
     //     return $this->render('front/user/new.html.twig', [
@@ -73,27 +73,28 @@ class UserController extends AbstractController
         $avatarForm->handleRequest($request);
 
         if ($profileForm->isSubmitted() && $profileForm->isValid()) {
+            dump($profileForm);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('front_user_edit', [
+            return $this->redirectToRoute('front_users_edit', [
                 'id' => $user->getId(),
             ]);
         }
 
         if ($avatarForm->isSubmitted() && $avatarForm->isValid()) {
             $file = $avatarForm->get('avatar')->getData();
-            $path = $fileUploadService->uploadFile($file,'images/user/');
+            $path = $fileUploadService->uploadFile($file,'images/users/');
             $user->setAvatar($path);
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('front_user_edit', [
+            return $this->redirectToRoute('front_users_edit', [
                 'id' => $user->getId(),
             ]);
         }
 
         return $this->render('front/user/edit.html.twig', [
-            'controller_name' => 'UserController',
+            // 'controller_name' => 'UserController',
             'user' => $user,
             'profileForm' => $profileForm->createView(),
             'avatarForm' => $avatarForm->createView(),
@@ -111,6 +112,6 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('front_user_index');
+        return $this->redirectToRoute('front_users_index');
     }
 }

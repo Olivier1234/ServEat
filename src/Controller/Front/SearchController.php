@@ -30,7 +30,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/", name="search", methods="POST")
      */
-    public function search(Request $request) : Response
+    public function search(Request $request)
     {
         var_dump($request);
         // $user = new User();
@@ -42,10 +42,10 @@ class SearchController extends AbstractController
         //     $entityManager->persist($user);
         //     $entityManager->flush();
 
-        //     return $this->redirectToRoute('front_user_index');
+        //     return $this->redirectToRoute('front_users_index');
         // }
 
-        // return $this->render('front_user/new.html.twig', [
+        // return $this->render('front_users/new.html.twig', [
         //     'user' => $user,
         //     'form' => $form->createView(),
         // ]);

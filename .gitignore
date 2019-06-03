@@ -79,5 +79,5 @@ yarn-error.log
 ###< symfony/web-server-bundle ###
 
 ###> public/image/user ###
-/public/images/user/**
+/public/images/users/**
 ###< public/image/user ###

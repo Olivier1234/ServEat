@@ -43,7 +43,7 @@
                                             </div>
                                             <div class="dashboard-message-text">
                                                 <h4>
-                                                    <a href="{{ path('front_page_messages_user', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getUserName() : message.sender.getUserName()}}</a>
+                                                    <a href="{{ path('front_message_show', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getUserName() : message.sender.getUserName()}}</a>
                                                     -
                                                     <span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span>
                                                 </h4>

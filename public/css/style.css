@@ -248,6 +248,16 @@ blockquote p {
 .shapes-bg-big:before{
     background-image:url(../images/bg/shapes-big.png);
 }
+.avatar-form {
+    display: grid;
+    justify-content: center;
+}
+.avatar-img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    justify-self: center;
+}
 .respimg {
     width:100%;
     height:auto;
@@ -6598,7 +6608,7 @@ footer.main-footer.fixed-footer {
     }
     .logo-holder {
         height: 20px;
-        top:32px;
+        top:10px;
     }
 }
 @media only screen and  (max-width: 540px) {
