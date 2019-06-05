@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\UserRepository;
 use App\Entity\User;
 
 /**
@@ -25,51 +24,25 @@ class MessageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
+
         $messages = $messageRepository->findAllMessages($user);
-        $distinct_messages = array();
-        $receiver_array = array($user);
+        $messages_array = array();
+        $receivers_array = array();
 
         // On regroupe les messages des utilisateurs
         foreach ($messages as $message) {
-            if ((!in_array($message->getReceiver(),$receiver_array))
-            && $message->getReceiver()) {
-                array_push($distinct_messages, $message);
-                array_push($receiver_array, $message->getReceiver());
+            if ($message->getReceiver() && $message->getSender() && !in_array($message->getReceiver(), $receivers_array)) {
+                array_push($receivers_array, $message->getSender());
+                array_push($receivers_array, $message->getReceiver());
+                array_push($messages_array, $message);
             }
         }
 
         return $this->render('front/message/index.html.twig', [
-            // 'controller_name' => 'MessageController',
-            'messages' => $distinct_messages,
-            'user' => $user,
-            // 'count' => $messageRepository->countMessageStatus($user, "envoyé")
-        ]);
-    }
-
-    /**
-     * @Route("/new", name="new", methods={"GET","POST"})
-     */
-    public function new(MessageRepository $messageRepository, UserRepository $userRepository, Request $request)
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        $user = $this->getUser();
-        $other = $userRepository->find($request->request->get('other'));
-
-        $message = new Message();
-        $message->setContent($request->request->get('message'));
-        $message->setStatus("envoyé");
-        $message->setSender($user);
-        $message->setReceiver($other);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($message);
-        $entityManager->flush();
-
-        return $this->render('front/message/show.html.twig', [
-            // 'controller_name' => 'MessageController',
-            'messages' => $messageRepository->findAllMessagesUser($user, $other),
-            'user' => $user,
-            'other' => $other,
-            'title' => "Votre conversation avec " . $other->getUserName()
+            $this->render('partials/vertical-nav.html.twig', [
+                'count' => (int)$messageRepository->countMessageStatus($user, "envoyé")
+            ]),
+            'messages' => $messages_array
         ]);
     }
 
@@ -77,13 +50,30 @@ class MessageController extends AbstractController
      * @Route("/{id}", name="show", methods={"GET","POST"})
      * Affiche tous les messages avec un utilisateur en particulier
      */
-    public function show(MessageRepository $messageRepository, User $other): Response
+    public function show(MessageRepository $messageRepository, Request $request, User $other): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
+        dump($other);
+
+        $message = new Message();
+        $form = $this->createForm(MessageType::class, $message);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message->setStatus("envoyé");
+            $message->setSender($user);
+            $message->setReceiver($other);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($message);
+            $entityManager->flush();
+
+            return $this->redirect($request->getUri());
+        }
+
         return $this->render('front/message/show.html.twig', [
-            // 'controller_name' => 'MessageController',
-            'messages' => $messageRepository->findAllMessagesUser($user, $other),
+            'messages' => $messageRepository->findAllMessagesUsers($user, $other),
+            'form' => $form->createView(),
             'user' => $user,
             'other' => $other
         ]);
@@ -92,47 +82,47 @@ class MessageController extends AbstractController
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
      */
-    // public function edit(Request $request, Message $message): Response
-    // {
-    //     $form = $this->createForm(MessageType::class, $message);
-    //     $form->handleRequest($request);
+    public function edit(Request $request, Message $message): Response
+    {
+        $form = $this->createForm(MessageType::class, $message);
+        $form->handleRequest($request);
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $this->getDoctrine()->getManager()->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
 
-    //         return $this->redirectToRoute('index', [
-    //             'id' => $message->getId(),
-    //         ]);
-    //     }
+            return $this->redirectToRoute('index', [
+                'id' => $message->getId(),
+            ]);
+        }
 
-    //     return $this->render('front/message/edit.html.twig', [
-    //         'message' => $message,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
+        return $this->render('front/message/edit.html.twig', [
+            'message' => $message,
+            'form' => $form->createView(),
+        ]);
+    }
 
     /**
      * @Route("/{id}", name="delete", methods={"DELETE"})
      */
     public function delete(Request $request, Message $message): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$message->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $message->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($message);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('front_message_show', ['id'=> $message->getReceiver()->getId()]);
     }
 
     /**
      * @Route("/count/{status}", name="count_status", methods={"GET"})
      * Compte tous les messages avec un param status
      */
-    // public function count_status(MessageRepository $messageRepository, string $status)
-    // {
-    //     $user = $this->getUser();
-    //     $count = $messageRepository->countMessageStatus($user, $status);
-    //     return new JsonResponse($count[0][1]);
-    // }
+    public function count_status(MessageRepository $messageRepository, string $status)
+    {
+        $user = $this->getUser();
+        $count = $messageRepository->countMessageStatus($user, $status);
+        return new JsonResponse($count[0][1]);
+    }
 }

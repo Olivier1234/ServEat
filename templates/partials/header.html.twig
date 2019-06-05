@@ -30,13 +30,12 @@
             </a>
             <a href="{{ path('front_logout') }}">
                 <div class="show-reg-form modal-opn">
-                    <i class="fa fa-sign-out"></i>
                     Deconnexion
                 </div>
             </a>
-            <a href="{{ path('front_users_edit', {'id': app.user.id}) }}">
+            <a href="{{ path('front_user_edit', {'id': app.user.id}) }}">
                 <div class="show-reg-form modal-opn" style="top:15px;">
-                    <img src="{{ asset(app.user.avatar) }}" alt="image profile" class="user-avatar"/>
+                    <img src="{{ asset(app.user.avatar) }}" alt="image de profile" class="user-avatar"/>
                 </div>
             </a>
         {% else %}

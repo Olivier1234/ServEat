@@ -35,8 +35,8 @@
                 <td>{{ user.phone }}</td>
                 <td>{{ user.avatar }}</td>
                 <td>
-                    <a href="{{ path('front_users_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('front_users_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('front_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('front_user_edit', {'id': user.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -47,5 +47,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('front_users_new') }}">Create new</a>
+    <a href="{{ path('front_user_new') }}">Create new</a>
 {% endblock %}

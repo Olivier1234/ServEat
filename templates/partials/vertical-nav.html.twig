@@ -15,9 +15,9 @@
         <div class="user-profile-menu">
             <h3>Paramètres</h3>
             <ul>
-                <li><a href="{{path('front_users_edit',{'id':app.user.id})}}"><i class="fa fa-user-o"></i>Modifier Profil</a></li>{#class="user-profile-act"#}
-                <li><a href="{{path('front_message_index')}}"><i class="fa fa-envelope-o"></i>Messages<span>3</span></a></li>
-                <li><a href="#"><i class="fa fa-unlock-alt"></i>Changer le Mot de Passe</a></li>
+                <li><a href="{{ path('front_user_edit',{'id':app.user.id}) }}"><i class="fa fa-user-o"></i>Modifier Profil</a></li>{#class="user-profile-act"#}
+                <li><a href="{{ path('front_message_index') }}"><i class="fa fa-envelope-o"></i>Messages<span>0</span></a></li>
+                <li><a href="#"><i class="fa fa-unlock-alt"></i>Changer le mot de passe</a></li>
             </ul>
         </div>
         {# parameters end #}

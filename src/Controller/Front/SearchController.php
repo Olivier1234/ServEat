@@ -42,7 +42,7 @@ class SearchController extends AbstractController
         //     $entityManager->persist($user);
         //     $entityManager->flush();
 
-        //     return $this->redirectToRoute('front_users_index');
+        //     return $this->redirectToRoute('front_user_index');
         // }
 
         // return $this->render('front_users/new.html.twig', [
