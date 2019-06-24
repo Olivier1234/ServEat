@@ -22,35 +22,29 @@ class MessageRepository extends ServiceEntityRepository
 
     public function findAllMessages($user): array
     {
-        $qb = $this->createQueryBuilder('m')
+        return $this->createQueryBuilder('m')
             ->select('m')
             ->where('m.receiver = :user')
             ->orWhere('m.sender = :user')
             ->setParameter('user', $user)
             ->orderBy('m.created_at', 'DESC')
             ->getQuery()
-            ->getResult();
-            
-        return $qb;
+            ->getResult()
+        ;    
     }
 
     /**
      * Retourne tous les messages entre 2 utilisateurs
      */
-    public function findAllMessagesUser($user, $other): array
+    public function findAllMessagesUsers($user, $other): array
     {
-        // On met les messages en "lu"
+        // On met les messages en "lu" si derniers messages ne sont pas ceux de l'utilisateur courant
         $ur = $this->createQueryBuilder('message');
         $q = $ur->update('App\Entity\Message', 'm')
                 ->set('m.status', "'lu'")
                 ->where($this->createQueryBuilder('m')->expr()->andX(
                     $this->createQueryBuilder('m')->expr()->eq('m.receiver', ':user'),
                     $this->createQueryBuilder('m')->expr()->eq('m.sender', ':other')
-
-                ))
-                ->orWhere($this->createQueryBuilder('m')->expr()->andX(
-                    $this->createQueryBuilder('m')->expr()->eq('m.receiver', ':other'),
-                    $this->createQueryBuilder('m')->expr()->eq('m.sender', ':user')
                 ))
                 ->setParameter('user', $user)
                 ->setParameter('other', $other)
@@ -60,8 +54,7 @@ class MessageRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('m')
             ->select('m')
             // Deux configurations possibles :
-            // Soit l'utilisateur est receiver, soit il est sender
-
+            // Soit l'utilisateur courant est receiver, soit il est sender
             ->where($this->createQueryBuilder('m')->expr()->andX(
                 $this->createQueryBuilder('m')->expr()->eq('m.receiver', ':user'),
                 $this->createQueryBuilder('m')->expr()->eq('m.sender', ':other')
@@ -126,9 +119,4 @@ class MessageRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    public function findByTest()
-    {
-
-    }
 }

@@ -12,7 +12,7 @@ use App\Service\FileUploadService;
 use App\Form\AvatarType;
 
 /**
- * @Route("/users", name="front_users_")
+ * @Route("/users", name="front_user_")
  */
 class UserController extends AbstractController
 {
@@ -40,7 +40,7 @@ class UserController extends AbstractController
     //         $entityManager->persist($user);
     //         $entityManager->flush();
 
-    //         return $this->redirectToRoute('front_users_index');
+    //         return $this->redirectToRoute('front_user_index');
     //     }
 
     //     return $this->render('front/user/new.html.twig', [
@@ -73,10 +73,9 @@ class UserController extends AbstractController
         $avatarForm->handleRequest($request);
 
         if ($profileForm->isSubmitted() && $profileForm->isValid()) {
-            dump($profileForm);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('front_users_edit', [
+            return $this->redirectToRoute('front_user_edit', [
                 'id' => $user->getId(),
             ]);
         }
@@ -88,7 +87,7 @@ class UserController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('front_users_edit', [
+            return $this->redirectToRoute('front_user_edit', [
                 'id' => $user->getId(),
             ]);
         }
@@ -112,6 +111,6 @@ class UserController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('front_users_index');
+        return $this->redirectToRoute('front_user_index');
     }
 }

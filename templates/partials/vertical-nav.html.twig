@@ -6,7 +6,7 @@
             <ul>
                 <li><a href="{{ path('front_meal_index') }}"><i class="fa fa-th-list"></i>Mes repas</a></li>
                 <li><a href="{{ path('front_meal_all') }}"><i class="fa fa-th-list"></i>Tous les repas</a></li>
-                <li><a href="{{ path('front_booking_index') }}"><i class="fa fa-calendar-check-o"></i>Réservations<span>2</span></a></li>
+                <li><a href="{{ path('front_booking_index') }}"><i class="fa fa-calendar-check-o"></i>Réservations</a></li>
                 <li><a href="{{ path('front_notation_user_notations') }}"><i class="fa fa-comments-o"></i>Commentaires</a></li>
             </ul>
         </div>
@@ -15,9 +15,9 @@
         <div class="user-profile-menu">
             <h3>Paramètres</h3>
             <ul>
-                <li><a href="{{path('front_users_edit',{'id':app.user.id})}}"><i class="fa fa-user-o"></i>Modifier Profil</a></li>{#class="user-profile-act"#}
-                <li><a href="{{path('front_message_index')}}"><i class="fa fa-envelope-o"></i>Messages<span>3</span></a></li>
-                <li><a href="#"><i class="fa fa-unlock-alt"></i>Changer le Mot de Passe</a></li>
+                <li><a href="{{ path('front_user_edit',{'id':app.user.id}) }}"><i class="fa fa-user-o"></i>Modifier Profil</a></li>{#class="user-profile-act"#}
+                <li><a href="{{ path('front_message_index') }}"><i class="fa fa-envelope-o"></i>Messages<span>0</span></a></li>
+                <li><a href="#"><i class="fa fa-unlock-alt"></i>Changer le mot de passe</a></li>
             </ul>
         </div>
         {# parameters end #}

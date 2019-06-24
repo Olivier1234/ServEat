@@ -40,7 +40,7 @@ class Address
     private $host;
     public function __construct()
     {
-        $this->isDefault = "principale";
+        $this->isDefault = true;
     }
     public function getId(): ?int
     {
