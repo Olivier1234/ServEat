@@ -191,7 +191,9 @@
                                                 </p>
                                             {% endfor %}
                                             {% if not booking.isAccepted %}
-                                                <a class="btn circle-btn color-bg flat-btn" href="#">Accepter</a>
+                                                <a href="/bookings/accepteHote/{{ booking.getId() }}" class="btn circle-btn color-bg flat-btn">Accepter</a>
+                                            {% else %}
+                                                <a href="/bookings/accepteHote/{{ booking.getId() }}" class="btn circle-btn color-bg flat-btn">Vous avez accepté</a>
                                             {% endif %}
                                         </div>
                                     </div>

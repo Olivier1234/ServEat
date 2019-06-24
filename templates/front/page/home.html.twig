@@ -22,16 +22,15 @@
                     <h2>Ces foyers qui cuisinent pour vous</h2>
                     <h3></h3>
                 </div>
-                {{ form_start(searchForm, { 'attr': {'class': 'main-search-input-wrap'} }) }}
-                <div class="main-search-input fl-wrap">
-                    <div class="main-search-input-item">
-                        {{ form_widget(searchForm.adressInput,  
-                            {'attr' : {'placeholder': 'Adresse', 'id': 'autocomplete' , 'class' : 'main-search-adress', 'autocomplete':'off'}}) }}
+
+                <form name="form" method="get" action="{{ path('front_page_listing') }}" class="main-search-input-wrap">
+                    <div class="main-search-input fl-wrap">
+                        <div class="main-search-input-item">
+                            <input type="text" id="form_adressInput" name="searchAddress" required="required" placeholder="Adresse"  class="main-search-adress"  />
+                        </div>
+                        <button type="submit" class="main-search-button">Rechercher</button>
                     </div>
-                    {#{{ form_label(searchForm.submit) }}#}
-                    {{ form_widget(searchForm.submit, {'attr' : {'class': 'main-search-button'}}) }}
-                </div>
-                {{ form_end(searchForm) }}
+                </form>
             </div>
         </div>
         <div class="bubble-bg"></div>
@@ -159,57 +158,20 @@
             {# testimonials-carousel #}
             <div class="testimonials-carousel single-carousel fl-wrap">
                 {# slick-slide-item #}
-                <div class="slick-slide-item">
-                    <div class="testimonilas-text">
-                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
-                        <p>Grâce à Serveat je peux être au plus proche de la culture culinaire des pays que je visite. De très bons souvenirs avec toutes les familles qui nous ont accueillis !!</p>
+                {% for commentaire in commentaires  %}
+                    <div class="slick-slide-item">
+                        <div class="testimonilas-text">
+                            <div class="listing-rating card-popup-rainingvis" data-starrating2="{{ commentaire.rating }}"></div>
+                            <p>{{commentaire.comment}}</p>
+                        </div>
+                        <div class="testimonilas-avatar-item">
+                            <div class="testimonilas-avatar"><img src="{{ asset(commentaire.giver.avatar) }}" alt=""></div>
+                            <h4>{{ commentaire.giver.firstname }} {{ commentaire.giver.lastName }}</h4>
+                            <span>Voyageur</span>
+                        </div>
                     </div>
-                    <div class="testimonilas-avatar-item">
-                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile1.jpg') }}" alt=""></div>
-                        <h4>Lisa Noory</h4>
-                        <span>Traveler</span>
-                    </div>
-                </div>
-                {# slick-slide-item end #}
-                {# slick-slide-item #}
-                <div class="slick-slide-item">
-                    <div class="testimonilas-text">
-                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
-                        <p>C'est grâce à ce site que j'ai rencontré mon meilleur ami. Je l'ai accueilli pour un repas lors de l'un de ses voyages et depuis nous faisons des road-trips ensemble tous les 2 ans ! Merci à vous Serveat !</p>
-                    </div>
-                    <div class="testimonilas-avatar-item">
-                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile2.jpg') }}" alt=""></div>
-                        <h4>Antony Moore</h4>
-                        <span>Host</span>
-                    </div>
-                </div>
-                {# slick-slide-item end #}
-                {# slick-slide-item #}
-                <div class="slick-slide-item">
-                    <div class="testimonilas-text">
-                        <div class="listing-rating card-popup-rainingvis" data-starrating2="4"></div>
-                        <p>Super site que ma fille m'a permis de découvrir ! J'espère qu'une application mobile sera très vite disponible pour pouvoir profiter de ce service plus facilement.</p>
-                    </div>
-                    <div class="testimonilas-avatar-item">
-                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile3.jpg') }}" alt=""></div>
-                        <h4>Camila Harisson</h4>
-                        <span>Traveler</span>
-                    </div>
-                </div>
-                {# slick-slide-item end #}
-                {# slick-slide-item #}
-                <div class="slick-slide-item">
-                    <div class="testimonilas-text">
-                        <div class="listing-rating card-popup-rainingvis" data-starrating2="5"></div>
-                        <p>Je ne pensais pas accueillir des inconnus chez moi avant de découvrir Serveat. Le site a sû me mettre en confiance et je ne regrette pas !</p>
-                    </div>
-                    <div class="testimonilas-avatar-item">
-                        <div class="testimonilas-avatar"><img src="{{ asset('images/all/smile5.jpg') }}" alt=""></div>
-                        <h4>Garry Colonsi</h4>
-                        <span>Host</span>
-                    </div>
-                </div>
-                {# slick-slide-item end #}
+                {% endfor %}
+
             </div>
             {# testimonials-carousel end #}
             <div class="swiper-button-prev sw-btn">

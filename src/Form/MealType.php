@@ -12,6 +12,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
+
+
+
 class MealType extends AbstractType
 {
     protected $tokenStorage;
@@ -25,6 +28,7 @@ class MealType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
+            ->add('address', AddressType::class)
             ->add('price')
             ->add('maxTraveller')
             ->add('dateMeal')

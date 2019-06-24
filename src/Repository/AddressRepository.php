@@ -47,4 +47,22 @@ class AddressRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByAddress($address)
+    {
+        $address = strtolower($address);
+        $db = $this->createQueryBuilder('a')
+            ->andWhere('(LOWER(a.street) like :street) OR (LOWER(a.country) like :country) OR (LOWER(a.city) like :city) OR (LOWER(a.zc) like :zc)')
+            ->setParameter('street', '%'.$address.'%')
+            ->setParameter('country', '%'.$address.'%')
+            ->setParameter('city','%'.$address.'%')
+            ->setParameter('zc', '%'.$address.'%')
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery();
+
+
+           return $db->getResult()
+            ;
+    }
 }

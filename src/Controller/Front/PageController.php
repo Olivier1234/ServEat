@@ -2,7 +2,10 @@
 
 namespace App\Controller\Front;
 
+use App\Form\AddressType;
+use App\Repository\AddressRepository;
 use App\Repository\MessageRepository;
+use App\Repository\NotationRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +26,7 @@ class PageController extends AbstractController
     /**
      * @Route("/", name="home", methods={"GET","POST"}))
      */
-    public function home(MealRepository $mealRepository, UserRepository $userRepository)
+    public function home(MealRepository $mealRepository, UserRepository $userRepository, NotationRepository $notationRepository)
     {
 
         $searchForm = $this->createFormBuilder()
@@ -35,13 +38,14 @@ class PageController extends AbstractController
 
         $usersCount = $userRepository->countUsers();
         $mealsCount = $mealRepository->countMeals();
-
+        $commentaires = $notationRepository->findAll();
 
         return $this->render('front/page/home.html.twig', [
             'controller_name' => 'PageController',
             'searchForm' => $searchForm->createView(),
             'usersCount' => $usersCount,
             'mealsCount' => $mealsCount,
+            'commentaires' => $commentaires,
         ]);
     }
     
@@ -122,10 +126,22 @@ class PageController extends AbstractController
     /**
      * @Route("/listing", name="listing")
      */
-    public function listing()
+    public function listing(Request $request, AddressRepository $addressRepository, MealRepository $mealRepository)
     {
+
+        $addresses = $addressRepository->findByAddress($request->query->get('searchAddress'));
+
+        $meals = [];
+        foreach ($addresses as $address) {
+            $mealsTest = $mealRepository->findBy( ['address' => $address]);
+            foreach ($mealsTest as $meal) {
+                array_push($meals,$meal);
+            }
+        }
+
         return $this->render('front/page/listing.html.twig', [
-            'controller_name' => 'PageController',
+            'meals' => $meals,
         ]);
     }
+
 }

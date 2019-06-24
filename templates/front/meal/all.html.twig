@@ -24,8 +24,13 @@
                                                 {% for meal in meals %}
                                                 <div class="reviews-comments-item">
                                                     <div class="review-comments-avatar">
-                                                        <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg') }}" alt=""></a>
-                                                    </div>
+                                                        {% if meal.pictures.0.path is defined %}
+                                                            <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset(meal.pictures.0.path)  }}" alt=""></a>
+
+                                                        {% else %}
+                                                            <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg')  }}" alt=""></a>
+
+                                                        {% endif %}                                                    </div>
                                                     <div class="reviews-comments-item-text">
                                                         <h4><a href="{{ path('front_meal_show', {'id': meal.id}) }}" class="reviews-comments-item-link">{{ meal.title }}</a></h4>
                                                         <div class="listing-rating card-popup-rainingvis">{{ meal.price }}€ / personne</div>
@@ -69,42 +74,4 @@
                     <!-- section end -->
             <a class="to-top"><i class="fa fa-angle-up"></i></a>
 
-
-    <h1>Meal index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>DateMeal</th>
-                <th>MaxTraveller</th>
-                <th>Id</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for meal in meals %}
-            <tr>
-                <td>{{ meal.title }}</td>
-                <td>{{ meal.description }}</td>
-                <td>{{ meal.price }}</td>
-                <td>{{ meal.dateMeal ? meal.dateMeal|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ meal.maxTraveller }}</td>
-                <td>{{ meal.id }}</td>
-                <td>
-                    <a href="{{ path('front_meal_show', {'id': meal.id}) }}">show</a>
-                    <a href="{{ path('front_meal_edit', {'id': meal.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('front_meal_new') }}">Create new</a>
 {% endblock %}

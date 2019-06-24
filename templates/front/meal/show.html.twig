@@ -1,9 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
 <!--  carousel-->
 <div class="list-single-carousel-wrap fl-wrap" id="sec1">
     <div class="fw-carousel fl-wrap full-height lightgallery">
+
+    {% if meal.pictures|length > 1 %}
+
+        {% for picture in meal.pictures  %}
+            <div style="width:800px;height:530px;" class="slick-slide-item">
+                <div class="box-item">
+                    <img style="width:800px;height:530px;" src="{{ asset(picture.path) }}" alt="">
+                    <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% else %}
         <!-- slick-slide-item -->
         <div style="width:800px;height:530px;" class="slick-slide-item">
             <div class="box-item">
@@ -28,6 +42,8 @@
             </div>
         </div>
         <!-- slick-slide-item end -->
+    {% endif %}
+
     </div>
     <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
     <div class="swiper-button-next sw-btn"><i class="fa fa-long-arrow-right"></i></div>
@@ -39,11 +55,13 @@
             <ul>
                 <li><a class="act-scrlink" href="#sec1">Images</a></li>
                 <li><a href="#sec2">Details</a></li>
-                <li><a href="#sec3">Video </a></li>
                 <li><a href="#sec4">Commentaires</a></li>
             </ul>
         </nav>
-        <a href="#" class="save-btn"> <i class="fa fa-heart"></i> Enregistrer </a>
+        {% if app.user.id != meal.host.id %}
+            {{ include('front/booking/_form.html.twig') }}
+        {% endif %}
+
     </div>
 </div>
 <!--  section   -->
@@ -61,26 +79,23 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="list-single-header-item-opt fl-wrap">
-                                            <div class="list-single-header-cat fl-wrap">
-                                                <a href="#">Japonaise</a>
-                                            </div>
+
                                         </div>
-                                        <h2>{{ meal.title }} <span> - Hosted By </span><a href="author-single.html">{{ meal.host.firstname }} {{ meal.host.lastName }}</a> </h2>
+                                        <h2>{{ meal.title }} <span> - Hosted By </span><a >{{ meal.host.firstname }} {{ meal.host.lastName }}</a> </h2>
 
                                         <span class="section-separator"></span>
-                                        <!--<div class="listing-rating card-popup-rainingvis" data-starrating2="5">
-                                                                <span>(11 commentaires)</span>
-                                                            </div> -->
+                                            <div class="list-single-main-item-title fl-wrap">
+                                                <h3>Description</h3>
+                                            </div>
+                                            <p style="color:black">{{ meal.description }}</p>
+                                            <span class="fw-separator"></span>
+
+
                                         <div class="list-post-counter single-list-post-counter"><span>4</span><i class="fa fa-heart"></i></div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="fl-wrap list-single-header-column">
-                                            <span class="viewed-counter"><i class="fa fa-eye"></i> Vue -  156 </span>
-                                            <a class="custom-scroll-link" href="#sec5"><i class="fa fa-hand-o-right"></i>Ajouter un Commentaire </a>
-                                            <div class="share-holder hid-share">
-                                                <div class="showshare"><span>Partager </span><i class="fa fa-share"></i></div>
-                                                <div class="share-container  isShare"></div>
-                                            </div>
+                                            <a class="custom-scroll-link" href="#sec4"><i class="fa fa-hand-o-right"></i>Ajouter un Commentaire </a>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +110,7 @@
                                 <i class="fa fa-line-chart"></i>
                                 <div class="milestone-counter">
                                     <div class="stats animaper">
-                                        <div class="num" data-content="0" data-num="14">0</div>
+                                        <div class="num" data-content="0" data-num="{{ app.user|length }}">0</div>
                                     </div>
                                 </div>
                                 <h6>Repas préparés</h6>
@@ -116,51 +131,8 @@
                         </div>
                         <!-- inline-facts end -->
                     </div>
-                    <div class="list-single-main-item fl-wrap">
-                        <div class="list-single-main-item-title fl-wrap">
-                            <h3>À propos </h3>
-                        </div>
-                        <p>{{ meal.description }}</p>
-                        <span class="fw-separator"></span>
-                        <div class="list-single-main-item-title fl-wrap">
-                            <h3>Amenities</h3>
-                        </div>
-                        <div class="listing-features fl-wrap">
-                            <ul>
-                                <li><i class="fa fa-rocket"></i> Elevator in building</li>
-                                <li><i class="fa fa-wifi"></i> Free Wi Fi</li>
-                                <li><i class="fa fa-motorcycle"></i> Free Parking</li>
-                                <li><i class="fa fa-cloud"></i> Air Conditioned</li>
-                                <li><i class="fa fa-shopping-cart"></i> Online Ordering</li>
-                                <li><i class="fa fa-paw"></i> Pet Friendly</li>
-                                <li><i class="fa fa-tree"></i> Outdoor Seating</li>
-                                <li><i class="fa fa-wheelchair"></i> Wheelchair Friendly</li>
-                            </ul>
-                        </div>
-                        <span class="fw-separator"></span>
-                        <div class="list-single-main-item-title fl-wrap">
-                            <h3>Tags</h3>
-                        </div>
-                        <div class="list-single-tags tags-stylwrap">
-                            <a href="#">Hotel</a>
-                            <a href="#">Hostel</a>
-                            <a href="#">Room</a>
-                            <a href="#">Spa</a>
-                            <a href="#">Restourant</a>
-                            <a href="#">Parking</a>
-                        </div>
-                    </div>
+
                     <!-- list-single-main-item-->
-                    <div class="list-single-main-item fl-wrap" id="sec3">
-                        <div class="list-single-main-item-title fl-wrap">
-                            <h3>Promo Video</h3>
-                        </div>
-                        <div class="iframe-holder fl-wrap">
-                            <div class="resp-video">
-                                <iframe src="https://player.vimeo.com/video/161566855" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
                     <!-- list-single-main-item end
                     <div class="accordion">
                         <a class="toggle act-accordion" href="#"> Details option   <i class="fa fa-angle-down"></i></a>
@@ -216,19 +188,23 @@
                     <!--box-widget-item -->
                     <div class="box-widget-item fl-wrap">
                         <div class="box-widget-item-header">
-                            <h3> Horaires : </h3>
+                            <h3> Date : </h3>
                         </div>
                         <div class="box-widget opening-hours">
                             <div class="box-widget-content">
-                                <span class="current-status"><i class="fa fa-clock-o"></i> Now Open</span>
+                                <span class="current-status"><i class="fa fa-clock-o"></i> Horaire</span>
                                 <ul>
-                                    <li><span class="opening-hours-day">Lundi </span><span class="opening-hours-time">9 AM - 5 PM</span></li>
-                                    <li><span class="opening-hours-day">Mardi </span><span class="opening-hours-time">9 AM - 5 PM</span></li>
-                                    <li><span class="opening-hours-day">Mercredi </span><span class="opening-hours-time">9 AM - 5 PM</span></li>
-                                    <li><span class="opening-hours-day">Jeudi </span><span class="opening-hours-time">9 AM - 5 PM</span></li>
-                                    <li><span class="opening-hours-day">Vendredi </span><span class="opening-hours-time">9 AM - 5 PM</span></li>
-                                    <li><span class="opening-hours-day">Samedi </span><span class="opening-hours-time">9 AM - 3 PM</span></li>
-                                    <li><span class="opening-hours-day">Dimanche </span><span class="opening-hours-time">Closed</span></li>
+                                    {% set trans_day_hash = {
+                                        "Monday": "Lundi",
+                                        "Tuesday": "Mardi",
+                                        "Wednesday": "Mercredi",
+                                        "Thursday": "Jeudi",
+                                        "Friday": "Vendredi",
+                                        "Saturday": "Samedi",
+                                        "Sunday": "Dimanche"
+                                    }
+                                    %}
+                                    <li><span class="opening-hours-day">{{ trans_day_hash[meal.dateMeal |date('l')] }}</span><span class="opening-hours-time">{{ meal.dateMeal |date('Y m d H:s') }}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -236,48 +212,6 @@
                     <!--box-widget-item end -->
                     <!--box-widget-item -->
                     {% if app.user.id != meal.host.id %}
-                    <div class="box-widget-item fl-wrap">
-                        <div class="box-widget-item-header">
-                            <h3>Réserver: </h3>
-                        </div>
-                        <div class="box-widget opening-hours">
-                            <div class="box-widget-content">
-                                <form class="add-comment custom-form">
-                                    <fieldset>
-                                        <label><i class="fa fa-user-o"></i></label>
-                                        <input type="text" placeholder="Votre Nom *" value="" />
-                                        <div class="clearfix"></div>
-                                        <label><i class="fa fa-envelope-o"></i> </label>
-                                        <input type="text" placeholder="Adresse Email*" value="" />
-                                        <div class="quantity fl-wrap">
-                                            <span><i class="fa fa-user-plus"></i>Personne : </span>
-                                            <div class="quantity-item">
-                                                <input type="button" value="-" class="minus">
-                                                <input type="text" name="quantity" title="Qty" class="qty" min="1" max="{{ meal.maxTraveller }}" step="1" value="1">
-                                                <input type="button" value="+" class="plus">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label><i class="fa fa-calendar-check-o"></i> </label>
-                                                <input type="text" placeholder="Date" class="datepicker" data-large-mode="true" data-large-default="true" value="" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label><i class="fa fa-clock-o"></i> </label>
-                                                <input type="text" placeholder="Time" class="timepicker" value="12:00 am" />
-                                            </div>
-                                        </div>
-                                        <textarea cols="40" rows="3" placeholder="Informations complémentaires:"></textarea>
-                                    </fieldset>
-
-                                    <button class="btn  big-btn  color-bg flat-btn">Réserver maintenant<i class="fa fa-angle-right"></i></button>
-
-                                </form>
-                                {{ include('front/booking/_form.html.twig') }}
-
-                            </div>
-                        </div>
-                    </div>
 
                     <!--box-widget-item end -->
 
@@ -287,13 +221,11 @@
                             <h3>Emplacement / Contacts : </h3>
                         </div>
                         <div class="box-widget">
-                            <div class="map-container">
-                                <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781" data-mapTitle="Our Location"></div>
-                            </div>
+
                             <div class="box-widget-content">
                                 <div class="list-author-widget-contacts list-item-widget-contacts">
                                     <ul>
-                                        <li><span><i class="fa fa-map-marker"></i> Adresse :</span> <a href="#">USA 27TH Brooklyn NY</a></li>
+                                        <li><span><i class="fa fa-map-marker"></i> Adresse :</span> <a href="#">{{ meal.address.street }} {{ meal.address.city }} {{ meal.address.country }}</a></li>
                                         <li><span><i class="fa fa-phone"></i> Téléphone :</span> <a href="#">{{ meal.host.phone }}</a></li>
                                         <li><span><i class="fa fa-envelope-o"></i> Mail :</span> <a href="#">{{ meal.host.Email }}@domain.com</a></li>
                                     </ul>

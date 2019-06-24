@@ -65,18 +65,6 @@ class MealController extends AbstractController
         $meal = new Meal();
         $form = $this->createForm(MealType::class, $meal);
 
-        $address = new Address();
-        $address->setStreet("test");
-        $formOptions = [
-            'class' => Address::class,
-            'choice_label' => 'street',
-            'query_builder' => function (AddressRepository $userRepository) use ($address) {
-            },
-        ];
-        if (!$meal || null === $meal->getId()) {
-            $form->add('address', EntityType::class, $formOptions);
-        }
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

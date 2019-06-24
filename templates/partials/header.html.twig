@@ -6,14 +6,16 @@
         </div>
         {# header-search #}
         <div class="header-search vis-header-search">
-            <div class="header-search-input-item">
-                <input placeholder="Adresse" type="text" value=""/>
-            </div>
-            <button
-                class="header-search-button" onclick="window.location.href='{{ path('front_page_listing') }}'">
-                {# à changer vers la bonne route #}
-                <i class="fa fa-search"></i>
-            </button>
+            <form action="{{ path('front_page_listing') }}">
+                <div class="header-search-input-item">
+                    <input placeholder="Adresse" name='searchAddress'type="text" value=""/>
+                </div>
+                <button
+                        class="header-search-button" >
+                    {# à changer vers la bonne route #}
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
         </div>
         <div class="show-search-button">
             <i class="fa fa-search"></i>
