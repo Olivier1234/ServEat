@@ -6,6 +6,7 @@ use App\Entity\Message;
 use App\Form\MessageType;
 use App\Repository\MessageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +26,7 @@ class MessageController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
+
         $messages = $messageRepository->findAllMessages($user);
         $distinct_messages = array();
         $receiver_array = array($user);
@@ -32,7 +34,7 @@ class MessageController extends AbstractController
         // On regroupe les messages des utilisateurs
         foreach ($messages as $message) {
             if ((!in_array($message->getReceiver(),$receiver_array))
-            && $message->getReceiver()) {
+                && $message->getReceiver()) {
                 array_push($distinct_messages, $message);
                 array_push($receiver_array, $message->getReceiver());
             }
@@ -129,10 +131,11 @@ class MessageController extends AbstractController
      * @Route("/count/{status}", name="count_status", methods={"GET"})
      * Compte tous les messages avec un param status
      */
-    // public function count_status(MessageRepository $messageRepository, string $status)
-    // {
-    //     $user = $this->getUser();
-    //     $count = $messageRepository->countMessageStatus($user, $status);
-    //     return new JsonResponse($count[0][1]);
-    // }
+    public function count_status(MessageRepository $messageRepository, string $status)
+    {
+
+        $user = $this->getUser();
+        $count = $messageRepository->countMessageStatus($user, $status);
+        return new JsonResponse($count[0][1]);
+    }
 }
