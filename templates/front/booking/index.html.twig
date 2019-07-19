@@ -36,6 +36,7 @@
                                                 <i class="fa fa-envelope"></i>
                                             </a>
                                         </span>
+                                            {{ include('front/booking/_delete_form.html.twig') }}
                                         <div class="dashboard-message-avatar">
                                             {% if booking.meal.host.getAvatar() %}
                                                 <img src="{{ booking.meal.host.getAvatar() }}" alt="">
