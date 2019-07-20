@@ -89,7 +89,7 @@ class AppUserAuthenticator extends AbstractFormLoginAuthenticator
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $request->get('email')]);
 
 
-        return new RedirectResponse($this->router->generate('front_users_edit', array('id' => $user->getId())));
+        return new RedirectResponse($this->router->generate('front_user_edit', array('id' => $user->getId())));
     }
 
     protected function getLoginUrl()
