@@ -142,6 +142,11 @@ class User implements UserInterface
      */
     private $reports;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $customerPaymentId;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
@@ -667,6 +672,18 @@ class User implements UserInterface
                 $report->setReporter(null);
             }
         }
+        return $this;
+    }
+
+    public function getCustomerPaymentId(): ?string
+    {
+        return $this->customerPaymentId;
+    }
+
+    public function setCustomerPaymentId(?string $customerPaymentId): self
+    {
+        $this->customerPaymentId = $customerPaymentId;
+
         return $this;
     }
 }
