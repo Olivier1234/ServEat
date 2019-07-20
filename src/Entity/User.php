@@ -292,6 +292,21 @@ class User implements UserInterface
         return $this->recievedMessage;
     }
 
+    /**
+     * @return Collection|Message[]
+     */
+    public function getUnreadRecievedMessage(): int
+    {
+        $i=0;
+        foreach ($this->recievedMessage as $recievedMessage) {
+            if ($recievedMessage->getStatus() === 'envoyé' ) {
+                $i++;
+            }
+        }
+
+        return $i;
+    }
+
     public function addRecievedMessage(Message $recievedMessage): self
     {
         if (!$this->recievedMessage->contains($recievedMessage)) {

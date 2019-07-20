@@ -47,7 +47,7 @@ class BookingController extends AbstractController
             $entityManager->persist($booking);
             $entityManager->flush();
 
-            return $this->redirectToRoute('booking_index');
+            return $this->redirectToRoute('front_booking_index');
         }
 
         return $this->render('front/booking/new.html.twig', [
@@ -77,7 +77,7 @@ class BookingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('booking_index', [
+            return $this->redirectToRoute('front_booking_index', [
                 'id' => $booking->getId(),
             ]);
         }
@@ -99,6 +99,20 @@ class BookingController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('booking_index');
+        return $this->redirectToRoute('front_booking_index');
+    }
+
+    /**
+     * @Route("/accepteHote/{id}", name="acceptehote", methods={"GET"})
+     */
+    public function accepteHote(Request $request, Booking $booking): Response
+    {
+        $booking->setIsAccepted(true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($booking);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('front_booking_index');
     }
 }

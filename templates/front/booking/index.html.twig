@@ -36,6 +36,7 @@
                                                 <i class="fa fa-envelope"></i>
                                             </a>
                                         </span>
+                                            {{ include('front/booking/_delete_form.html.twig') }}
                                         <div class="dashboard-message-avatar">
                                             {% if booking.meal.host.getAvatar() %}
                                                 <img src="{{ booking.meal.host.getAvatar() }}" alt="">
@@ -191,7 +192,9 @@
                                                 </p>
                                             {% endfor %}
                                             {% if not booking.isAccepted %}
-                                                <a class="btn circle-btn color-bg flat-btn" href="#">Accepter</a>
+                                                <a href="/bookings/accepteHote/{{ booking.getId() }}" class="btn circle-btn color-bg flat-btn">Accepter</a>
+                                            {% else %}
+                                                <a href="/bookings/accepteHote/{{ booking.getId() }}" class="btn circle-btn color-bg flat-btn">Vous avez accepté</a>
                                             {% endif %}
                                         </div>
                                     </div>

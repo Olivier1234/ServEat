@@ -2,18 +2,13 @@
 
 namespace App\Controller\Front;
 
-use App\Repository\MessageRepository;
+use App\Repository\AddressRepository;
+use App\Repository\NotationRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use App\Entity\Message;
-use App\Entity\User;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Repository\MealRepository;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/", name="front_page_")
@@ -23,25 +18,18 @@ class PageController extends AbstractController
     /**
      * @Route("/", name="home", methods={"GET","POST"}))
      */
-    public function home(MealRepository $mealRepository, UserRepository $userRepository)
+    public function home(MealRepository $mealRepository, UserRepository $userRepository, NotationRepository $notationRepository)
     {
-
-        $searchForm = $this->createFormBuilder()
-            ->setAction($this->generateUrl('front_search_search'))
-            ->setMethod('GET')
-            ->add('adressInput', TextType::class)
-            ->add('submit', SubmitType::class, ['label' => 'Rechercher'])
-            ->getForm();
 
         $usersCount = $userRepository->countUsers();
         $mealsCount = $mealRepository->countMeals();
-
+        $commentaires = $notationRepository->findAll();
 
         return $this->render('front/page/home.html.twig', [
             'controller_name' => 'PageController',
-            'searchForm' => $searchForm->createView(),
             'usersCount' => $usersCount,
             'mealsCount' => $mealsCount,
+            'commentaires' => $commentaires,
         ]);
     }
     
@@ -122,10 +110,22 @@ class PageController extends AbstractController
     /**
      * @Route("/listing", name="listing")
      */
-    public function listing()
+    public function listing(Request $request, AddressRepository $addressRepository, MealRepository $mealRepository)
     {
+
+        $addresses = $addressRepository->findByAddress($request->query->get('searchAddress'));
+
+        $meals = [];
+        foreach ($addresses as $address) {
+            $mealsTest = $mealRepository->findBy( ['address' => $address]);
+            foreach ($mealsTest as $meal) {
+                array_push($meals,$meal);
+            }
+        }
+
         return $this->render('front/page/listing.html.twig', [
-            'controller_name' => 'PageController',
+            'meals' => $meals,
         ]);
     }
+
 }

@@ -6,14 +6,16 @@
         </div>
         {# header-search #}
         <div class="header-search vis-header-search">
-            <div class="header-search-input-item">
-                <input placeholder="Adresse" type="text" value=""/>
-            </div>
-            <button
-                class="header-search-button" onclick="window.location.href='{{ path('front_page_listing') }}'">
-                {# à changer vers la bonne route #}
-                <i class="fa fa-search"></i>
-            </button>
+            <form action="{{ path('front_page_listing') }}">
+                <div class="header-search-input-item">
+                    <input placeholder="Adresse" name='searchAddress'type="text" value=""/>
+                </div>
+                <button
+                        class="header-search-button" >
+                    {# à changer vers la bonne route #}
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
         </div>
         <div class="show-search-button">
             <i class="fa fa-search"></i>
@@ -30,13 +32,12 @@
             </a>
             <a href="{{ path('front_logout') }}">
                 <div class="show-reg-form modal-opn">
-                    <i class="fa fa-sign-out"></i>
                     Deconnexion
                 </div>
             </a>
-            <a href="{{ path('front_users_edit', {'id': app.user.id}) }}">
+            <a href="{{ path('front_user_edit', {'id': app.user.id}) }}">
                 <div class="show-reg-form modal-opn" style="top:15px;">
-                    <img src="{{ asset(app.user.avatar) }}" alt="image profile" class="user-avatar"/>
+                    <img src="{{ asset(app.user.avatar) }}" alt="image de profile" class="user-avatar"/>
                 </div>
             </a>
         {% else %}
@@ -50,7 +51,7 @@
                     Se connecter
                 </div>
             </a>
-            <a href="{{ path('front_page_concept') }}">
+            <a href="{{ path('front_page_home') }}#concept">
                 <div class="show-reg-form modal-opn">
                     Concept
                 </div>

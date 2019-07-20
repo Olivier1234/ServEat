@@ -3264,6 +3264,14 @@ article .list-single-main-item {
     width:100%;
 }
 /*-------------Forms---------------------------------------*/
+.msg-label {
+    margin: 20px 0 5px;
+}
+.msg-input {
+    margin: 0 !important;
+    height: fit-content;
+    resize: vertical !important;
+}
 .custom-form {
     float:left;
     width:100%;
@@ -4182,6 +4190,51 @@ article .list-single-main-item {
 .dashboard-message-text h4 span {
     font-weight:500;
     font-size:12px;
+}
+.msg-user {
+    padding-right: 110px !important;
+    background: #f9f9f9;
+}
+.msg-other {
+    padding-left: 110px !important;
+    background-color: #fff !important;
+}
+.msg-user-name {
+    padding-bottom: 12px !important;
+}
+.msg-body {
+    display: inline-flex;
+    width: 100%;
+}
+.msg-body .btn {
+    margin: 0;
+    margin-left: 10px;
+}
+.msg-body .btn i {
+    padding: 0;
+    color: #fff;
+}
+.msg-content {
+    padding-bottom: 5px;
+    width: inherit;
+    text-align: justify;
+}
+.msg-content b {
+    padding-right: 6px;
+}
+.msg-noread {
+    font-weight: 800;
+}
+.msg-infos {
+    display: inline-flex;
+    width: 100%;
+}
+.msg-infos span {
+    width: 50%;
+}
+.msg-infos span.msg-datetime {
+    text-align: right;
+    font-weight: 500;
 }
 .reply-mail {
     text-align:left;

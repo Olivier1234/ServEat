@@ -43,7 +43,7 @@ class Meal
     private $pictures;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Address")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Address", cascade={"remove","persist"})
      */
     private $address;
 
