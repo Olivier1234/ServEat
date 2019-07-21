@@ -30,7 +30,7 @@
                                                         <h4><a href="{{ path('front_meal_show', {'id': meal.id}) }}" class="reviews-comments-item-link">{{ meal.title }}</a></h4>
                                                         <div class="listing-rating card-popup-rainingvis">{{ meal.price }}€ / personne</div>
                                                         <div class="clearfix"></div>
-                                                        <p style="">{{ meal.description |raw }}</p>
+                                                        <p style="">{{ meal.description | raw }}</p>
                                                         <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>{{ meal.dateMeal ? meal.dateMeal|date('Y-m-d H:i:s') : '' }}</span>
                                                     </div>
                                                 </div>

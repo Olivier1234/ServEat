@@ -742,8 +742,38 @@ cahtwidbutton.on("click", function () {
 	     hideChat();
 	}
 });
+
+
 //   Init All ------------------
 $(function () {
     initServeat();
     initparallax();
 });
+
+//wysiwig
+function edit() 
+{
+    console.log("edit");
+
+  $('.click2edit').summernote({focus: true});
+};
+//
+function destroy() 
+{
+    console.log("destroy");
+
+  var markup = $('.click2edit').summernote('code');
+  $('.click2edit').summernote('destroy');
+};
+//
+function setFormField()
+{
+  console.log("setFormField");
+  $('#meal_description').val($('.click2edit').html()) ;
+}
+//
+function getFormField()
+{
+    console.log("getFormField");
+   $('.click2edit').html($('#meal_description').val());
+}

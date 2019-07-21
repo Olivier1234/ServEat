@@ -28,6 +28,10 @@
                                             <div class="custom-form">
                                                 {{ include('front/meal/_form.html.twig') }}
                                             </div>
+                                            <button id="editDesc" class="btn btn-info" onclick="getFormField();edit();" type="button">Editer</button>
+                                            <button id="saveDesc" class="btn btn-primary" onclick="destroy();setFormField();" type="button">Sauvegarder</button>
+
+                                            <div class="click2edit"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -59,8 +63,9 @@
             <a class="to-top"><i class="fa fa-angle-up"></i></a>
 
 
-    <h1>Create new Meal</h1>
+    <!-- <h1>Create new Meal</h1>
 
 
     <a href="{{ path('front_meal_index') }}">back to list</a>
+    -->
 {% endblock %}

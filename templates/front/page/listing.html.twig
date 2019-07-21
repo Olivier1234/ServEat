@@ -33,10 +33,10 @@
                                             <div class="geodir-category-img">
                                                 <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg') }}" alt=""></a>
                                                 <div class="overlay"></div>
-                                                <div class="list-post-counter"><span>35</span><i class="fa fa-heart"></i></div>
+                                                <div class="list-post-counter"><span>{{ meal.maxTraveller + 7 }}</span><i class="fa fa-heart"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap text-no-overflow">
-                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                <div class="listing-avatar"><a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="" alt=""></a>
                                                 </div>
                                                 </span><a >By {{ meal.host.firstname }} {{ meal.host.lastName }}</a>
 
@@ -51,7 +51,7 @@
                                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
                                                         <div class="listing-rating card-popup-rainingvis">{{ meal.price }}€ / personne</div>
                                                     </div>
-                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>
+                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>{{ meal.address.street }} {{ meal.address.city }} {{ meal.address.country }}</a></div>
                                                 </div>
                                             </div>
                                         </article>
@@ -63,7 +63,7 @@
                                     </div>
                                     <br> <br>
                                 {% endfor %}               
-                                    <!-- pagination-->
+                                    <!-- pagination
                                     <div class="pagination">
                                         <a href="#" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
                                         <a href="#" class="blog-page transition">1</a>
@@ -72,6 +72,7 @@
                                         <a href="#" class="blog-page transition">4</a>
                                         <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
                                     </div>
+                                    -->
                                 </div>
                                 <!-- list-main-wrap end-->                           
                             </div>

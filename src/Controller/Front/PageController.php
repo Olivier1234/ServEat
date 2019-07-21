@@ -122,7 +122,7 @@ class PageController extends AbstractController
                 array_push($meals,$meal);
             }
         }
-
+//dd($meals);
         return $this->render('front/page/listing.html.twig', [
             'meals' => $meals,
             'adress' => $request->query->get('searchAddress'),
