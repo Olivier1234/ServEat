@@ -19,13 +19,16 @@
                                     <div class="col-md-9">
                                         <div class="dashboard-list-box fl-wrap">
 
-                                            <div class="reviews-comments-wrap">
+                                            <div class="reviews-comments-wrap" style="width: 100%;">
                                                 <!-- reviews-comments-item -->
                                                 {% for meal in meals %}
                                                 <div class="reviews-comments-item">
                                                     <div class="review-comments-avatar">
-                                                        <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg') }}" alt=""></a>
-                                                    </div>
+                                                        {% if meal.pictures.0.path is defined %}
+                                                            <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset(meal.pictures.0.path)  }}" alt=""></a>
+                                                        {% else %}
+                                                            <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg')  }}" alt=""></a>
+                                                        {% endif %}                                                       </div>
                                                     <div class="reviews-comments-item-text">
                                                         <h4><a href="{{ path('front_meal_show', {'id': meal.id}) }}" class="reviews-comments-item-link">{{ meal.title }}</a></h4>
                                                         <div class="listing-rating card-popup-rainingvis">{{ meal.price }}€ / personne</div>
@@ -41,15 +44,6 @@
                                                 {% endfor %}
                                                 <!--reviews-comments-item end-->
                                             </div>
-                                        </div>
-                                        <!-- pagination-->
-                                        <div class="pagination">
-                                            <a href="#" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
-                                            <a href="#">1</a>
-                                            <a href="#" class="current-page">2</a>
-                                            <a href="#">3</a>
-                                            <a href="#">4</a>
-                                            <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
                                         </div>
                                     </div>
                                 </div>
