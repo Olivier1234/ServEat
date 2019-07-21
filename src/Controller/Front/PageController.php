@@ -2,13 +2,21 @@
 
 namespace App\Controller\Front;
 
+use App\Form\AddressType;
 use App\Repository\AddressRepository;
+use App\Repository\MessageRepository;
 use App\Repository\NotationRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Entity\Message;
+use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Repository\MealRepository;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/", name="front_page_")
