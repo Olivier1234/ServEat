@@ -194,9 +194,6 @@
                 <div class="box-widget-wrap">
                     <!--box-widget-item -->
                     <div class="box-widget-item fl-wrap">
-                        <div class="box-widget-item-header">
-                            <h3> Date : </h3>
-                        </div>
                         <div class="box-widget opening-hours">
                             <div class="box-widget-content">
                                 <span class="current-status"><i class="fa fa-clock-o"></i> Horaire</span>
@@ -215,7 +212,14 @@
                                 </ul>
                             </div>
                         </div>
+                        
                     </div>
+                    <div class="box-widget box-widget-item fl-wrap">
+                            <div class="box-widget-content">
+                                <span style="font-size:30px">{{ meal.price }} <i class="fa fa-usd"></i></span>  par invité
+
+                            </div>
+                        </div>
                     <!--box-widget-item end -->
                     <!--box-widget-item -->
                     {% if app.user.id != meal.host.id %}
@@ -234,7 +238,7 @@
                                     <ul>
                                         <li><span><i class="fa fa-map-marker"></i> Adresse :</span> <a href="#">{{ meal.address.street }} {{ meal.address.city }} {{ meal.address.country }}</a></li>
                                         <li><span><i class="fa fa-phone"></i> Téléphone :</span> <a href="#">{{ meal.host.phone }}</a></li>
-                                        <li><span><i class="fa fa-envelope-o"></i> Mail :</span> <a href="#">{{ meal.host.pseudo }}@domain.com</a></li>
+                                        <li><span><i class="fa fa-envelope-o"></i> Mail :</span> <a href="#">{{ meal.host.pseudo }}@gmail.com</a></li>
                                     </ul>
                                 </div>
                                 <div class="list-widget-social">
