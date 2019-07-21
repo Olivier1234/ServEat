@@ -19,6 +19,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
+
 class AppUserAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;
@@ -85,7 +86,10 @@ class AppUserAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->router->generate('front_page_home'));
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $request->get('email')]);
+
+
+        return new RedirectResponse($this->router->generate('front_user_edit', array('id' => $user->getId())));
     }
 
     protected function getLoginUrl()

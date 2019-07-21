@@ -25,6 +25,7 @@ class AppFixtures extends Fixture
     {
          // On configure dans quelles langues nous voulons nos données
         $faker = Faker\Factory::create('fr_FR');
+        \Stripe\Stripe::setApiKey('sk_test_eVxSmneYt3p7j9FH32xajzmG');
 
             //////////////////////////////////////USERS/////////////////////////////////////
             $user1 = new User();
@@ -39,7 +40,20 @@ class AppFixtures extends Fixture
             $user1->setPassword($this->passwordEncoder->encodePassword($user1, $password));
             $user1->setRoles(['ROLE_ADMIN']);
             $user1->setAvatar("/images/avatars/ludovic.lecurieux.jpg");
+
             $manager->persist($user1);
+
+            // Create as Customer:
+            if($user1->getCustomerPaymentId() == null)
+            {
+              $customer = \Stripe\Customer::create([
+                'source' => 'tok_visa',
+                'email' => $user1->getEmail(),
+              ]);
+              $user1->setCustomerPaymentId($customer->id);
+  
+            }
+            
 
             $user2 = new User();
             $user2->setEmail("leyla.lenoan@outlook.fr");
@@ -55,6 +69,16 @@ class AppFixtures extends Fixture
             $user2->setAvatar("/images/avatars/leyla-lenoan.jpg");
             $manager->persist($user2);
 
+            // Create as Customer:
+            if($user2->getCustomerPaymentId() == null)
+            {
+              $customer = \Stripe\Customer::create([
+                'source' => 'tok_visa',
+                'email' => $user2->getEmail(),
+              ]);
+              $user2->setCustomerPaymentId($customer->id);
+  
+            }
             $user3 = new User();
             $user3->setEmail("user3@gmail.com");
             $firstname = $faker->firstName;
