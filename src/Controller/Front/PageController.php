@@ -125,6 +125,7 @@ class PageController extends AbstractController
 
         return $this->render('front/page/listing.html.twig', [
             'meals' => $meals,
+            'adress' => $request->query->get('searchAddress'),
         ]);
     }
 

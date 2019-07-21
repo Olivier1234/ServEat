@@ -52,6 +52,18 @@ class BookingRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findIfAlreadyBooked($value)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT * FROM booking b WHERE b.meal_id = :mealId';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['mealId' => $value]);
+
+    // returns an array of arrays (i.e. a raw data set)
+    return $stmt->fetchAll();
+    }
+
     // /**
     //  * @return Booking[] Returns an array of Booking objects
     //  */

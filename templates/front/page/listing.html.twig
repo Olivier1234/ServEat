@@ -2,32 +2,82 @@
 
 
 {% block body %}
+<div class="container">
     <div class="col-md-12">
-        <div class="dashboard-list-box fl-wrap">
+    <!--  section  --> 
+                    <section class="gray-bg no-pading no-top-padding" id="sec1">
+                        <div class="col-list-wrap  center-col-list-wrap left-list">
+                            <div class="container">
+                                <div class="listsearch-maiwrap box-inside fl-wrap">
+                                    <div class="listsearch-header fl-wrap">
+                                        <h3>Resultats pour : <span>{{adress}}</span></h3>
+                                        <div class="listing-view-layout">
+                                            <ul>
+                                                <li><a class="list active" href="#"><i class="fa fa-list-ul"></i></a></li>
+                                                <li><a class="grid" href="#"><i class="fa fa-th-large"></i></a></li>
 
-            <div class="reviews-comments-wrap">
-                <!-- reviews-comments-item -->
-                {% for meal in meals %}
-                    <div class="reviews-comments-item">
-                        <div class="review-comments-avatar">
-                            <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg') }}" alt=""></a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- listsearch-input-wrap end -->   
+                                </div>
+                                <!-- list-main-wrap-->
+                                <div class="list-main-wrap fl-wrap card-listing">
+                                    <div class="clearfix"></div>
+                                                    {% for meal in meals %}
+
+                                    <!-- listing-item -->
+                                    <div class="listing-item ">
+                                        <article class="geodir-category-listing fl-wrap">
+                                            <div class="geodir-category-img">
+                                                <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg') }}" alt=""></a>
+                                                <div class="overlay"></div>
+                                                <div class="list-post-counter"><span>35</span><i class="fa fa-heart"></i></div>
+                                            </div>
+                                            <div class="geodir-category-content fl-wrap text-no-overflow">
+                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>
+                                                </div>
+                                                </span><a >By {{ meal.host.firstname }} {{ meal.host.lastName }}</a>
+
+                                                <h3><a href="{{ path('front_meal_show', {'id': meal.id}) }}" class="reviews-comments-item-link">{{ meal.title }}</a></h3>
+
+                                                <p>{{ meal.description |raw }}</p>
+
+                                            </div>
+                                            
+                                            <div class="geodir-category-content fl-wrap ">
+                                            <div class="geodir-category-options fl-wrap">
+                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="5">
+                                                        <div class="listing-rating card-popup-rainingvis">{{ meal.price }}€ / personne</div>
+                                                    </div>
+                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <!-- listing-item end-->
+                                    {% else %}
+                                    <div class="listing-item">
+                                        no records found
+                                    </div>
+                                    <br> <br>
+                                {% endfor %}               
+                                    <!-- pagination-->
+                                    <div class="pagination">
+                                        <a href="#" class="prevposts-link"><i class="fa fa-caret-left"></i></a>
+                                        <a href="#" class="blog-page transition">1</a>
+                                        <a href="#" class="blog-page current-page transition">2</a>
+                                        <a href="#" class="blog-page transition">3</a>
+                                        <a href="#" class="blog-page transition">4</a>
+                                        <a href="#" class="nextposts-link"><i class="fa fa-caret-right"></i></a>
+                                    </div>
+                                </div>
+                                <!-- list-main-wrap end-->                           
+                            </div>
                         </div>
-                        <div class="reviews-comments-item-text">
-                            <h4><a href="{{ path('front_meal_show', {'id': meal.id}) }}" class="reviews-comments-item-link">{{ meal.title }}</a></h4>
-                            <div class="listing-rating card-popup-rainingvis">{{ meal.price }}€ / personne</div>
-                            <div class="clearfix"></div>
-                            <p>{{ meal.description }}</p>
-                            <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>{{ meal.dateMeal ? meal.dateMeal|date('Y-m-d H:i:s') : '' }}</span>
-                        </div>
-                    </div>
-                {% else %}
-                    <tr>
-                        <td colspan="7">no records found</td>
-                    </tr>
-                    <br> <br>
-                {% endfor %}
-                <!--reviews-comments-item end-->
-            </div>
-        </div>
+                    </section>
+                    <!--  section  end-->
     </div>
+</div>
 {% endblock %}

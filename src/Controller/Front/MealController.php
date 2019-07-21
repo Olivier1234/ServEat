@@ -12,6 +12,7 @@ use App\Form\NotationType;
 use App\Repository\MealRepository;
 use App\Repository\NotationRepository;
 use App\Repository\AddressRepository;
+use App\Repository\BookingRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,7 +50,7 @@ class MealController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $user = $this->getUser();
 
-        //get the user's notations
+        //get the user's meals
         $meals = $mealRepository->findAllBesideMine($user);
 
         return $this->render('front/meal/all.html.twig', [
@@ -68,6 +69,7 @@ class MealController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
 
             $pictures = $form->get('pictures')->getData();
             foreach ($pictures as $file){
@@ -102,7 +104,7 @@ class MealController extends AbstractController
     /**
      * @Route("/{id}", name="show", methods={"GET","POST"})
      */
-    public function show(Meal $meal, Request $request): Response
+    public function show(BookingRepository $bookingRepository, Meal $meal, Request $request): Response
     {
         //get the user id
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -121,6 +123,18 @@ class MealController extends AbstractController
         $booking->setTraveler($user);
         $formBooking = $this->createForm(BookingType::class, $booking);
         $formBooking->handleRequest($request);
+
+        //check if meal is already booked
+        $bookings = $bookingRepository->findIfAlreadyBooked($meal->getId());
+        $booked = false;
+
+        foreach($bookings as $booking)
+        {
+            if($booking['traveler_id'] == $user->getId())
+            {
+                $booked = true;
+            }
+        }
 
         if ($formNotation->isSubmitted() && $formNotation->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -142,6 +156,7 @@ class MealController extends AbstractController
             'meal' => $meal,
             'notation' => $notation,
             'booking' => $booking,
+            'booked' => $booked,
             'form' => $formNotation->createView(),
             'formBooking' => $formBooking->createView(),
         ]);
