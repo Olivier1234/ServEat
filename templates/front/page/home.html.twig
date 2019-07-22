@@ -11,9 +11,9 @@
                 </video>
             </div>
             {# Vimeo code
-                <div  class="background-vimeo" data-vim="97871257"></div> #}
+                            <div  class="background-vimeo" data-vim="97871257"></div> #}
             {# Youtube code
-                <div  class="background-youtube-wrapper" data-vid="Hg5iNVSp2z8" data-mv="1"></div> #}
+                            <div  class="background-youtube-wrapper" data-vid="Hg5iNVSp2z8" data-mv="1"></div> #}
         </div>
         <div class="overlay"></div>
         <div class="hero-section-wrap fl-wrap">
@@ -26,24 +26,25 @@
                 <form name="form" method="get" action="{{ path('front_page_listing') }}" class="main-search-input-wrap">
                     <div class="main-search-input fl-wrap">
                         <div class="main-search-input-item">
-                            <input type="text" id="form_adressInput" name="searchAddress" required="required" placeholder="Adresse"  class="main-search-adress"  />
+                            <input class="main-search-adress" id="form_adressInput" name="searchAddress" placeholder="Adresse" required="required" type="text"/>
                         </div>
-                        <button type="submit" class="main-search-button">Rechercher</button>
+                        <button class="main-search-button" type="submit">Rechercher</button>
                     </div>
                 </form>
             </div>
         </div>
         <div class="bubble-bg"></div>
         {# <div class="header-sec-link">
-            <div class="container">
-                <a class="custom-scroll-link" href="#sec2">Commençons</a>
-            </div>
-        </div> #}
+                    <div class="container">
+                        <a class="custom-scroll-link" href="#sec2">Commençons</a>
+                    </div>
+                </div> #}
     </section>
     {# section end #}
     {# section #}
-        <section id="concept">
-            <div class="container"> <div class="section-title">
+    <section id="concept">
+        <div class="container">
+            <div class="section-title">
                 <h2>Comment ça marche</h2>
                 <div class="section-subtitle">Comment ça marche</div>
                 <span class="section-separator"></span>
@@ -87,8 +88,8 @@
                     </li>
                 </ul>
                 {# <div class="process-end">
-                    <i class="fa fa-check"></i>
-                </div> #}
+                                    <i class="fa fa-check"></i>
+                                </div> #}
             </div>
             {# process-wrap end #}
         </div>
@@ -115,7 +116,8 @@
     <section class="color-bg">
         <div class="shapes-bg-big"></div>
         <div class="container">
-            <div class=" single-facts fl-wrap">
+            <div
+                class=" single-facts fl-wrap">
                 {# inline-facts #}
                 <div class="inline-facts-wrap">
                     <div class="inline-facts">
@@ -154,9 +156,11 @@
             </div>
         </div>
         {# testimonials-carousel #}
-        <div class="carousel fl-wrap">
+        <div
+            class="carousel fl-wrap">
             {# testimonials-carousel #}
-            <div class="testimonials-carousel single-carousel fl-wrap">
+            <div
+                class="testimonials-carousel single-carousel fl-wrap">
                 {# slick-slide-item #}
                 {% for commentaire in commentaires  %}
                     <div class="slick-slide-item">
@@ -165,8 +169,9 @@
                             <p>{{commentaire.comment}}</p>
                         </div>
                         <div class="testimonilas-avatar-item">
-                            <div class="testimonilas-avatar"><img src="{{ asset(commentaire.giver.avatar) }}" alt=""></div>
-                            <h4>{{ commentaire.giver.firstname }} {{ commentaire.giver.lastName }}</h4>
+                            <div class="testimonilas-avatar"><img src="{{ asset(commentaire.avatar) }}" alt=""></div>
+                            <h4>{{ commentaire.firstName }}
+                                {{ commentaire.lastName }}</h4>
                             <span>Voyageur</span>
                         </div>
                     </div>
@@ -187,7 +192,8 @@
 
 
     {# register form #}
-        <div class="main-register-wrap modal"> <div class="main-overlay"></div>
+    <div class="main-register-wrap modal">
+        <div class="main-overlay"></div>
         <div class="main-register-holder">
             <div class="main-register fl-wrap">
                 <div class="close-reg">
@@ -276,3 +282,4 @@
 
     {{ encore_entry_script_tags('adress') }}
 {% endblock %}
+
