@@ -54,15 +54,15 @@ class AppFixtures extends Fixture
 
 
             // Create a Stripe Customer:
-//            if($user1->getCustomerPaymentId() == null)
-//            {
-//              $customer = \Stripe\Customer::create([
-//                'source' => 'tok_visa',
-//                'email' => $user1->getEmail(),
-//              ]);
-//              $user1->setCustomerPaymentId($customer->id);
-//
-//            }
+            if($user1->getCustomerPaymentId() == null)
+            {
+              $customer = \Stripe\Customer::create([
+                'source' => 'tok_visa',
+                'email' => $user1->getEmail(),
+              ]);
+              $user1->setCustomerPaymentId($customer->id);
+
+            }
             $user2 = new User();
             $user2->setEmail("maryse.vanderhorn@outlook.fr");
             $user2->setFirstName("Maryse");
@@ -102,14 +102,14 @@ class AppFixtures extends Fixture
             $manager->flush();
 
             // Create a Stripe Customer:
-//            if($user2->getCustomerPaymentId() == null)
-//            {
-//             $customer = \Stripe\Customer::create([
-//                'source' => 'tok_visa',
-//                'email' => $user2->getEmail(),
-//              ]);
-//              $user2->setCustomerPaymentId($customer->id);
-//            }
+            if($user2->getCustomerPaymentId() == null)
+            {
+             $customer = \Stripe\Customer::create([
+                'source' => 'tok_visa',
+                'email' => $user2->getEmail(),
+              ]);
+              $user2->setCustomerPaymentId($customer->id);
+            }
 
             //user2 Maryse create a meal
             $meal = new Meal();
@@ -289,43 +289,6 @@ class AppFixtures extends Fixture
             $manager->persist($meal);
             $manager->flush();
 
-            for ($i = 0; $i < 5; $i++) {
-                $notation = new Notation();
-                $notation->setRating(4);
-                $notation->setComment($faker->text);
-                $date = date_create_from_format('j-M-Y', '13-Jul-2019');
-                $notation->setDate($date);
-                $notation->setMeal($meal);
-                if($i  == 0 ){
-                    $notation->setComment('à recommander. Rapport qualité/ prix très intéressant et raisonnable. Personnels très sympa  et service impeccable. Cadre très  convivial. Idéal pour toute la famille.');
-                    $notation->setGiver($user2);
-                    $notation->setReceiver($user1);
-
-                } else if ($i  == 1 ){
-                    $notation->setComment('Très bon repas, ambiance conviviale, à refaire!');
-                    $notation->setGiver($user1);
-                    $notation->setReceiver($user2);
-
-                } else if ($i  == 2 ){
-                    $notation->setComment('Classique mais efficace. endroit calme. belle terrasse quand il fait beau.');
-                    $notation->setGiver($user2);
-                    $notation->setReceiver($user1);
-
-                }else if ($i  == 3 ){
-                    $notation->setComment('Typique et sympathique. Une terrasse au calme. Un personnel agréable et un couscous... Royal.');
-                    $notation->setGiver($user1);
-                    $notation->setReceiver($user2);
-
-                }else if ($i  == 4 ){
-                    $notation->setComment('Très bon accueil et très bons plats je kiffe');
-                    $notation->setGiver($user2);
-                    $notation->setReceiver($user1);
-
-                }
-                $notation->setIsAnonymous(false);
-                $notation->setIsVisible(true);
-                $manager->persist($notation);
-            }
 
             $picture = new Picture();
             $picture->setMeal($meal);
