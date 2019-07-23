@@ -293,6 +293,8 @@ class AppFixtures extends Fixture
                 $notation = new Notation();
                 $notation->setRating(4);
                 $notation->setComment($faker->text);
+                $date = date_create_from_format('j-M-Y', '13-Jul-2019');
+                $notation->setDate($date);
                 $notation->setMeal($meal);
                 if($i  == 0 ){
                     $notation->setComment('à recommander. Rapport qualité/ prix très intéressant et raisonnable. Personnels très sympa  et service impeccable. Cadre très  convivial. Idéal pour toute la famille.');
