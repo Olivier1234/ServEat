@@ -32,7 +32,7 @@ class SearchController extends AbstractController
      */
     public function search(Request $request)
     {
-        var_dump($request);
+        //var_dump($request);
         // $user = new User();
         // $form = $this->createForm(UserType::class, $user);
         // $form->handleRequest($request);

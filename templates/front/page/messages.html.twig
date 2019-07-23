@@ -45,7 +45,7 @@
                                                 <h4>
                                                     <a href="{{ path('front_message_show', {'id': message.receiver.id}) }}">{{ message.sender == user ? message.receiver.getUserName() : message.sender.getUserName()}}</a>
                                                     -
-                                                    <span>{{message.getCreatedAt()|date("m/d/Y h:m")}}</span>
+                                                    <span class="msg-datetime">{{ message.createdAt | date("m/d/Y H:i", "Europe/Paris") }}</span>
                                                 </h4>
                                                 <p style="{{ message.status == "envoyé" ? "font-weight: bold; color: black;" : "" }}">
                                                     <b style="color: blue">{{ message.sender == user ? "Vous" : message.sender.getUserName()}}
