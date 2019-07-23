@@ -47,6 +47,20 @@ class NotationRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findIfAlreadyCommented($mealId, $giverId)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT * FROM notation n WHERE n.meal_id = :mealId and n.giver_id = :giverId';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'mealId' => $mealId,
+            'giverId' => $giverId
+            ]);
+
+    // returns an array of arrays (i.e. a raw data set)
+    return $stmt->fetchAll();
+     }
 
     public function getAllCommentsButMine($userId = 0)
     {

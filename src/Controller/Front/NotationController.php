@@ -21,6 +21,7 @@ class NotationController extends AbstractController
     public function new(Request $request): Response
     {
         $notation = new Notation();
+        $notation->setDate(date("Y-m-d H:i:s"));
         $form = $this->createForm(NotationType::class, $notation);
         $form->handleRequest($request);
 
@@ -48,11 +49,8 @@ class NotationController extends AbstractController
         $user = $this->getUser();
 
         //get the user's notations
-        $notations = $this->getDoctrine()
-        ->getRepository(Notation::class)
-        //>findAll();
-        ->findByReceiver($user->getId());
-
+        $notations = $this->getDoctrine()->getRepository(Notation::class)->findByReceiver($user->getId());
+    
         return $this->render('front/notation/notations.html.twig', [
             'notations' => $notations
         ]);

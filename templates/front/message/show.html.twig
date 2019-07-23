@@ -38,7 +38,7 @@
                                             </div>
                                             <div class="msg-infos">
                                                 <span class="reply-mail clearfix">{{ message.status }}</span>
-                                                <span class="msg-datetime">{{ message.getCreatedAt() | date("d/m/Y h:m") }}</span>
+                                                    <span class="msg-datetime">{{ message.createdAt | date("m/d/Y H:i", "Europe/Paris") }}</span>
                                             </div>
                                         </div>
                                     </div>

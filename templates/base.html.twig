@@ -23,6 +23,7 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('css/plugins.css') }}">
         <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link type="text/css" rel="stylesheet" href="{{ asset('css/color.css') }}">
+
         <link
         crossorigin="" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" rel="stylesheet"/>
 
@@ -71,6 +72,7 @@
         <script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/scripts.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/count.js') }}"></script>
+        
         <script src="https://js.stripe.com/v3/"></script>
         
         {% block javascripts %}
@@ -138,6 +140,7 @@
                     form.submit();
                 }
             </script>
+           
         {% endblock %}
     </body>
 </html>
