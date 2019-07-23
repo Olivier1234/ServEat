@@ -4,12 +4,7 @@
 
 {% block body %}
 
-{% for message in app.flashes('notice') %}
-    <div style="height:70px;background-color:#4BB543;font-size:20px;color:#fff" class="list-single-main-wrapper fl-wrap">
-      {{ message }}
-    </div>
 
-{% endfor %}
 
 <!--content-->  
                 <div class="content">
@@ -52,16 +47,12 @@
                         <div class="container">
                             <div class="join-wrap fl-wrap">
                                 <div class="row">
-                    <div class="col-md-8">
-                        <h3>Avez-vous des questions ?</h3>
-                        <p>Nous sommes disponibles du Lun-Ven 9h-17h&nbsp;&nbsp;&nbsp;Sam 9h-13h CET</p>
-                    </div>
-                    <div class="col-md-4">
-                        <a class="join-wrap-btn" href="contacts.html">Contacter nous
-                            <i class="fa fa-envelope-o"></i>
-                        </a>
-                    </div>
-                </div>
+                                    <div class="col-md-8">
+                                        <h3>Join our online community</h3>
+                                        <p>Grow your marketing and be happy with your online business</p>
+                                    </div>
+                                    <div class="col-md-4"><a href="#" class="join-wrap-btn modal-open">Sign Up <i class="fa fa-sign-in"></i></a></div>
+                                </div>
                             </div>
                         </div>
                     </section>

@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\Booking;
 use App\Form\BookingType;
 use App\Repository\BookingRepository;
+use App\Repository\MealRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -108,6 +109,20 @@ class BookingController extends AbstractController
     public function accepteHote(Request $request, Booking $booking): Response
     {
         $booking->setIsAccepted(true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($booking);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('front_booking_index');
+    }
+
+    /**
+     * @Route("/payHost/{id}", name="payHost", methods={"GET"})
+     */
+    public function payHost(Request $request, Booking $booking): Response
+    {
+        $booking->setIsPayed(true);
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($booking);

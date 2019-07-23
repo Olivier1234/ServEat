@@ -106,8 +106,10 @@
                                                     <a class="btn  circle-btn color-bg flat-btn" href="#">{{ type.getTitle() }}</a>
                                                 </p>
                                             {% endfor %}
-                                            {% if booking.getIsAccepted() %}
-                                                <a class="btn  circle-btn color-bg flat-btn" href="#">Payer</a>
+                                            {% if booking.isAccepted and booking.isPayed %}
+                                                <button class="btn circle-btn color-bg flat-btn" disabled>Repas payé</button>
+                                            {% elseif  booking.isAccepted %}
+                                                <a href="{{ path('payment', {'paymentId': booking.getTraveler().getCustomerPaymentId(), 'amount': booking.getMeal().getPrice(), 'mealId': booking.getMeal().getId(), 'travellerId': booking.getTraveler().getId() }) }}" class="btn circle-btn color-bg flat-btn">Payer</a>                                            
                                             {% endif %}
                                         </div>
                                     </div>
@@ -194,7 +196,7 @@
                                             {% if not booking.isAccepted %}
                                                 <a href="/bookings/accepteHote/{{ booking.getId() }}" class="btn circle-btn color-bg flat-btn">Accepter</a>
                                             {% else %}
-                                                <a href="/bookings/accepteHote/{{ booking.getId() }}" class="btn circle-btn color-bg flat-btn">Vous avez accepté</a>
+                                                <button class="btn circle-btn color-bg flat-btn" disabled>Vous avez accepté</button>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -232,11 +234,11 @@
             <div class="join-wrap fl-wrap">
                 <div class="row">
                     <div class="col-md-8">
-                        <h3>Do You Have Questions ?</h3>
-                        <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
+                        <h3>Avez-vous des questions ?</h3>
+                        <p>Nous sommes disponibles du Lun-Ven 9h-17h&nbsp;&nbsp;&nbsp;Sam 9h-13h CET</p>
                     </div>
                     <div class="col-md-4">
-                        <a class="join-wrap-btn" href="contacts.html">Get In Touch
+                        <a class="join-wrap-btn" href="contacts.html">Contacter nous
                             <i class="fa fa-envelope-o"></i>
                         </a>
                     </div>

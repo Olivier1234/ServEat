@@ -58,7 +58,11 @@
             </ul>
         </nav>
         
-
+{% if booked == false %}
+    {{ include('front/booking/_form.html.twig') }}
+{% else %}
+    <button class="btn btn-success flat-btn" disabled>Vous avez réservé ce repas</button>
+{% endif %}
     </div>
 </div>
 <!--  section   -->
@@ -124,16 +128,16 @@
                             </div>
                         </div>
                         <!-- inline-facts end -->
-                        <!-- inline-facts  -->
+                        <!-- inline-facts  
                         <div class="inline-facts-wrap">
                             <div class="inline-facts">
-                                <i class="fa fa-heart"></i>
+                                <i class="fa fa-comment"></i>
                                 <div class="milestone-counter">
                                     <div class="stats animaper">
                                         <div class="num" data-content="0" data-num="{{ meal.maxTraveller + 7 }}"></div>
                                     </div>
                                 </div>
-                                <h6>Likes</h6>
+                                <h6>Commentaires</h6>
                             </div>
                         </div>
                         <!-- inline-facts end -->
@@ -172,12 +176,12 @@
                                     <div class="listing-rating card-popup-rainingvis" data-starrating2="{{notation.rating}}"> </div>
                                     <div class="clearfix"></div>
                                     <p>"{{notation.comment}}"</p>
-                                    <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>03 December 2017</span>
+                                    <span class="reviews-comments-item-date"><i class="fa fa-calendar-check-o"></i>{{ "now"|date("m/d/Y") }}</span>
                                 </div>
                             </div>
                             {% else %}
                             <tr>
-                                <td colspan="6">no records found</td>
+                                <td colspan="6">Les commentaires ne sauraientt tarder pour ce repas !</td>
                             </tr>
                             {% endfor %}
                             <!--reviews-comments-item end-->
@@ -185,7 +189,7 @@
                     </div>
                     <!-- list-single-main-item end -->
                     <!-- list-single-main-item -->
-                    {% if app.user.id != meal.host.id %} {% include 'front/notation/new.html.twig' %} {% endif %}
+                    {% if app.user.id != meal.host.id and payed == true %} {% include 'front/notation/new.html.twig' %} {% endif %}
                     <!-- list-single-main-item end -->
                 </div>
             </div>
@@ -216,7 +220,7 @@
                     </div>
                     <div class="box-widget box-widget-item fl-wrap">
                             <div class="box-widget-content">
-                                <span style="font-size:30px">{{ meal.price }} <i class="fa fa-usd"></i></span>  par invité
+                                <span style="font-size:30px">{{ meal.price }} <i class="fa fa-euro"></i></span>  par invité
 
                             </div>
                         </div>
@@ -253,11 +257,7 @@
                         </div>
                     </div>
                     <!--box-widget-item end -->
-                        {% if booked == false %}
-                            {{ include('front/booking/_form.html.twig') }}
-                        {% else %}
-                            <button class="btn btn-success flat-btn" disabled>Vous avez réservé ce repas</a>
-                        {% endif %}
+                       
                     {% endif %}
                     <!--box-widget-item end -->
                 </div>
@@ -278,7 +278,7 @@
 </section>
 <!--  section  end-->
 <a class="to-top"><i class="fa fa-angle-up"></i></a>
-<!--chat-widget -->
+<!--chat-widget 
 <div class="chat-widget-button"><i class="fa fa-comments-o"></i><span>Chat With Owner</span></div>
 <div class="chat-widget_wrap not-vis-chat">
     <div class="chat-widget_header color-bg">
@@ -286,7 +286,7 @@
         <div class="status st_online"><span></span>Online</div>
     </div>
     <div class="chat-body">
-        <!-- message-->
+        <!-- message
         <div class="chat-message chat-message_guest fl-wrap">
             <div class="dashboard-message-avatar">
                 <img src="images/avatars/1.jpg" alt="">
@@ -295,8 +295,8 @@
             <span class="massage-date">25 may 2018  <span>7.51 PM</span></span>
             <p>Vivamus lobortis vel nibh nec maximus. Donec dolor erat, rutrum ut feugiat sed, ornare vitae nunc. </p>
         </div>
-        <!-- message end-->
-        <!-- message-->
+        <!-- message end
+        <!-- message
         <div class="chat-message chat-message_user fl-wrap">
             <div class="dashboard-message-avatar">
                 <img src="images/avatars/1.jpg" alt="">
@@ -305,8 +305,8 @@
             <span class="massage-date">25 may 2018  <span>7.51 PM</span></span>
             <p>Nulla eget erat consequat quam feugiat dapibus eget sed mauris.</p>
         </div>
-        <!-- message end-->
-        <!-- message-->
+        <!-- message end
+        <!-- message
         <div class="chat-message chat-message_guest fl-wrap">
             <div class="dashboard-message-avatar">
                 <img src="images/avatars/1.jpg" alt="">
@@ -315,7 +315,7 @@
             <span class="massage-date">25 may 2018  <span>7.51 PM</span></span>
             <p>Sed non neque faucibus, condimentum lectus at, accumsan enim. Fusce pretium egestas cursus..</p>
         </div>
-        <!-- message end-->
+        <!-- message end
     </div>
     <div class="chat-widget_input fl-wrap">
         <textarea placeholder="Type Message"></textarea>

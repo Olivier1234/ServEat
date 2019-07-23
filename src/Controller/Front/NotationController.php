@@ -21,6 +21,7 @@ class NotationController extends AbstractController
     public function new(Request $request): Response
     {
         $notation = new Notation();
+        $notation->setDate(date("Y-m-d H:i:s"));
         $form = $this->createForm(NotationType::class, $notation);
         $form->handleRequest($request);
 

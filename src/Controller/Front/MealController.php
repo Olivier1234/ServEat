@@ -104,7 +104,7 @@ class MealController extends AbstractController
     /**
      * @Route("/{id}", name="show", methods={"GET","POST"})
      */
-    public function show(BookingRepository $bookingRepository, Meal $meal, Request $request): Response
+    public function show(BookingRepository $bookingRepository, NotationRepository $notationRepository, Meal $meal, Request $request): Response
     {
         //get the user id
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -124,18 +124,36 @@ class MealController extends AbstractController
         $formBooking = $this->createForm(BookingType::class, $booking);
         $formBooking->handleRequest($request);
 
-        //check if meal is already booked
         $bookings = $bookingRepository->findIfAlreadyBooked($meal->getId());
         $booked = false;
+        $payed = false;
+        $commented = false;
 
         foreach($bookings as $booking)
         {
+            //check if meal is already booked
             if($booking['traveler_id'] == $user->getId())
             {
                 $booked = true;
+                //check if meal is already payed
+                if($booking['is_payed'] == true)
+                {
+                    $payed = true;
+                }
             }
         }
 
+        //check if meal is already commented
+        $comments = $notationRepository->findIfAlreadyCommented($meal->getId(),$user->getId());
+
+       /* foreach($comments as $comment)
+        {
+            if($comment.)
+            {
+
+            }
+        }
+*/
         if ($formNotation->isSubmitted() && $formNotation->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($notation);
@@ -157,6 +175,8 @@ class MealController extends AbstractController
             'notation' => $notation,
             'booking' => $booking,
             'booked' => $booked,
+            'commented' => $commented,
+            'payed' => $payed,
             'form' => $formNotation->createView(),
             'formBooking' => $formBooking->createView(),
         ]);

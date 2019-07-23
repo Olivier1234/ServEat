@@ -33,7 +33,7 @@
                                             <div class="geodir-category-img">
                                                 <a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="{{ asset('images/all/italian1.jpg') }}" alt=""></a>
                                                 <div class="overlay"></div>
-                                                <div class="list-post-counter"><span>{{ meal.maxTraveller + 7 }}</span><i class="fa fa-heart"></i></div>
+                                                <div class="list-post-counter"><span>{{ meal.notations.count() }}</span><i class="fa fa-comment"></i></div>
                                             </div>
                                             <div class="geodir-category-content fl-wrap text-no-overflow">
                                                 <div class="listing-avatar"><a href="{{ path('front_meal_show', {'id': meal.id}) }}"><img src="" alt=""></a>

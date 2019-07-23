@@ -64,6 +64,33 @@ class BookingRepository extends ServiceEntityRepository
     return $stmt->fetchAll();
     }
 
+    public function findIfAlreadyPaid($mealId, $travellerId)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT * FROM booking b WHERE b.meal_id = :mealId and b.traveler_id = :travellerId';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'meal' => $mealId,
+            'traveller' => $travellerId
+            ]);
+
+    // returns an array of arrays (i.e. a raw data set)
+    return $stmt->fetchAll();
+    }
+
+    public function updateBookingAfterPayment($mealId, $travellerId)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'UPDATE booking SET is_payed = true WHERE meal_id = :mealId and traveler_id = :travellerId';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([
+            'mealId' => $mealId,
+            'travellerId' => $travellerId
+            ]);
+    }
+
     // /**
     //  * @return Booking[] Returns an array of Booking objects
     //  */
