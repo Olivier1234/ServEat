@@ -2,13 +2,22 @@
 
 namespace App\Controller\Front;
 
+use App\Form\AddressType;
 use App\Repository\AddressRepository;
+use App\Repository\MessageRepository;
 use App\Repository\NotationRepository;
 use App\Repository\UserRepository;
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Entity\Message;
+use App\Entity\User;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Repository\MealRepository;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/", name="front_page_")
@@ -23,7 +32,13 @@ class PageController extends AbstractController
 
         $usersCount = $userRepository->countUsers();
         $mealsCount = $mealRepository->countMeals();
-        $commentaires = $notationRepository->findAll();
+        $user = $this->getUser();
+        if ($user !== NULL) {
+            $commentaires = $notationRepository->getAllCommentsButMine($user->getId());
+        } else {
+            $commentaires = $notationRepository->getAllCommentsButMine();
+        }
+
 
         return $this->render('front/page/home.html.twig', [
             'controller_name' => 'PageController',
@@ -32,7 +47,7 @@ class PageController extends AbstractController
             'commentaires' => $commentaires,
         ]);
     }
-    
+
     /**
      * @Route("/about", name="about")
      */
@@ -57,7 +72,7 @@ class PageController extends AbstractController
      * @Route("/add_listing", name="add_listing")
      */
     public function add_listing()
-        {
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         return $this->render('front/page/add_listing.html.twig', [
@@ -79,7 +94,7 @@ class PageController extends AbstractController
      * @Route("/reviews", name="reviews")
      */
     public function reviews()
-        {
+    {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         return $this->render('front/page/reviews.html.twig', [
@@ -117,9 +132,9 @@ class PageController extends AbstractController
 
         $meals = [];
         foreach ($addresses as $address) {
-            $mealsTest = $mealRepository->findBy( ['address' => $address]);
+            $mealsTest = $mealRepository->findBy(['address' => $address]);
             foreach ($mealsTest as $meal) {
-                array_push($meals,$meal);
+                array_push($meals, $meal);
             }
         }
 //dd($meals);
@@ -128,5 +143,4 @@ class PageController extends AbstractController
             'adress' => $request->query->get('searchAddress'),
         ]);
     }
-
 }

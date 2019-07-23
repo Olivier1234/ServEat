@@ -30,7 +30,9 @@
                                                 <span class="new-dashboard-item">Nouveau message</span>
                                             {% endif %}
                                             <div class="dashboard-message-avatar">
-                                                <img src="{{ message.sender.getAvatar() or message.receiver.getAvatar() ? (message.receiver == app.user ? asset(message.sender.getAvatar()) : asset(message.receiver.getAvatar())) : '/images/favicon/default-avatar.png' }}" alt="image de profile">
+                                                <a href="{{ path('front_message_show', {'id': message.sender == app.user ? message.receiver.id : message.sender.id}) }}">
+                                                    <img src="{{ message.sender.getAvatar() or message.receiver.getAvatar() ? (message.receiver == app.user ? asset(message.sender.getAvatar()) : asset(message.receiver.getAvatar())) : '/images/favicon/default-avatar.png' }}" alt="image de profile">
+                                                </a>
                                             </div>
                                             <div class="dashboard-message-text">
                                                 <h4 class="msg-user-name">

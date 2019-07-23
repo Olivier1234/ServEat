@@ -60,5 +60,21 @@ class NotationRepository extends ServiceEntityRepository
 
     // returns an array of arrays (i.e. a raw data set)
     return $stmt->fetchAll();
+     }
+
+    public function getAllCommentsButMine($userId = 0)
+    {
+        return  $this->createQueryBuilder('n')
+            ->innerJoin('n.giver', 'g')
+            ->addSelect('g.avatar as avatar')
+            ->addSelect('n.rating as rating')
+            ->addSelect('g.lastName as lastName')
+            ->addSelect('n.comment as comment')
+            ->addSelect('g.firstName as firstName')
+            ->andWhere('g.id != :val')
+            ->setParameter('val', $userId)
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
     }
 }
