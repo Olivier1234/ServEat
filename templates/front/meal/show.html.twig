@@ -61,7 +61,7 @@
 {% if booked == false %}
     {{ include('front/booking/_form.html.twig') }}
 {% else %}
-    <button class="btn btn-success flat-btn" disabled>Vous avez réservé ce repas</button>
+    <button style="top:10px;" class="add-list big-btn  color-bg flat-btn" disabled>Vous avez réservé ce repas</button>
 {% endif %}
     </div>
 </div>
@@ -242,7 +242,7 @@
                                     <ul>
                                         <li><span><i class="fa fa-map-marker"></i> Adresse :</span> <a href="#">{{ meal.address.street }} {{ meal.address.city }} {{ meal.address.country }}</a></li>
                                         <li><span><i class="fa fa-phone"></i> Téléphone :</span> <a href="#">{{ meal.host.phone }}</a></li>
-                                        <li><span><i class="fa fa-envelope-o"></i> Mail :</span> <a href="#">{{ meal.host.pseudo }}@gmail.com</a></li>
+                                        <li><span><i class="fa fa-envelope-o"></i> Mail :</span> <a href="#">{{ meal.host.email }}</a></li>
                                     </ul>
                                 </div>
                                 <div class="list-widget-social">
