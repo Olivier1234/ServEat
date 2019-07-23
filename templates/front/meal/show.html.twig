@@ -57,11 +57,12 @@
                 <li><a href="#sec4">Commentaires</a></li>
             </ul>
         </nav>
-        
-{% if booked == false %}
-    {{ include('front/booking/_form.html.twig') }}
-{% else %}
-    <button style="top:10px;" class="add-list big-btn  color-bg flat-btn" disabled>Vous avez réservé ce repas</button>
+{% if app.user.id != meal.host.id %}
+    {% if booked == false %}
+        {{ include('front/booking/_form.html.twig') }}
+    {% else %}
+        <button style="top:10px;" class="add-list big-btn  color-bg flat-btn" disabled>Vous avez réservé ce repas</button>
+    {% endif %}
 {% endif %}
     </div>
 </div>
