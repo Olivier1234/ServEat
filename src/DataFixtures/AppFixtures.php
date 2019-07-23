@@ -187,6 +187,33 @@ class AppFixtures extends Fixture
             $meal->setMaxTraveller($i);
             $meal->setHost($otherUser);
             $meal->setAddress($address);
+              $notation = new Notation();
+              $notation->setRating(rand(2,5));
+              $date = date_create_from_format('j-M-Y', '13-Jul-2019');
+              $notation->setDate($date);
+              $notation->setMeal($meal);
+
+              $notation->setComment('Classique mais efficace. endroit calme. belle terrasse quand il fait beau.');
+              $notation->setGiver($user1);
+              $notation->setReceiver($user2);
+
+              $notation->setIsAnonymous(false);
+              $notation->setIsVisible(true);
+              $manager->persist($notation);
+
+              $notation = new Notation();
+              $notation->setRating(rand(2,5));
+              $date = date_create_from_format('j-M-Y', '13-Jul-2019');
+              $notation->setDate($date);
+              $notation->setMeal($meal);
+
+              $notation->setComment('Très bon repas, ambiance conviviale, à refaire!');
+              $notation->setGiver($user2);
+              $notation->setReceiver($user1);
+
+              $notation->setIsAnonymous(false);
+              $notation->setIsVisible(true);
+              $manager->persist($notation);
             $manager->persist($meal);
             $manager->flush();
 
@@ -237,6 +264,20 @@ class AppFixtures extends Fixture
             $meal->setHost($otherUser);
             $meal->setAddress($address);
             $manager->persist($meal);
+
+              $notation = new Notation();
+              $notation->setRating(rand(2,5));
+              $date = date_create_from_format('j-M-Y', '13-Jul-2019');
+              $notation->setDate($date);
+              $notation->setMeal($meal);
+
+              $notation->setComment('Typique et sympathique. Une terrasse au calme. Un personnel agréable et un couscous... Royal.');
+              $notation->setGiver($user1);
+              $notation->setReceiver($user2);
+
+              $notation->setIsAnonymous(false);
+              $notation->setIsVisible(true);
+              $manager->persist($notation);
             $manager->flush();
 
             
@@ -286,6 +327,22 @@ class AppFixtures extends Fixture
             $meal->setMaxTraveller($i);
             $meal->setHost($otherUser);
             $meal->setAddress($address);
+
+          $notation = new Notation();
+          $notation->setRating(rand(2,5));
+          $date = date_create_from_format('j-M-Y', '13-Jul-2019');
+          $notation->setDate($date);
+          $notation->setMeal($meal);
+
+          $notation->setComment('Très bon accueil et très bons plats je kiffe');
+          $notation->setGiver($user2);
+          $notation->setReceiver($user1);
+
+          $notation->setIsAnonymous(false);
+          $notation->setIsVisible(true);
+          $manager->persist($notation);
+
+
             $manager->persist($meal);
             $manager->flush();
 
@@ -313,6 +370,8 @@ class AppFixtures extends Fixture
             $picture->setPath('/images/all/plat6d.jpg');
             $manager->persist($picture);
             $manager->flush();
+
+
 
           }
           elseif($i == 7)
